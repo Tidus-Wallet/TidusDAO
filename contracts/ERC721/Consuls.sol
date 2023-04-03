@@ -3,6 +3,7 @@ pragma solidity ^0.8.18;
 
 import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import { ERC721Enumerable } from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import { ISenate } from "../governance/interfaces/ISenate.sol";
 import "../TidusDAOConstitution.sol";
 contract Consuls is ERC721Enumerable {
 
@@ -19,6 +20,7 @@ contract Consuls is ERC721Enumerable {
 
     function mint(address to) public {
         require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Consuls.");
+        require(ISenate(senateVotingContract).consuls(to), "TIDUS: Cannot mint to a non-Consul address.");
         require(totalSupply() < 2, "TIDUS: Only 2 Consuls at a time.");
         _safeMint(to, totalSupply());
     }
