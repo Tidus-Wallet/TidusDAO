@@ -11,6 +11,7 @@ contract TidusDAOConstitution is ERC721Enumerable {
     string public constitution;
 
     constructor(string memory _constitutionText) ERC721("TidusDAO Constitution", "TDC") {
+        constitution = _constitutionText;
         mint(address(this));
     }
 

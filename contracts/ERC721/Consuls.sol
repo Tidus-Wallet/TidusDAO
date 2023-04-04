@@ -3,21 +3,46 @@ pragma solidity ^0.8.18;
 
 import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import { ERC721Enumerable } from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import { ERC721Votes } from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol";
+import { EIP712 } from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import { ISenate } from "../governance/interfaces/ISenate.sol";
-import "../TidusDAOConstitution.sol";
-contract Consuls is ERC721Enumerable {
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
+/// @custom:security-contact sekaieth@proton.me
+contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
+
+    /// @notice The text of the DAO constitution.
     string public constitution;
-    string metadata;
-    address public senateVotingContract;
-    TidusDAOConstitution public constitutionAddress;
 
-    constructor(string memory _consulsNFTMetadata, address _senateVotingContract, address _constitution) ERC721("Consuls", "CONSULS") {
-        metadata = _consulsNFTMetadata;
+    /// @notice The metadata URI for the Dictator NFT.
+    string metadata;
+
+    /// @notice The address of the Senate Voting Contract.
+    address public senateVotingContract;
+
+    /// @notice The address of the Timelock Contract.
+    address public timelock;
+
+    /**
+     * @notice Constructor for the Censor NFT contract.
+     * @param _censorNFTMetadata The metadata URI for the Censor NFT.
+     * @param _senateVotingContract The address of the Senate Voting Contract.
+     * @param _timelock The address of the Timelock Contract.
+     */
+    constructor(
+        string memory _censorNFTMetadata,
+        address _senateVotingContract,
+        address _timelock
+    ) ERC721("Censor", "CENSOR") EIP712("Censor", "1") {
+        metadata = _censorNFTMetadata;
         senateVotingContract = _senateVotingContract;
-        constitutionAddress = TidusDAOConstitution(_constitution);
+        timelock = _timelock;
     }
 
+    /**
+     * @notice Mint a new Consul token to the given address.
+     * @param to The address to mint the token to.
+     */
     function mint(address to) public {
         require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Consuls.");
         require(ISenate(senateVotingContract).consuls(to), "TIDUS: Cannot mint to a non-Consul address.");
@@ -25,19 +50,90 @@ contract Consuls is ERC721Enumerable {
         _safeMint(to, totalSupply());
     }
 
-    function burn(uint256 tokenId) public  {
-        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
-        require(balanceOf(msg.sender) > 0, "TIDUS: You are not a Consul.");
-        require(msg.sender == address(senateVotingContract) || msg.sender == ownerOf(tokenId), "TIDUS: Only the Senate Voting Contract or Consuls can burn the token.");
-        _burn(tokenId);
+    /**
+     * @notice Burn a Censor token with the given token ID.
+     * @param _tokenId The token ID of the Censor token to burn.
+     */
+    function burn(uint256 _tokenId) public {
+        require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
+        require(msg.sender == address(senateVotingContract) || msg.sender == ownerOf(_tokenId), "TIDUS: Only the Senate Voting Contract or Owner can burn the token.");
+        _burn(_tokenId);
     }
 
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+    /**
+     * @notice Get the token URI for the Censor contract.
+     * @return The token URI as a string.
+     */
+    function tokenURI() internal view virtual returns (string memory) {
         return metadata;
     }
 
-    function daoConstitution() public view returns (string memory) {
-        return constitutionAddress.constitution();
+    /**
+     * @notice Internal function to transfer a Censor token.
+     * @param from The address to transfer the token from.
+     * @param to The address to transfer the token to.
+     * @param tokenId The token ID of the Censor token to transfer.
+     */
+    function _transfer(
+        address from,
+        address to,
+        uint256 tokenId
+    ) internal virtual override {
+        require(to == address(0) || to == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can receive Censors.");
+        super._transfer(from, to, tokenId);
     }
+
+    // Overrides to prevent errors with multiple inheritance of the same function.
+    function _afterTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 batchSize
+    ) internal virtual override(ERC721, ERC721Votes) {
+        super._afterTokenTransfer(from, to, tokenId, batchSize);
+    }
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 batchSize
+    ) internal virtual override(ERC721, ERC721Enumerable) {
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        virtual
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+
+    /**
+     * @notice Update the metadata URI for the Censor contract.
+     * @param _updatedMetadata The updated metadata URI as a string.
+     */
+    function updateMetadata(string calldata _updatedMetadata) public onlyOwner {
+        metadata = _updatedMetadata;
+    }
+
+    /**
+     * @notice Update the timelock address for the Censor contract.
+     * @param _updatedTimelock The updated timelock address.
+     */
+    function updateTimelock(address _updatedTimelock) public onlyOwner {
+        timelock = _updatedTimelock;
+    }
+
+    /**
+     * @notice Update the Senate Voting Contract address.
+     * @param _updatedSenateAddress The updated Senate Voting Contract address.
+     */
+    function updateSenateAddress(address _updatedSenateAddress) public onlyOwner {
+        senateVotingContract = _updatedSenateAddress;
+    }
+
 }
