@@ -11,32 +11,29 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 /// @custom:security-contact sekaieth@proton.me
 contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
 
-    /// @notice The text of the DAO constitution.
-    string public constitution;
-
     /// @notice The metadata URI for the Dictator NFT.
     string metadata;
 
-    /// @notice The address of the Senate Voting Contract.
-    address public senateVotingContract;
+    /// @notice The address of the Senate Contract.
+    address public senateContract;
 
-    /// @notice The address of the Timelock Contract.
-    address public timelock;
+    /// @notice The address of the Senate Elections Contract..
+    address public senateElections;
 
     /**
      * @notice Constructor for the Censor NFT contract.
      * @param _censorNFTMetadata The metadata URI for the Censor NFT.
-     * @param _senateVotingContract The address of the Senate Voting Contract.
-     * @param _timelock The address of the Timelock Contract.
+     * @param _senateContract The address of the Senate Voting Contract.
+     * @param _senateElectionsContract The address of the Timelock Contract.
      */
     constructor(
         string memory _censorNFTMetadata,
-        address _senateVotingContract,
-        address _timelock
+        address _senateContract,
+        address _senateElectionsContract 
     ) ERC721("Censor", "CENSOR") EIP712("Censor", "1") {
         metadata = _censorNFTMetadata;
-        senateVotingContract = _senateVotingContract;
-        timelock = _timelock;
+        senateContract = _senateContract;
+        senateElections = _senateElectionsContract;
     }
 
     /**
@@ -44,8 +41,8 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
      * @param to The address to mint the token to.
      */
     function mint(address to) public {
-        require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Consuls.");
-        require(ISenate(senateVotingContract).consuls(to), "TIDUS: Cannot mint to a non-Consul address.");
+        require(msg.sender == address(senateElections), "TIDUS: Only the Senate Voting Contract can mint Consuls.");
+        require(ISenate(senateContract).consuls(to), "TIDUS: Cannot mint to a non-Consul address.");
         require(totalSupply() < 2, "TIDUS: Only 2 Consuls at a time.");
         _safeMint(to, totalSupply());
     }
@@ -54,10 +51,13 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
      * @notice Burn a Censor token with the given token ID.
      * @param _tokenId The token ID of the Censor token to burn.
      */
-    function burn(uint256 _tokenId) public {
+    function resign(uint256 _tokenId) public {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
-        require(msg.sender == address(senateVotingContract) || msg.sender == ownerOf(_tokenId), "TIDUS: Only the Senate Voting Contract or Owner can burn the token.");
+        require(msg.sender == senateContract || msg.sender == ownerOf(_tokenId), "CONSUL: Only the Senate Voting contract or Owner can burn the token.");
+        address owner = ownerOf(_tokenId);
         _burn(_tokenId);
+
+        ISenate(senateContract).removePosition(owner);
     }
 
     /**
@@ -79,7 +79,7 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
         address to,
         uint256 tokenId
     ) internal virtual override {
-        require(to == address(0) || to == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can receive Censors.");
+        require(to == address(0) || to == address(senateContract), "TIDUS: Only the Senate Voting Contract can receive Censors.");
         super._transfer(from, to, tokenId);
     }
 
@@ -133,7 +133,7 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
      * @param _updatedSenateAddress The updated Senate Voting Contract address.
      */
     function updateSenateAddress(address _updatedSenateAddress) public onlyOwner {
-        senateVotingContract = _updatedSenateAddress;
+        senateContract = _updatedSenateAddress;
     }
 
 }
