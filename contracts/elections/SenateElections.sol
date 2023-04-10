@@ -21,4 +21,16 @@ contract SenateVoting {
     function _removePosition(address account) internal {
         senate.removePosition(account);
     }
+
+    function voteForPosition(uint256 positionId, address newPositionAddress) external {
+        // ... Voting logic ...
+        
+        // If the position has changed
+        if (newPositionAddress != senateContract.getPositionAddress(positionId)) {
+            address oldPositionAddress = senateContract.getPositionAddress(positionId);
+            senateContract.updatePosition(positionId, newPositionAddress);
+            positionContracts[positionId].burn(oldPositionAddress);
+            positionContracts[positionId].mint(newPositionAddress);
+        }
+    }
 }

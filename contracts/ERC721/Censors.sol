@@ -9,7 +9,7 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { ISenate } from "../governance/interfaces/ISenate.sol";
 
 /// @custom:security-contact sekaieth@proton.me
-contract Censor is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
+contract Censors is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
 
     /// @notice The text of the DAO constitution.
     string public constitution;
@@ -22,6 +22,15 @@ contract Censor is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
 
     /// @notice The address of the Timelock Contract.
     address public timelock;
+
+    /// @notice Track historical Censors
+    mapping (uint256 => address) public censors;
+
+    /// @notice Track the number of Censors minted
+    uint256 public censorCount;
+
+    /// @notice The current censors (if any)
+    address[] public currentCensors;
 
     /**
      * @notice Constructor for the Censor NFT contract.
@@ -45,8 +54,11 @@ contract Censor is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function mint(address _to) public {
         require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Censors.");
-        require(ISenate(senateVotingContract).censor(_to), "TIDUS: Cannot mint to a non-Censor address.");
-        require(totalSupply() < 1, "TIDUS: Only 1 Censor at a time.");
+
+        censorCount++;
+        censors[censorCount] = _to;
+        currentCensors.push(_to);
+
         _safeMint(_to, totalSupply());
     }
 
@@ -57,6 +69,15 @@ contract Censor is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     function burn(uint256 _tokenId) public {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
         require(msg.sender == address(senateVotingContract) || msg.sender == ownerOf(_tokenId), "TIDUS: Only the Senate Voting Contract or Owner can burn the token.");
+        
+        /// @notice Remove the address from the current censors array
+        for (uint i = 0; i < currentCensors.length; i++) {
+            if (currentCensors[i] == ownerOf(_tokenId)) {
+                currentCensors[i] = currentCensors[currentCensors.length - 1];
+                currentCensors.pop();
+                break;
+            }
+        }
         _burn(_tokenId);
     }
 
@@ -66,6 +87,20 @@ contract Censor is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function tokenURI() internal view virtual returns (string memory) {
         return metadata;
+    }
+
+    /**
+     * @notice Check if the given address is a current censor.
+     * @param _address - The address to check.
+     * @return True if the address is a current censor, false otherwise.
+     */
+    function isCensor(address _address) public view returns (bool) {
+        for (uint i = 0; i < currentCensors.length; i++) {
+            if (currentCensors[i] == _address) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -135,6 +170,5 @@ contract Censor is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     function updateSenateAddress(address _updatedSenateAddress) public onlyOwner {
         senateVotingContract = _updatedSenateAddress;
     }
-
 
 }

@@ -17,23 +17,31 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
     /// @notice The address of the Senate Contract.
     address public senateContract;
 
-    /// @notice The address of the Senate Elections Contract..
-    address public senateElections;
+    /// @notice Track the number of Consuls minted
+    uint256 public consulCount;
+
+    /// @notice Track historical Consuls 
+    mapping (uint256 => address) public consuls;
+
+    /// @notice Array for active Consuls
+    address[] public activeConsuls;
+
+    /// @notice Address for the Timelock contract
+    address public timelock;
 
     /**
      * @notice Constructor for the Censor NFT contract.
      * @param _censorNFTMetadata The metadata URI for the Censor NFT.
-     * @param _senateContract The address of the Senate Voting Contract.
-     * @param _senateElectionsContract The address of the Timelock Contract.
+     * @param _senateContract The address of the Timelock Contract.
      */
     constructor(
         string memory _censorNFTMetadata,
         address _senateContract,
-        address _senateElectionsContract 
+        address _timelock
     ) ERC721("Censor", "CENSOR") EIP712("Censor", "1") {
         metadata = _censorNFTMetadata;
         senateContract = _senateContract;
-        senateElections = _senateElectionsContract;
+        timelock = _timelock;
     }
 
     /**
@@ -41,9 +49,11 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
      * @param to The address to mint the token to.
      */
     function mint(address to) public {
-        require(msg.sender == address(senateElections), "TIDUS: Only the Senate Voting Contract can mint Consuls.");
-        require(ISenate(senateContract).consuls(to), "TIDUS: Cannot mint to a non-Consul address.");
+        require(msg.sender == address(timelock), "TIDUS: Only the Timelock Contract can mint Consuls.");
         require(totalSupply() < 2, "TIDUS: Only 2 Consuls at a time.");
+        consulCount++;
+        consuls[consulCount] = to;
+        activeConsuls.push(to);
         _safeMint(to, totalSupply());
     }
 
@@ -51,13 +61,21 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
      * @notice Burn a Censor token with the given token ID.
      * @param _tokenId The token ID of the Censor token to burn.
      */
-    function resign(uint256 _tokenId) public {
-        require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
-        require(msg.sender == senateContract || msg.sender == ownerOf(_tokenId), "CONSUL: Only the Senate Voting contract or Owner can burn the token.");
-        address owner = ownerOf(_tokenId);
-        _burn(_tokenId);
+    function burn(uint256 _tokenId) public {
 
-        ISenate(senateContract).removePosition(owner);
+        require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
+        require(msg.sender == timelock || msg.sender == ownerOf(_tokenId), "CONSUL: Only the Timelock Contract or Owner can burn the token.");
+        
+        /// @notice Remove the Consul from the active Consuls array
+        for (uint i = 0; i < activeConsuls.length; i++) {
+            if (activeConsuls[i] == ownerOf(_tokenId)) {
+                activeConsuls[i] = activeConsuls[activeConsuls.length - 1];
+                activeConsuls.pop();
+                break;
+            }
+        }
+
+        _burn(_tokenId);
     }
 
     /**
@@ -66,6 +84,20 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
      */
     function tokenURI() internal view virtual returns (string memory) {
         return metadata;
+    }
+
+    /**
+     * @notice Check if an address is a Consul.
+     * @param _address The address to check.
+     * @return True if the address is a Consul, false otherwise.
+     */
+    function isConsul(address _address) public view returns (bool) {
+        for (uint i = 0; i < activeConsuls.length; i++) {
+            if (activeConsuls[i] == _address) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -79,7 +111,7 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
         address to,
         uint256 tokenId
     ) internal virtual override {
-        require(to == address(0) || to == address(senateContract), "TIDUS: Only the Senate Voting Contract can receive Censors.");
+        require(to == address(0) || to == address(timelock), "TIDUS: Only the Timelock Contract can receive Censors.");
         super._transfer(from, to, tokenId);
     }
 
@@ -121,16 +153,8 @@ contract Consuls is ERC721, ERC721Enumerable, ERC721Votes, Ownable {
     }
 
     /**
-     * @notice Update the timelock address for the Censor contract.
-     * @param _updatedTimelock The updated timelock address.
-     */
-    function updateTimelock(address _updatedTimelock) public onlyOwner {
-        timelock = _updatedTimelock;
-    }
-
-    /**
-     * @notice Update the Senate Voting Contract address.
-     * @param _updatedSenateAddress The updated Senate Voting Contract address.
+     * @notice Update the Timelock Contract address.
+     * @param _updatedSenateAddress The updated Timelock Contract address.
      */
     function updateSenateAddress(address _updatedSenateAddress) public onlyOwner {
         senateContract = _updatedSenateAddress;

@@ -10,6 +10,13 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
+/// @notice Import Positional NFTs
+import "../ERC721/Censors.sol";
+import "../ERC721/Consuls.sol";
+import "../ERC721/Dictators.sol";
+import "../ERC721/Senators.sol";
+import "../ERC721/Tribunes.sol";
+
 /**
  * @title Senate Smart Contract
  * @notice The Senate contract is a governance contract for TidusDAO, a Roman Republic inspired project.
@@ -18,14 +25,14 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
  */
 contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeable, GovernorCountingSimpleUpgradeable, GovernorVotesUpgradeable, GovernorTimelockControlUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
 
-   /// @dev Position enumeration representing different positions within the Roman Republic inspired project.
+    /// @dev Position enum to store the position of each address.
     enum Position {
         None,
-        Consul,
         Censor,
-        Tribune,
+        Consul,
+        Dictator,
         Senator,
-        Dictator
+        Tribune
     }
 
     /// @dev VetoInfo struct to store veto-related information.
@@ -37,13 +44,33 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
 
     /// @dev Mapping to store the veto information for each proposal.
     mapping(uint256 => VetoInfo) public vetoes;
-    /// @dev Mapping to store the positions of each address.
-    mapping(address => Position) public positions;
+
     /// @dev Mapping to store the governance whitelist status of each address.
     mapping(address => bool) public governanceWhitelist;
 
+    /// @dev Address of the Timelock contract
+    address public timelockContract;
+
     /// @dev The address of the SenateVoting contract.
     address public senateVotingContract;
+
+    /// @dev The address of the Censors contract.
+    address public censorsContract;
+
+    /// @dev The address of the Consuls contract.
+    address public consulsContract;
+
+    /// @dev The address of the Dictators contract.
+    address public dictatorsContract;
+
+    /// @dev The address of the Senators contract.
+    address public senatorsContract;
+
+    /// @dev The address of the Tribunes contract.
+    address public tribunesContract;
+
+    /// @dev Quorum value for the Senate.
+    uint16 public quorum;
 
     /// @dev Custom initializer modifier to disable standard initializers.
     /// @custom:oz-upgrades-unsafe-allow constructor
@@ -55,13 +82,11 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @notice Initializes the Senate contract.
      * @param _token The voting token for the GovernorVotesUpgradeable.
      * @param _timelock The timelock controller for the GovernorTimelockControlUpgradeable.
-     * @param _senateVotingContract The address of the associated SenateVoting contract.
      * @param _governanceWhitelist An array of addresses to be added to the governance whitelist.
      */
     function initialize(
         IVotesUpgradeable _token, 
-        TimelockControllerUpgradeable _timelock, 
-        address _senateVotingContract,
+        TimelockControllerUpgradeable _timelock,
         address[] memory _governanceWhitelist)
         initializer public
     {
@@ -72,49 +97,22 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         __GovernorTimelockControl_init(_timelock);
         __Ownable_init();
         __UUPSUpgradeable_init();
-        senateVotingContract = _senateVotingContract;
+        timelockContract = address(_timelock);
+        censorsContract = _governanceWhitelist[0];
+        consulsContract = _governanceWhitelist[1];
+        dictatorsContract = _governanceWhitelist[2];
+        senatorsContract = _governanceWhitelist[3];
+        tribunesContract = _governanceWhitelist[4];
 
-        // Initialize the governance whitelist with the provided addresses.
-        for (uint256 i = 0; i < _governanceWhitelist.length; i++) {
-            governanceWhitelist[_governanceWhitelist[i]] = true;
-        }
     }
-
-    /**
-     * @notice Restricts function access to only the authorized addresses in the governance whitelist.
-     * @dev This modifier checks if the caller is in the governance whitelist.
-     */
-    modifier onlyTidusGovernance() {
-        require(governanceWhitelist[msg.sender], "Senate: Only the SenateVoting contract can call this function");
-        _;
-    }
-
-    /**
-     * @notice Updates the position of the given account.
-     * @param account The address of the account to update.
-     * @param position The new position for the account.
-     */
-    function updatePosition(address account, Position position) public onlyTidusGovernance {
-        positions[account] = position;
-    }
-
-    /**
-     * @notice Removes the position of the given account.
-     * @param account The address of the account to remove the position from.
-     */
-    function removePosition(address account) public onlyTidusGovernance {
-        positions[account] = Position.None;
-    }
-
 
 
     /**
      * @notice Returns the required quorum for proposals.
-     * @param blockNumber The block number to calculate the quorum for.
      * @return The required quorum value.
      */
-    function quorum(uint256 blockNumber) public pure override returns (uint256) {
-        return 7;
+    function updateQuorum(uint16 _quorumValue) public pure returns (uint256) {
+        quorum = _quorumValue; 
     }
 
     /**
@@ -143,7 +141,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         require(state(proposalId) == ProposalState.Active, "Senate: vote not currently active");
 
         // Check if the user has a valid Senate position
-        require(positions[msg.sender]) != Position.None, "Senate: Only senate positions can vote");
+        require(getPosition(msg.sender) != Position.None, "Senate: Only senate positions can vote");
 
         // Cast the vote using the `_vote` function from the `GovernorUpgradeable` contract
         return _castVote(proposalId, msg.sender, support, "");
@@ -184,7 +182,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @dev This function requires that the caller is a Tribune and the proposal has not already been vetoed by a Tribune.
      */
     function tribuneVeto(uint256 proposalId) public {
-        require(positions[msg.sender] == Position.Tribune, "Senate: Only Tribunes can use the tribune veto");
+        require(getPosition(msg.sender) == Position.Tribune, "Senate: Only Tribunes can use the tribune veto");
         ProposalState currentState = state(proposalId);
         require(currentState == ProposalState.Succeeded, "Senate: Proposal must be in the Succeeded state for a tribune veto");
         require(vetoes[proposalId].tribuneVetoes == 0, "Senate: Tribune veto already used for this proposal");
@@ -198,7 +196,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @dev This function requires that the caller is a Consul and the proposal has not already been vetoed twice by Consuls.
      */
     function consulVeto(uint256 proposalId) public {
-        require(positions[msg.sender] == Position.Consul, "Senate: Only Consuls can use the consul veto");
+        require(getPosition(msg.sender) == Position.Consul, "Senate: Only Consuls can use the consul veto");
         ProposalState currentState = state(proposalId);
         require(vetoes[proposalId].consulVetoes[msg.sender] == false, "Senate: Consul veto already used for this proposal");
         require(vetoes[proposalId].consulVetoCount < 2, "Senate: Both Consuls have already Vetoed");
@@ -206,6 +204,27 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
 
         vetoes[proposalId].consulVetoCount += 1;
         vetoes[proposalId].consulVetoes[msg.sender] = true;
+    }
+
+    /**
+     * @notice Checks all Positional contracts for a user's position.
+     * @param user The address of the user to check.
+     * @return The user's position.
+     */
+    function getPosition(address user) public view returns (Position) {
+        if (Censors(censorsContract).isCensor(user)) {
+            return Position.Censor;
+        } else if (Consuls(consulsContract).isConsul(user)) {
+            return Position.Consul;
+        } else if (Dictators(dictatorsContract).isDictator(user)) {
+            return Position.Dictator;
+        } else if (Senators(senatorsContract).isSenator(user)) {
+            return Position.Senator;
+        } else if (Tribunes(tribunesContract).isTribune(user)) {
+            return Position.Tribune;
+        } else {
+            return Position.None;
+        }
     }
 
     /**
@@ -243,16 +262,6 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
     }
 
     /**
-     * @dev Sets the position of an account.
-     * @param account The account address to set the position for.
-     * @param position The position to set for the account.
-     * Only the contract owner can call this function.
-     */
-    function setPosition(address account, Position position) public onlyOwner {
-        positions[account] = position;
-    }
-
-    /**
      * @dev Creates a proposal with the given targets, values, calldatas and description, if the sender has a valid position.
      * @param targets The contract addresses to call.
      * @param values The amounts of ETH to send with each call.
@@ -266,7 +275,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         override(GovernorUpgradeable, IGovernorUpgradeable)
         returns (uint256)
     {
-        require(positions[msg.sender] != Position.None, "Senate: Only valid positions can create proposals");
+        require(getPosition(msg.sender) != Position.None, "Senate: Only valid positions can create proposals");
         return super.propose(targets, values, calldatas, description);
     }
 
@@ -281,7 +290,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         override(GovernorUpgradeable, GovernorSettingsUpgradeable)
         returns (uint256)
     {
-        Position position = positions[msg.sender];
+        Position position = getPosition(msg.sender);
         if (position == Position.Consul || position == Position.Dictator) {
             return 1;
         } else if (position == Position.Censor || position == Position.Tribune) {
@@ -343,6 +352,32 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    /**
+     * @dev Update the address of a given contract.
+     * @param _contractAddress The address of the contract to update.
+     * @param _newAddress The new address of the contract.
+     * @notice Only a Senate proposal can update the address of a contract.
+     */
+    function updateContractAddress(address _contractAddress, address _newAddress) public {
+        require(msg.sender == timelockContract, "Senate: Only a Senate proposal can update the address of a contract");
+        require(_contractAddress != address(0), "Senate: Cannot update the address of the zero address");
+        require(_newAddress != address(0), "Senate: Cannot update a contract to the zero address");
+
+        if (_contractAddress == censorsContract) {
+            censorsContract = _newAddress;
+        } else if (_contractAddress == consulsContract) {
+            consulsContract = _newAddress;
+        } else if (_contractAddress == dictatorsContract) {
+            dictatorsContract = _newAddress;
+        } else if (_contractAddress == senatorsContract) {
+            senatorsContract = _newAddress;
+        } else if (_contractAddress == tribunesContract) {
+            tribunesContract = _newAddress;
+        } else {
+            revert("Senate: Invalid contract address");
+        }
     }
 
 }

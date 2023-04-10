@@ -23,6 +23,15 @@ contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     /// @notice The address of the Timelock Contract.
     address public timelock;
 
+    /// @notice Track historical Tribunes
+    mapping (uint256 => address) public tribunes;
+
+    /// @notice Track the number of Tribunes minted
+    uint256 public tribuneCount;
+
+    /// @notice The current Tribunes
+    address[] public currentTribunes;
+
     /**
      * @notice Constructor for the Tribunes NFT contract.
      * @param _tribunesNFTMetadata The metadata URI for the Tribunes NFT.
@@ -43,8 +52,12 @@ contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function mint(address to) public {
         require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Tribunes.");
-        require(ISenate(senateVotingContract).senators(to), "TIDUS: Cannot mint to a non-Tribune address.");
         require(totalSupply() < 5, "TIDUS: Only 2 Tribunes at a time.");
+
+        tribuneCount++;
+        tribunes[tribuneCount] = to;
+        currentTribunes.push(to);
+
         _safeMint(to, totalSupply());
     }
 
@@ -56,6 +69,15 @@ contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     function burn(uint256 _tokenId) public {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
         require(msg.sender == address(senateVotingContract) || msg.sender == ownerOf(_tokenId), "TIDUS: Only the Senate Voting Contract or Owner can burn the token.");
+
+        /// @notice Remove the address from the currentTribunes array
+        for (uint i = 0; i < currentTribunes.length; i++) {
+            if (currentTribunes[i] == ownerOf(_tokenId)) {
+                currentTribunes[i] = currentTribunes[currentTribunes.length - 1];
+                currentTribunes.pop();
+                break;
+            }
+        }
         _burn(_tokenId);
     }
 
@@ -65,6 +87,20 @@ contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function tokenURI() internal view virtual returns (string memory) {
         return metadata;
+    }
+
+    /**
+     * @notice Check if address is a Tribune
+     * @param _address The address to check
+     * @return True if address is a Tribune
+     */
+    function isTribune(address _address) public view returns (bool) {
+        for (uint i = 0; i < currentTribunes.length; i++) {
+            if (currentTribunes[i] == _address) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

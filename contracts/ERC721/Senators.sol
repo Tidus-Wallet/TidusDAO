@@ -11,17 +11,23 @@ import { ISenate } from "../governance/interfaces/ISenate.sol";
 /// @custom:security-contact sekaieth@proton.me
 contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
 
-   /// @notice The text of the DAO constitution.
-    string public constitution;
-
     /// @notice The metadata URI for the Dictator NFT.
     string metadata;
 
     /// @notice The address of the Senate Voting Contract.
     address public senateVotingContract;
 
-    /// @notice The address of the Timelock Contract.
-    address public timelock;
+    /// @notice The max amount of Senators allowed to be minted at a time
+    uint256 public maxSenators;
+
+    /// @notice Track the number of Senators minted
+    uint256 public senatorCount;
+
+    /// @notice Track minted Senators tokenId
+    mapping (address => uint256) public senators;
+
+    /// @notice Array of current Senators
+    address[] public activeSenators;
 
     /**
      * @notice Constructor for the Senators NFT contract.
@@ -30,21 +36,26 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     constructor(
         string memory _senatorsNFTMetadata,
-        address _senateVotingContract
+        address _senateVotingContract,
+        uint256 _maxSenators
     ) ERC721("Senators", "SENATORS") EIP712("SENATORS", "1") {
         metadata = _senatorsNFTMetadata;
         senateVotingContract = _senateVotingContract;
+        maxSenators = _maxSenators;
     }
 
     /**
      * @notice Mint a new Senators token to the given address.
-     * @param to The address to mint the token to.
+     * @param _to The address to mint the token to.
      */
-    function mint(address to) public {
+    function mint(address _to) public {
         require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Senators.");
-        require(ISenate(senateVotingContract).senators(to), "TIDUS: Cannot mint to a non-Senator address.");
-        require(totalSupply() < 5, "TIDUS: Only 5 Senators at a time.");
-        _safeMint(to, totalSupply());
+        require(totalSupply() < maxSenators, "TIDUS: Senator positions are full.");
+
+        senatorCount++;
+        senators[msg.sender] = senatorCount;
+        activeSenators.push(msg.sender);
+        _safeMint(_to, senatorCount);
     }
 
 
@@ -55,6 +66,16 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     function burn(uint256 _tokenId) public {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
         require(msg.sender == address(senateVotingContract) || msg.sender == ownerOf(_tokenId), "TIDUS: Only the Senate Voting Contract or Owner can burn the token.");
+
+        /// @notice Remove the Senator from the current Senators array
+        for (uint i = 0; i < activeSenators.length; i++) {
+            if (activeSenators[i] == ownerOf(_tokenId)) {
+                activeSenators[i] = activeSenators[activeSenators.length - 1];
+                activeSenators.pop();
+                break;
+            }
+        }
+
         _burn(_tokenId);
     }
 
@@ -64,6 +85,20 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function tokenURI() internal view virtual returns (string memory) {
         return metadata;
+    }
+
+    /** 
+     * @notice Check if address is a Senator
+     * @param _address The address to check
+     * @return True if address is a Senator
+     */
+    function isSenator(address _address) public view returns (bool) {
+        for (uint i = 0; i < activeSenators.length; i++) {
+            if (activeSenators[i] == _address) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -77,7 +112,7 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
         address to,
         uint256 tokenId
     ) internal virtual override {
-        require(to == address(0) || to == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can receive Censors.");
+        require(to == address(0) || to == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can receive Senator tokens.");
         super._transfer(from, to, tokenId);
     }
 
@@ -116,14 +151,6 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function updateMetadata(string calldata _updatedMetadata) public onlyOwner {
         metadata = _updatedMetadata;
-    }
-
-    /**
-     * @notice Update the timelock address for the Censor contract.
-     * @param _updatedTimelock The updated timelock address.
-     */
-    function updateTimelock(address _updatedTimelock) public onlyOwner {
-        timelock = _updatedTimelock;
     }
 
     /**
