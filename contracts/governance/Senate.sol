@@ -72,6 +72,10 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
     /// @dev Quorum value for the Senate.
     uint16 public quorum;
 
+    event ConsulVeto(address indexed account, uint256 indexed proposalId);
+    event TribuneVeto(address indexed account, uint256 indexed proposalId);
+    event ContractAddressUpdated(address indexed contractAddress, address indexed newAddress);
+
     /// @dev Custom initializer modifier to disable standard initializers.
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
@@ -111,7 +115,8 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @notice Returns the required quorum for proposals.
      * @return The required quorum value.
      */
-    function updateQuorum(uint16 _quorumValue) public pure returns (uint256) {
+    function updateQuorum(uint16 _quorumValue) public returns (uint256) {
+        require(msg.sender == address(timelockContract), "Senate: only timelock contract can update quorum");
         quorum = _quorumValue; 
     }
 
@@ -188,6 +193,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         require(vetoes[proposalId].tribuneVetoes == 0, "Senate: Tribune veto already used for this proposal");
 
         vetoes[proposalId].tribuneVetoes += 1;
+        emit TribuneVeto(msg.sender, proposalId);
     }
 
     /**
@@ -204,6 +210,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
 
         vetoes[proposalId].consulVetoCount += 1;
         vetoes[proposalId].consulVetoes[msg.sender] = true;
+        emit ConsulVeto(msg.sender, proposalId);
     }
 
     /**
@@ -249,13 +256,13 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         VetoInfo storage vetoInfo = vetoes[proposalId];
 
         // If there's a Tribune veto, the proposal is considered Defeated
-        if (vetoInfo.tribuneVetoes > 0) {
+        if (currentState == ProposalState.Succeeded && vetoInfo.tribuneVetoes > 0) {
             currentState = ProposalState.Defeated;
         }
 
-        // If there's an odd number of Consul vetoes, the proposal state is reversed
-        if (vetoInfo.consulVetoCount % 2 == 1) {
-            return currentState == ProposalState.Succeeded ? ProposalState.Defeated : ProposalState.Succeeded;
+        // If the proposal is in the Succeeded state and there's an odd number of Consul vetoes, the proposal state is reversed
+        if (currentState == ProposalState.Succeeded && vetoInfo.consulVetoCount % 2 == 1) {
+            currentState = ProposalState.Defeated;
         }
 
         return currentState;
@@ -362,13 +369,14 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      */
     function updateContractAddress(address _contractAddress, address _newAddress) public {
         require(msg.sender == timelockContract, "Senate: Only a Senate proposal can update the address of a contract");
-        require(_contractAddress != address(0), "Senate: Cannot update the address of the zero address");
         require(_newAddress != address(0), "Senate: Cannot update a contract to the zero address");
 
         if (_contractAddress == censorsContract) {
             censorsContract = _newAddress;
+            emit ContractAddressUpdated(_contractAddress, _newAddress);
         } else if (_contractAddress == consulsContract) {
-            consulsContract = _newAddress;
+             emit ContractAddressUpdated(_contractAddress, _newAddress);
+           consulsContract = _newAddress;
         } else if (_contractAddress == dictatorsContract) {
             dictatorsContract = _newAddress;
         } else if (_contractAddress == senatorsContract) {

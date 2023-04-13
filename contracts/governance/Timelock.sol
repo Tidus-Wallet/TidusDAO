@@ -5,6 +5,11 @@ import { TimelockController } from "@openzeppelin/contracts/governance/TimelockC
 
 contract TidusTimelock is TimelockController {
     constructor(uint256 minDelay, address[] memory proposers, address[] memory executors)
-        TimelockController()
+        TimelockController(
+            minDelay,
+            proposers,
+            executors,
+            msg.sender
+        )
     {}
 }

@@ -11,6 +11,12 @@ import { ISenate } from "../governance/interfaces/ISenate.sol";
 /// @custom:security-contact sekaieth@proton.me
 contract Censors is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
 
+    struct Censor {
+        address censor;
+        uint256 startTime;
+        uint256 endTime;
+    }
+
     /// @notice The text of the DAO constitution.
     string public constitution;
 
@@ -24,13 +30,16 @@ contract Censors is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     address public timelock;
 
     /// @notice Track historical Censors
-    mapping (uint256 => address) public censors;
+    mapping (uint256 => Censor) public censors;
 
     /// @notice Track the number of Censors minted
     uint256 public censorCount;
 
     /// @notice The current censors (if any)
     address[] public currentCensors;
+
+    /// @notice The length of time a censor is allowed to hold the position
+    uint256 public censorTermLength;
 
     /**
      * @notice Constructor for the Censor NFT contract.
@@ -40,10 +49,12 @@ contract Censors is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     constructor(
         string memory _censorNFTMetadata,
+        uint256 _censorTermLength,
         address _senateVotingContract,
         address _timelock
     ) ERC721("Censor", "CENSOR") EIP712("Censor", "1") {
         metadata = _censorNFTMetadata;
+        censorTermLength = _censorTermLength;
         senateVotingContract = _senateVotingContract;
         timelock = _timelock;
     }
@@ -53,12 +64,23 @@ contract Censors is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      * @param _to The address to mint the token to.
      */
     function mint(address _to) public {
+        // Ensure the function is called by the senateVotingContract
         require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Censors.");
-
+        
+        // Increment the censorCount
         censorCount++;
-        censors[censorCount] = _to;
+
+        // Initialize a new Censor struct and add it to the censors mapping
+        censors[censorCount] = Censor({
+            censor: _to,
+            startTime: block.timestamp,
+            endTime: block.timestamp + censorTermLength
+        });
+
+        // Add the address to the currentCensors array
         currentCensors.push(_to);
 
+        // Mint a new token for the recipient
         _safeMint(_to, totalSupply());
     }
 
@@ -70,7 +92,7 @@ contract Censors is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
         require(msg.sender == address(senateVotingContract) || msg.sender == ownerOf(_tokenId), "TIDUS: Only the Senate Voting Contract or Owner can burn the token.");
         
-        /// @notice Remove the address from the current censors array
+        // Remove the address from the current censors array
         for (uint i = 0; i < currentCensors.length; i++) {
             if (currentCensors[i] == ownerOf(_tokenId)) {
                 currentCensors[i] = currentCensors[currentCensors.length - 1];
@@ -78,6 +100,8 @@ contract Censors is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
                 break;
             }
         }
+
+        // Burn the token
         _burn(_tokenId);
     }
 
@@ -96,7 +120,7 @@ contract Censors is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function isCensor(address _address) public view returns (bool) {
         for (uint i = 0; i < currentCensors.length; i++) {
-            if (currentCensors[i] == _address) {
+            if (currentCensors[i] == _address && block.timestamp < censors[i + 1].endTime) {
                 return true;
             }
         }

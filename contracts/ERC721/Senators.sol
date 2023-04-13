@@ -11,6 +11,12 @@ import { ISenate } from "../governance/interfaces/ISenate.sol";
 /// @custom:security-contact sekaieth@proton.me
 contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
 
+    struct Senator {
+        address senator;
+        uint256 startTime;
+        uint256 endTime;
+    }
+
     /// @notice The metadata URI for the Dictator NFT.
     string metadata;
 
@@ -24,10 +30,13 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     uint256 public senatorCount;
 
     /// @notice Track minted Senators tokenId
-    mapping (address => uint256) public senators;
+    mapping (uint256 => Senator) public senators;
 
     /// @notice Array of current Senators
     address[] public activeSenators;
+
+    /// @notice The length of time a Senator is allowed to hold the position
+    uint256 public senatorTermLength;
 
     /**
      * @notice Constructor for the Senators NFT contract.
@@ -36,10 +45,12 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     constructor(
         string memory _senatorsNFTMetadata,
+        uint256 _senatorTermLength,
         address _senateVotingContract,
         uint256 _maxSenators
     ) ERC721("Senators", "SENATORS") EIP712("SENATORS", "1") {
         metadata = _senatorsNFTMetadata;
+        senatorTermLength = _senatorTermLength;
         senateVotingContract = _senateVotingContract;
         maxSenators = _maxSenators;
     }
@@ -51,10 +62,22 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     function mint(address _to) public {
         require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Senators.");
         require(totalSupply() < maxSenators, "TIDUS: Senator positions are full.");
+        require(!isSenator(_to), "TIDUS: Address is already a Senator.");
 
+        // Increment the Senator count
         senatorCount++;
-        senators[msg.sender] = senatorCount;
+
+        // Add the Senator to the senators mapping
+        senators[senatorCount] = Senator({
+            senator: _to,
+            startTime: block.timestamp,
+            endTime: block.timestamp + senatorTermLength
+        });
+
+        // Add the Senator to the current Senators array
         activeSenators.push(msg.sender);
+
+        // Mint the token
         _safeMint(_to, senatorCount);
     }
 
@@ -94,7 +117,7 @@ contract Senators is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function isSenator(address _address) public view returns (bool) {
         for (uint i = 0; i < activeSenators.length; i++) {
-            if (activeSenators[i] == _address) {
+            if (activeSenators[i] == _address && block.timestamp < senators[i].endTime) {
                 return true;
             }
         }

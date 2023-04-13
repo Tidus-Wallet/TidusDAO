@@ -11,6 +11,18 @@ import { ISenate } from "../governance/interfaces/ISenate.sol";
 /// @custom:security-contact sekaieth@proton.me
 contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
 
+    /**
+     * @notice The Tribune struct.
+     * @param tribune The address of the Tribune.
+     * @param startTime The start time of the Tribune's term.
+     * @param endTime The end time of the Tribune's term.
+    */
+    struct Tribune {
+        address tribune;
+        uint256 startTime;
+        uint256 endTime;
+    }
+
    /// @notice The text of the DAO constitution.
     string public constitution;
 
@@ -24,13 +36,16 @@ contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     address public timelock;
 
     /// @notice Track historical Tribunes
-    mapping (uint256 => address) public tribunes;
+    mapping (uint256 => Tribune) public tribunes;
 
     /// @notice Track the number of Tribunes minted
     uint256 public tribuneCount;
 
     /// @notice The current Tribunes
     address[] public currentTribunes;
+
+    /// @notice The length of time a Tribune is allowed to hold the position
+    uint256 public tribuneTermLength;
 
     /**
      * @notice Constructor for the Tribunes NFT contract.
@@ -39,9 +54,11 @@ contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     constructor(
         string memory _tribunesNFTMetadata,
+        uint256 _tribuneTermLength,
         address _senateVotingContract
     ) ERC721("Tribunes", "TRIBUNES") EIP712("TRIBUNES", "1") {
         metadata = _tribunesNFTMetadata;
+        tribuneTermLength = _tribuneTermLength;
         senateVotingContract = _senateVotingContract;
     }
 
@@ -53,9 +70,18 @@ contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
     function mint(address to) public {
         require(msg.sender == address(senateVotingContract), "TIDUS: Only the Senate Voting Contract can mint Tribunes.");
         require(totalSupply() < 5, "TIDUS: Only 2 Tribunes at a time.");
+        require(!isTribune(to), "TIDUS: Address is already a Tribune.");
 
+        // Increment the Tribune count
         tribuneCount++;
-        tribunes[tribuneCount] = to;
+
+        tribunes[tribuneCount] = Tribune({
+            tribune: to,
+            startTime: block.timestamp,
+            endTime: block.timestamp + tribuneTermLength
+        });
+
+        // Add the address to the currentTribunes array
         currentTribunes.push(to);
 
         _safeMint(to, totalSupply());
@@ -96,7 +122,7 @@ contract Tribunes is ERC721, ERC721Votes, ERC721Enumerable, Ownable {
      */
     function isTribune(address _address) public view returns (bool) {
         for (uint i = 0; i < currentTribunes.length; i++) {
-            if (currentTribunes[i] == _address) {
+            if (currentTribunes[i] == _address && block.timestamp < tribunes[i].endTime) {
                 return true;
             }
         }
