@@ -1,70 +1,60 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "../ERC721/Censors.sol";
-import "../ERC721/Consuls.sol";
-import "../ERC721/Senators.sol";
-import "../ERC721/Tribunes.sol";
-import "../ERC721/Dictators.sol";
+import "../governance/Senate.sol";
 
-contract MockSenate {
-    Censors public censors;
-    Consuls public consuls;
-    Senators public senators;
-    Tribunes public tribunes;
-    Dictators public dictator;
-
-    constructor(
-        address _censors,
-        address _consuls,
-        address _senators,
-        address _tribunes,
-        address _dictator
-    ) {
-        censors = Censors(_censors);
-        consuls = Consuls(_consuls);
-        senators = Senators(_senators);
-        tribunes = Tribunes(_tribunes);
-        dictator = Dictators(_dictator);
+contract MockSenate is Senate {
+    function mockInitialize(
+        IVotesUpgradeable _token,
+        TimelockControllerUpgradeable _timelock,
+        address[] calldata _governanceWhitelist,
+        address calldata _senatePositionsContract
+    ) external {
+        initialize(_token, _timelock, _senatePositionsContract);
+        for (uint256 i = 0; i < _governanceWhitelist.length; i++) {
+            governanceWhitelist[_governanceWhitelist[i]] = true;
+        }
     }
 
-    function mintCensor(address to) external {
-        censors.mint(to);
+    function mockSetQuorum(uint16 _quorumValue) external {
+        quorum = _quorumValue;
     }
 
-    function burnCensor(uint256 tokenId) external {
-        censors.burn(tokenId);
+    function mockSetPosition(
+        address user,
+        Position position
+    ) external {
+        if (position == Position.Censor) {
+            Censors(censorsContract).mockAddCensor(user);
+        } else if (position == Position.Consul) {
+            Consuls(consulsContract).mockAddConsul(user);
+        } else if (position == Position.Dictator) {
+            Dictators(dictatorsContract).mockAddDictator(user);
+        } else if (position == Position.Senator) {
+            Senators(senatorsContract).mockAddSenator(user);
+        } else if (position == Position.Tribune) {
+            Tribunes(tribunesContract).mockAddTribune(user);
+        }
     }
 
-    function mintConsul(address to) external {
-        consuls.mint(to);
+    function mockRemovePosition(
+        address user,
+        Position position
+    ) external {
+        if (position == Position.Censor) {
+            Censors(censorsContract).mockRemoveCensor(user);
+        } else if (position == Position.Consul) {
+            Consuls(consulsContract).mockRemoveConsul(user);
+        } else if (position == Position.Dictator) {
+            Dictators(dictatorsContract).mockRemoveDictator(user);
+        } else if (position == Position.Senator) {
+            Senators(senatorsContract).mockRemoveSenator(user);
+        } else if (position == Position.Tribune) {
+            Tribunes(tribunesContract).mockRemoveTribune(user);
+        }
     }
 
-    function burnConsul(uint256 tokenId) external {
-        consuls.burn(tokenId);
-    }
-
-    function mintSenator(address to) external {
-        senators.mint(to);
-    }
-
-    function burnSenator(uint256 tokenId) external {
-        senators.burn(tokenId);
-    }
-
-    function mintTribune(address to) external {
-        tribunes.mint(to);
-    }
-
-    function burnTribune(uint256 tokenId) external {
-        tribunes.burn(tokenId);
-    }
-
-    function mintDictator(address to) external {
-        dictator.mint(to);
-    }
-
-    function burnDictator(uint256 tokenId) external {
-        dictator.burn(tokenId);
+    function mockSetGovernanceWhitelist(address user, bool status) external {
+        governanceWhitelist[user] = status;
     }
 }
