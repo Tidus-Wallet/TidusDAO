@@ -9,6 +9,7 @@ import { IERC165 } from "@openzeppelin/contracts/utils/introspection/IERC165.sol
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { ISenate } from "../governance/interfaces/ISenate.sol";
 import { ISenatePositions } from "./interfaces/ISenatePositions.sol";
+import { ITimelock } from "../governance/interfaces/ITimelock.sol";
 
 /// @custom:security-contact sekaieth@proton.me
 contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISenatePositions {
@@ -74,6 +75,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     address[] public activeSenators;
     address[] public activeDictator;
 
+    /// @notice Address of the Timelock Contract that Executes Proposals
+    ITimelock public timelockContract;
+
     /**
      * @notice Constructor for the Senators NFT contract.
      * @param _senateContract The address of the Senate Voting Contract.
@@ -83,11 +87,15 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     constructor(
         address _senateContract,
         string[] memory _metadatas,
-        uint256[] memory _termLengths
+        uint256[] memory _termLengths,
+        address _timelockContract
     ) ERC721("Senators", "SENATORS") EIP712("SENATORS", "1") {
 
         // Instantiate the Senate Contract Address
         senateContract = ISenate(_senateContract);
+
+        // Instantiate the Timelock Contract Address
+        timelockContract = ITimelock(_timelockContract);
 
         // Instantiate metadata URIs
         consulMetadata = _metadatas[0];
@@ -396,8 +404,32 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      */
     function updateSenateAddress(address _updatedSenateAddress) public onlyOwner {
         senateContract = ISenate(_updatedSenateAddress);
+
     }
 
+    /**
+     * @notice Update the position's term length
+     * @param _position The position to update
+     * @param _newTermLength The new term length
+     */
+    function updateTermLength(Position _position, uint256 _newTermLength) public {
+        require(msg.sender == address(timelockContract), "TIDUS: Only timelock contract can update term length.");
+        require(_newTermLength > 0, "TIDUS: Term length must be greater than 0.");
+
+        if(_position == Position.Consul) {
+            consulTermLength = _newTermLength;
+        } else if(_position == Position.Censor) {
+            censorTermLength = _newTermLength;
+        } else if(_position == Position.Tribune) {
+            tribuneTermLength = _newTermLength;
+        } else if(_position == Position.Senator) {
+            senatorTermLength = _newTermLength;
+        } else if(_position == Position.Dictator) {
+            dictatorTermLength = _newTermLength;
+        } else {
+            revert("TIDUS: Invalid position.");
+        }
+    }
 
     /**
      * @notice Internal function to transfer a Censor token.

@@ -35,4 +35,6 @@ interface ISenatePositions is IERC721 {
     function updateMetadata(Position _position, string calldata _updatedMetadata) external;
 
     function updateSenateAddress(address _updatedSenateAddress) external;
+
+    function updateTermLength(Position _position, uint256 _newTermLength) external; 
 }
