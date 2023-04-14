@@ -1,11 +1,18 @@
 {
-  "name": "hardhat-project",
+  "name": "TidusDAO",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "hardhat": "^2.13.0"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.8.2",
-    "@openzeppelin/contracts-upgradeable": "^4.8.2"
-  }
+    "@openzeppelin/contracts-upgradeable": "^4.8.2",
+    "@openzeppelin/hardhat-upgrades": "^1.22.1"
+  },
+  "version": "1.0.0",
+  "description": "The first RomanDAO to be built",
+  "main": "index.js",
+  "repository": "git@github.com:sekaieth/romandao.git",
+  "author": "sekaieth <sekaieth@proton.me>",
+  "license": "MIT"
 }

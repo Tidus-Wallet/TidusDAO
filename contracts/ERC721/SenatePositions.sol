@@ -86,9 +86,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      */
     constructor(
         address _senateContract,
+        address _timelockContract,
         string[] memory _metadatas,
-        uint256[] memory _termLengths,
-        address _timelockContract
+        uint256[] memory _termLengths
     ) ERC721("Senators", "SENATORS") EIP712("SENATORS", "1") {
 
         // Instantiate the Senate Contract Address
