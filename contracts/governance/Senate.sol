@@ -51,7 +51,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
     ISenatePositions public senatePositionsContract;
 
     /// @dev Quorum value for the Senate.
-    uint16 public quorumPct = 50;
+    uint16 public quorumPct;
 
     event ConsulVeto(address indexed account, uint256 indexed proposalId);
     event TribuneVeto(address indexed account, uint256 indexed proposalId);
@@ -72,7 +72,8 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
     function initialize(
         IVotesUpgradeable _token, 
         TimelockControllerUpgradeable _timelock,
-        address _senatePositionsContract
+        address _senatePositionsContract,
+        uint16 _quorumValue
     ) initializer public
     {
         __Governor_init("Senate");
@@ -84,8 +85,9 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         __UUPSUpgradeable_init();
         timelockContract = address(_timelock);
         senatePositionsContract = ISenatePositions(_senatePositionsContract);
-
+        quorumPct = _quorumValue;
     }
+
 
 
     /**

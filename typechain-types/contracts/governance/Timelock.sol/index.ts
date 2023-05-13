@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { TidusTimelock } from "./TidusTimelock";
+export type { Timelock } from "./Timelock";

@@ -45,7 +45,7 @@ export interface SenateInterface extends utils.Interface {
     "governanceWhitelist(address)": FunctionFragment;
     "hasVoted(uint256,address)": FunctionFragment;
     "hashProposal(address[],uint256[],bytes[],bytes32)": FunctionFragment;
-    "initialize(address,address,address)": FunctionFragment;
+    "initialize(address,address,address,uint16)": FunctionFragment;
     "name()": FunctionFragment;
     "onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)": FunctionFragment;
     "onERC1155Received(address,address,uint256,uint256,bytes)": FunctionFragment;
@@ -246,7 +246,8 @@ export interface SenateInterface extends utils.Interface {
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
-      PromiseOrValue<string>
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>
     ]
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
@@ -956,6 +957,7 @@ export interface Senate extends BaseContract {
       _token: PromiseOrValue<string>,
       _timelock: PromiseOrValue<string>,
       _senatePositionsContract: PromiseOrValue<string>,
+      _quorumValue: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -1241,6 +1243,7 @@ export interface Senate extends BaseContract {
     _token: PromiseOrValue<string>,
     _timelock: PromiseOrValue<string>,
     _senatePositionsContract: PromiseOrValue<string>,
+    _quorumValue: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -1526,6 +1529,7 @@ export interface Senate extends BaseContract {
       _token: PromiseOrValue<string>,
       _timelock: PromiseOrValue<string>,
       _senatePositionsContract: PromiseOrValue<string>,
+      _quorumValue: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1977,6 +1981,7 @@ export interface Senate extends BaseContract {
       _token: PromiseOrValue<string>,
       _timelock: PromiseOrValue<string>,
       _senatePositionsContract: PromiseOrValue<string>,
+      _quorumValue: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -2254,6 +2259,7 @@ export interface Senate extends BaseContract {
       _token: PromiseOrValue<string>,
       _timelock: PromiseOrValue<string>,
       _senatePositionsContract: PromiseOrValue<string>,
+      _quorumValue: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

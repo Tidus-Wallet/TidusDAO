@@ -65,6 +65,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC1822ProxiableUpgradeable__factory>;
     getContractFactory(
+      name: "IERC1967Upgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC1967Upgradeable__factory>;
+    getContractFactory(
       name: "IBeaconUpgradeable",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IBeaconUpgradeable__factory>;
@@ -193,9 +197,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Senate__factory>;
     getContractFactory(
-      name: "TidusTimelock",
+      name: "Timelock",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TidusTimelock__factory>;
+    ): Promise<Contracts.Timelock__factory>;
     getContractFactory(
       name: "MockTimelock",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -270,6 +274,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC1822ProxiableUpgradeable>;
+    getContractAt(
+      name: "IERC1967Upgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC1967Upgradeable>;
     getContractAt(
       name: "IBeaconUpgradeable",
       address: string,
@@ -431,10 +440,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Senate>;
     getContractAt(
-      name: "TidusTimelock",
+      name: "Timelock",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.TidusTimelock>;
+    ): Promise<Contracts.Timelock>;
     getContractAt(
       name: "MockTimelock",
       address: string,
