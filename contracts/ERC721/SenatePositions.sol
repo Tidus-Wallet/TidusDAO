@@ -50,6 +50,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     mapping (uint256 => Tribune) public tribunes;
     mapping (uint256 => Senator) public senators;
     mapping (uint256 => Dictator) public dictators;
+    mapping (address => uint256) public ownedTokens;
 
     /// @notice The metadata URIs for the various positions.
     string public consulMetadata;
@@ -133,9 +134,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             });
 
             activeConsuls.push(_to);
-
-            // Mint the token
-            _safeMint(_to, totalSupply());
+            ownedTokens[_to] = totalSupply();
         }
 
         else if(_position == Position.Censor) {
@@ -148,9 +147,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             });
 
             activeCensors.push(_to);
-
-            // Mint the token
-            _safeMint(_to, totalSupply());
+            ownedTokens[_to] = totalSupply();
         }
 
         else if(_position == Position.Tribune) {
@@ -163,9 +160,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             });
 
             activeTribunes.push(_to);
-
-            // Mint the token
-            _safeMint(_to, totalSupply());
+            ownedTokens[_to] = totalSupply();
         }
 
         else if(_position == Position.Senator) {
@@ -178,9 +173,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             });
 
             activeSenators.push(_to);
-
-            // Mint the token
-            _safeMint(_to, totalSupply());
+            ownedTokens[_to] = totalSupply();
         }
 
         else if(_position == Position.Dictator) {
@@ -194,15 +187,16 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             });
 
             activeDictator.push(_to);
+            ownedTokens[_to] = totalSupply();
 
-            // Mint the token
-            _safeMint(_to, totalSupply());
         }
 
         else {
             revert("TIDUS: Invalid position.");
         }
 
+        // Mint the token
+        _safeMint(_to, totalSupply());
     }
 
 
@@ -225,6 +219,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
                     break;
                 }
             }
+
+            // Delete the token from the ownedToken mapping
+            delete ownedTokens[consuls[_tokenId].consul];
         }
 
         else if(position == Position.Censor) {
@@ -236,6 +233,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
                     break;
                 }
             }
+
+            // Delete the token from the ownedToken mapping
+            delete ownedTokens[censors[_tokenId].censor];
         }
 
         else if(position == Position.Tribune) {
@@ -247,6 +247,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
                     break;
                 }
             }
+
+            // Delete the token from the ownedToken mapping
+            delete ownedTokens[tribunes[_tokenId].tribune];
         }
 
         if(position == Position.Senator) {
@@ -258,6 +261,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
                     break;
                 }
             }
+
+            // Delete the token from the ownedToken mapping
+            delete ownedTokens[senators[_tokenId].senator];
         }
 
         else if(position == Position.Dictator) {
@@ -269,6 +275,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
                     break;
                 }
             }
+
+            // Delete the token from the ownedToken mapping
+            delete ownedTokens[dictators[_tokenId].dictator];
         }
 
         else {

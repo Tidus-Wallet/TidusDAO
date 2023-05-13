@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1681767197058,
-      "contentHash": "584c70015a25a6b244be7f5fa32565c6",
+      "lastModificationDate": 1683995443401,
+      "contentHash": "569bc982f80d8a74935e661a26da214e",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -3662,10 +3662,10 @@
         }
       }
     },
-    "test/foundry/SenatePositions.t.sol": {
-      "lastModificationDate": 1683945476282,
-      "contentHash": "bf45c6fae6586d72107d83d7961bf674",
-      "sourceName": "test/foundry/SenatePositions.t.sol",
+    "test/foundry/SenatePositionsBurn.t.sol": {
+      "lastModificationDate": 1683995476382,
+      "contentHash": "f4e720872896a3f856739d4b36a53ab1",
+      "sourceName": "test/foundry/SenatePositionsBurn.t.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -3775,10 +3775,130 @@
       "versionRequirement": "=0.8.18",
       "artifacts": {
         "MockSenate": {
-          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositions.t.sol/MockSenate.json"
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositionsBurn.t.sol/MockSenate.json"
         },
         "SenatePositionsTest": {
-          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositions.t.sol/SenatePositionsTest.json"
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositionsBurn.t.sol/SenatePositionsTest.json"
+        }
+      }
+    },
+    "test/foundry/SenatePositionsMint.t.sol": {
+      "lastModificationDate": 1683997633412,
+      "contentHash": "6fc9fadc8f9a42b191e8ecf4f6dafccc",
+      "sourceName": "test/foundry/SenatePositionsMint.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/ERC721/SenatePositions.sol",
+        "contracts/ERC721/interfaces/ISenatePositions.sol",
+        "contracts/governance/Senate.sol",
+        "contracts/governance/interfaces/ISenate.sol",
+        "contracts/governance/interfaces/ITimelock.sol",
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "node_modules/@openzeppelin/contracts/access/Ownable.sol",
+        "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
+        "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol",
+        "node_modules/@openzeppelin/contracts/utils/Address.sol",
+        "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
+        "node_modules/@openzeppelin/contracts/utils/Context.sol",
+        "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+        "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
+        "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+        "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/TimelockControllerUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorCountingSimpleUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorSettingsUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorTimelockControlUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorVotesUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
+      ],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "MockSenate": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositionsMint.t.sol/MockSenate.json"
+        },
+        "SenatePositionsTest": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositionsMint.t.sol/SenatePositionsTest.json"
         }
       }
     }

@@ -13,6 +13,15 @@ contract MockSenate is Test, ERC721Holder {
 	string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Dictator"];
 	uint256[] termLengths = [1, 1, 1, 1, 1];
 
+	address[] testWallets = [
+		0x84141fa1AC4084fbc8ec2cC6Dc3F055820657610,
+		0x58736943CeDd4112Ee7058D63E5824942c029d42,
+		0x7B08Bd13Ac6d47c1A3a7BA6F0696060e3A98b5B2,
+		0x0e81C065FE246BB8B8cFe04D933B22d1ce4073d1,
+		0x2A456bfbf334B6D52dFB2E1E80cf0333Cc201F40
+	];
+
+
 	function setUp() public {
 		senatePositions = new SenatePositions(
 			address(this),
@@ -23,11 +32,28 @@ contract MockSenate is Test, ERC721Holder {
 	}
 
 	function test_mint() external {
-		senatePositions.mint(ISenatePositions.Position.Consul, address(this));
-		senatePositions.mint(ISenatePositions.Position.Censor, address(this));
-		senatePositions.mint(ISenatePositions.Position.Tribune, address(this));
-		senatePositions.mint(ISenatePositions.Position.Senator, address(this));
-		senatePositions.mint(ISenatePositions.Position.Dictator, address(this));
+		// Mint from the Senate contract
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
+		senatePositions.mint(ISenatePositions.Position.Censor, testWallets[1]);
+		senatePositions.mint(ISenatePositions.Position.Tribune, testWallets[2]);
+		senatePositions.mint(ISenatePositions.Position.Senator, testWallets[3]);
+		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[4]);
+
+		// Verify total supply
+		assertEq(senatePositions.totalSupply(), 5);
+		
+		// Loop through wallets and verify balance
+		for (uint256 i = 0; i < testWallets.length; i++) {
+			assertEq(senatePositions.balanceOf(testWallets[i]), 1);
+		}
+
+		// Verify token URI
+		assertEq(senatePositions.tokenURI(0), "Consul");
+		// assertEq(senatePositions.tokenURI(1), "Censor");
+		// assertEq(senatePositions.tokenURI(2), "Tribune");
+		// assertEq(senatePositions.tokenURI(3), "Senator");
+		// assertEq(senatePositions.tokenURI(4), "Dictator");
+
 	}
 	
 }
