@@ -1682,6 +1682,48 @@
         }
       }
     },
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol": {
+      "lastModificationDate": 1681767200698,
+      "contentHash": "54062ff887823a306b33ea6494a220bc",
+      "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "ERC721Holder": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "ERC721Holder.sol/ERC721Holder.json"
+        }
+      }
+    },
     "node_modules/@openzeppelin/contracts/utils/Address.sol": {
       "lastModificationDate": 1681767200715,
       "contentHash": "f31ad6fc4bbf9c06203987220156a6ba",
@@ -3621,8 +3663,8 @@
       }
     },
     "test/foundry/SenatePositions.t.sol": {
-      "lastModificationDate": 1683944526739,
-      "contentHash": "d8e9fe8e5f268a7491447f3eaa92aa34",
+      "lastModificationDate": 1683945476282,
+      "contentHash": "bf45c6fae6586d72107d83d7961bf674",
       "sourceName": "test/foundry/SenatePositions.t.sol",
       "solcConfig": {
         "settings": {
@@ -3655,6 +3697,7 @@
       "imports": [
         "contracts/ERC721/SenatePositions.sol",
         "contracts/ERC721/interfaces/ISenatePositions.sol",
+        "contracts/governance/Senate.sol",
         "contracts/governance/interfaces/ISenate.sol",
         "contracts/governance/interfaces/ITimelock.sol",
         "lib/forge-std/lib/ds-test/src/test.sol",
@@ -3684,6 +3727,7 @@
         "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol",
         "node_modules/@openzeppelin/contracts/utils/Address.sol",
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
@@ -3695,12 +3739,38 @@
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
         "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/TimelockControllerUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorCountingSimpleUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorSettingsUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorTimelockControlUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorVotesUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol"
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
       "versionRequirement": "=0.8.18",
       "artifacts": {
