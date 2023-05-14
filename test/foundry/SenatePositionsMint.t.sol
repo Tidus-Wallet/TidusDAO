@@ -11,7 +11,7 @@ contract MockSenate is Test, ERC721Holder {
 	SenatePositions private senatePositions;
 	address constant SENATE_ADDRESS = 0x5FbDB2315678afecb367f032d93F642f64180aa3;
 	string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Dictator"];
-	uint256[] termLengths = [1, 1, 1, 1, 1];
+	uint256[] termLengths = [5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400];
 
 	address[] testWallets = [
 		0x84141fa1AC4084fbc8ec2cC6Dc3F055820657610,
@@ -42,21 +42,44 @@ contract MockSenate is Test, ERC721Holder {
 		// Verify total supply
 		assertEq(senatePositions.totalSupply(), 5);
 		
-		// Loop through wallets and verify balance
+		// Loop through wallets, verify balance and tokenId
 		for (uint256 i = 0; i < testWallets.length; i++) {
 			assertEq(senatePositions.balanceOf(testWallets[i]), 1);
+			assertEq(senatePositions.ownedTokens(testWallets[i]), i + 1);
 		}
 
-		// Verify token URI
-		assertEq(senatePositions.tokenURI(0), "Consul");
-		// assertEq(senatePositions.tokenURI(1), "Censor");
-		// assertEq(senatePositions.tokenURI(2), "Tribune");
-		// assertEq(senatePositions.tokenURI(3), "Senator");
-		// assertEq(senatePositions.tokenURI(4), "Dictator");
+		// Verify token URIs
+		assertEq(senatePositions.tokenURI(1), "Consul");
+		assertEq(senatePositions.tokenURI(2), "Censor");
+		assertEq(senatePositions.tokenURI(3), "Tribune");
+		assertEq(senatePositions.tokenURI(4), "Senator");
+		assertEq(senatePositions.tokenURI(5), "Dictator");
 
 	}
-	
+
+		function test_burn() external {
+
+			// Mint one token
+			senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
+
+			// Get total supply
+			uint256 totalSupply = senatePositions.totalSupply();
+
+			// Burn token ID 1
+			senatePositions.burn(1);
+
+			// Assert that updated total supply is 1 less than before
+			assertEq(senatePositions.totalSupply(), totalSupply - 1);
+
+		}
+
+		// function testFail_BurnedTokenLookup() external view {
+		// 	// Lookup of tokenID 1 should revert with ERC721 error
+		// 	senatePositions.ownerOf(1);
+		// }
+
 }
+	
 contract SenatePositionsTest is Test {
 
 	SenatePositions private senatePositions;

@@ -10,6 +10,7 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { ISenate } from "../governance/interfaces/ISenate.sol";
 import { ISenatePositions } from "./interfaces/ISenatePositions.sol";
 import { ITimelock } from "../governance/interfaces/ITimelock.sol";
+import { console } from "../../lib/forge-std/src/console.sol";
 
 /// @custom:security-contact sekaieth@proton.me
 contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISenatePositions {
@@ -79,6 +80,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     /// @notice Address of the Timelock Contract that Executes Proposals
     ITimelock public timelockContract;
 
+    /// @notice Track next Token ID
+    uint256 public nextTokenId = 1;
+
     /**
      * @notice Constructor for the Senators NFT contract.
      * @param _senateContract The address of the Senate Voting Contract.
@@ -111,6 +115,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         tribuneTermLength = _termLengths[2];
         senatorTermLength = _termLengths[3];
         dictatorTermLength = _termLengths[4];
+
         
     }
 
@@ -127,67 +132,67 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             require(activeConsuls.length < 2, "TIDUS: Cannot mint a Consul position when there are already two Consuls.");
 
             // Add the Consul to the current Consuls array
-            consuls[totalSupply()] = Consul({
+            consuls[nextTokenId] = Consul({
                 consul: _to,
                 startTime: block.timestamp,
                 endTime: block.timestamp + consulTermLength
             });
 
             activeConsuls.push(_to);
-            ownedTokens[_to] = totalSupply();
+            ownedTokens[_to] = nextTokenId;
         }
 
         else if(_position == Position.Censor) {
 
             // Add the Censor to the current Censors array
-            censors[totalSupply()] = Censor({
+            censors[nextTokenId] = Censor({
                 censor: _to,
                 startTime: block.timestamp,
                 endTime: block.timestamp + censorTermLength
             });
 
             activeCensors.push(_to);
-            ownedTokens[_to] = totalSupply();
+            ownedTokens[_to] = nextTokenId;
         }
 
         else if(_position == Position.Tribune) {
 
             // Add the Tribune to the current Tribunes array
-            tribunes[totalSupply()] = Tribune({
+            tribunes[nextTokenId] = Tribune({
                 tribune: _to,
                 startTime: block.timestamp,
                 endTime: block.timestamp + tribuneTermLength
             });
 
             activeTribunes.push(_to);
-            ownedTokens[_to] = totalSupply();
+            ownedTokens[_to] = nextTokenId;
         }
 
         else if(_position == Position.Senator) {
 
             // Add the Senator to the current Senators array
-            senators[totalSupply()] = Senator({
+            senators[nextTokenId] = Senator({
                 senator: _to,
                 startTime: block.timestamp,
                 endTime: block.timestamp + senatorTermLength
             });
 
             activeSenators.push(_to);
-            ownedTokens[_to] = totalSupply();
+            ownedTokens[_to] = nextTokenId;
         }
 
         else if(_position == Position.Dictator) {
             require(activeDictator.length < 1, "TIDUS: There is already a Dictator.");
 
             // Add the Dictator to the current Dictators array
-            dictators[totalSupply()] = Dictator({
+            dictators[nextTokenId] = Dictator({
                 dictator: _to,
                 startTime: block.timestamp,
                 endTime: block.timestamp + dictatorTermLength
             });
 
             activeDictator.push(_to);
-            ownedTokens[_to] = totalSupply();
+            ownedTokens[_to] = nextTokenId;
 
         }
 
@@ -196,7 +201,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         }
 
         // Mint the token
-        _safeMint(_to, totalSupply());
+        _safeMint(_to, nextTokenId);
+        nextTokenId++;
     }
 
 
@@ -295,18 +301,22 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     function tokenURI(uint256 _tokenId) public view override(ERC721, ISenatePositions) returns (string memory uri) {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
 
+        Position position = getPosition(ownerOf(_tokenId));
+
         // Get the position of the token and return metadata
-        if (isConsul(ownerOf(_tokenId))) {
+        if (position == Position.Consul) {
             uri = consulMetadata;
-        } else if (isCensor(ownerOf(_tokenId))) {
+        } else if (position == Position.Censor) {
             uri = censorMetadata;
-        } else if (isTribune(ownerOf(_tokenId))) {
+        } else if (position == Position.Tribune) {
             uri = tribuneMetadata;
-        } else if (isSenator(ownerOf(_tokenId))) {
+        } else if (position == Position.Senator) {
             uri = senatorMetadata;
-        } else if (isDictator(ownerOf(_tokenId))) {
+        } else if (position == Position.Dictator) {
             uri = dictatorMetadata;
-        }        
+        } else {
+            revert("TIDUS: Invalid position.");
+        }     
     }
 
     /**
@@ -333,14 +343,25 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     /**
      * @notice Determine if given address is a Consul.
      * @param _address The address to check.
-     * @return True if address is a Consul.
+     * @return _isConsul True if address is a Consul.
      */
     function isConsul(address _address) public view returns (bool) {
+        // Get the token that the address owns
+        uint256 ownedTokenId = ownedTokens[_address];
+
+        ///@dev - If the returned tokenID is 0, the address does not own a token.
+        ///@dev - We start the token IDs at 1 for this reason.
+        if(ownedTokenId == 0) {
+            return false;
+        }
+
+        // Loop through active Consuls and check if address is a Consul
         for (uint i = 0; i < activeConsuls.length; i++) {
-            if (activeConsuls[i] == _address && block.timestamp < consuls[i].endTime) {
+            if (activeConsuls[i] == _address && block.timestamp < consuls[ownedTokenId].endTime) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -350,11 +371,20 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @return True if address is a Senator
      */
     function isSenator(address _address) public view returns (bool) {
+        // Get the token that the address owns
+        uint256 ownedTokenId = ownedTokens[_address];
+
+        if(ownedTokenId == 0) {
+            return false;
+        }
+
+        // Loop through active Senators and check if address is a Senator
         for (uint i = 0; i < activeSenators.length; i++) {
-            if (activeSenators[i] == _address && block.timestamp < senators[i].endTime) {
+            if (activeSenators[i] == _address && block.timestamp < senators[ownedTokenId].endTime) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -364,11 +394,20 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @return True if address is a Censor.
      */
     function isCensor(address _address) public view returns (bool) {
+        // Get the token that the address owns
+        uint256 ownedTokenId = ownedTokens[_address];
+
+        if(ownedTokenId == 0) {
+            return false;
+        }
+
+        // Loop through active Censors and check if address is a Censor
         for (uint i = 0; i < activeCensors.length; i++) {
-            if (activeCensors[i] == _address && block.timestamp < censors[i].endTime) {
+            if (activeCensors[i] == _address && block.timestamp < censors[ownedTokenId].endTime) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -378,11 +417,20 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @return True if address is a Tribune.
      */
     function isTribune(address _address) public view returns (bool) {
+        // Get the token that the address owns
+        uint256 ownedTokenId = ownedTokens[_address];
+
+        if(ownedTokenId == 0) {
+            return false;
+        }
+
+        // Loop through active Tribunes and check if address is a Tribune
         for (uint i = 0; i < activeTribunes.length; i++) {
-            if (activeTribunes[i] == _address && block.timestamp < tribunes[i].endTime) {
+            if (activeTribunes[i] == _address && block.timestamp < tribunes[ownedTokenId].endTime) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -392,13 +440,23 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @return True if address is a Dictator.
      */
     function isDictator(address _address) public view returns (bool) {
+        // Get the token that the address owns
+        uint256 ownedTokenId = ownedTokens[_address];
+
+        if(ownedTokenId == 0) {
+            return false;
+        }
+
+        // Loop through active Dictators and check if address is a Dictator
         for (uint i = 0; i < activeDictator.length; i++) {
-            if (activeDictator[i] == _address && block.timestamp < dictators[i].endTime) {
+            if (activeDictator[i] == _address && block.timestamp < dictators[ownedTokenId].endTime) {
                 return true;
             }
         }
+
         return false;
     }
+
 
     /**
      * @notice Update the metadata URI for the Censor contract.
