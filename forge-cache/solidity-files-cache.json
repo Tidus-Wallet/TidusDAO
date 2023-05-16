@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1684096075723,
-      "contentHash": "ebb64423885d4f2cf036e045322cc483",
+      "lastModificationDate": 1684200342114,
+      "contentHash": "483fc34c99f40597f94d3a1c0abe4e2e",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -1680,48 +1680,6 @@
       "artifacts": {
         "IERC721Metadata": {
           "0.8.18+commit.87f61d96.Darwin.appleclang": "IERC721Metadata.sol/IERC721Metadata.json"
-        }
-      }
-    },
-    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol": {
-      "lastModificationDate": 1681767200698,
-      "contentHash": "54062ff887823a306b33ea6494a220bc",
-      "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs",
-            "appendCBOR": true
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ]
-            }
-          },
-          "evmVersion": "paris",
-          "libraries": {}
-        }
-      },
-      "imports": [
-        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol"
-      ],
-      "versionRequirement": "^0.8.0",
-      "artifacts": {
-        "ERC721Holder": {
-          "0.8.18+commit.87f61d96.Darwin.appleclang": "ERC721Holder.sol/ERC721Holder.json"
         }
       }
     },
@@ -3663,10 +3621,10 @@
         }
       }
     },
-    "test/foundry/SenatePositionsMint.t.sol": {
-      "lastModificationDate": 1684097106826,
-      "contentHash": "e7952af0c6b75fb33dbe7d0e6566ac7a",
-      "sourceName": "test/foundry/SenatePositionsMint.t.sol",
+    "test/foundry/SenatePositions.t.sol": {
+      "lastModificationDate": 1684201103622,
+      "contentHash": "a19a39871acbb4213c29add0e7d94b5f",
+      "sourceName": "test/foundry/SenatePositions.t.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -3728,7 +3686,6 @@
         "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
-        "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol",
         "node_modules/@openzeppelin/contracts/utils/Address.sol",
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
@@ -3776,10 +3733,10 @@
       "versionRequirement": "=0.8.18",
       "artifacts": {
         "MockSenate": {
-          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositionsMint.t.sol/MockSenate.json"
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositions.t.sol/MockSenate.json"
         },
-        "SenatePositionsTest": {
-          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositionsMint.t.sol/SenatePositionsTest.json"
+        "SenateTest": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositions.t.sol/SenateTest.json"
         }
       }
     }

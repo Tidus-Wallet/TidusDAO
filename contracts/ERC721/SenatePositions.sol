@@ -214,7 +214,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
         require(msg.sender == address(senateContract) || msg.sender == ownerOf(_tokenId), "TIDUS: Only the Senate Voting Contract or Owner can burn the token.");
 
-        Position position = getPosition(ownerOf(_tokenId));
+        address tokenOwner = ownerOf(_tokenId);
+        Position position = getPosition(tokenOwner);
 
         if(position == Position.Consul) {
             // Remove the Consul from the current Consuls array
@@ -227,7 +228,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             }
 
             // Delete the token from the ownedToken mapping
-            delete ownedTokens[consuls[_tokenId].consul];
+            delete ownedTokens[tokenOwner];
         }
 
         else if(position == Position.Censor) {
@@ -241,7 +242,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             }
 
             // Delete the token from the ownedToken mapping
-            delete ownedTokens[censors[_tokenId].censor];
+            delete ownedTokens[tokenOwner];
         }
 
         else if(position == Position.Tribune) {
@@ -255,10 +256,10 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             }
 
             // Delete the token from the ownedToken mapping
-            delete ownedTokens[tribunes[_tokenId].tribune];
+            delete ownedTokens[tokenOwner];
         }
 
-        if(position == Position.Senator) {
+        else if(position == Position.Senator) {
             // Remove the Senator from the current Senators array
             for(uint i = 0; i < activeSenators.length; i++) {
                 if(activeSenators[i] == senators[_tokenId].senator) {
@@ -269,7 +270,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             }
 
             // Delete the token from the ownedToken mapping
-            delete ownedTokens[senators[_tokenId].senator];
+            delete ownedTokens[tokenOwner];
         }
 
         else if(position == Position.Dictator) {
@@ -283,11 +284,11 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             }
 
             // Delete the token from the ownedToken mapping
-            delete ownedTokens[dictators[_tokenId].dictator];
+            delete ownedTokens[tokenOwner];
         }
 
         else {
-            revert("TIDUS: Invalid position.");
+            revert("TIDUS: Invalid position");
         }
 
         _burn(_tokenId);

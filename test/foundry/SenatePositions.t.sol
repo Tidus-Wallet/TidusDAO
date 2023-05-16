@@ -4,9 +4,8 @@ import "forge-std/Test.sol";
 import { SenatePositions } from "../../contracts/ERC721/SenatePositions.sol";
 import { ISenatePositions } from "../../contracts/ERC721/interfaces/ISenatePositions.sol";
 import { Senate } from "../../contracts/governance/Senate.sol";
-import { ERC721Holder } from "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 
-contract MockSenate is Test, ERC721Holder {
+contract MockSenate is Test {
 
 	SenatePositions private senatePositions;
 	address constant SENATE_ADDRESS = 0x5FbDB2315678afecb367f032d93F642f64180aa3;
@@ -30,6 +29,7 @@ contract MockSenate is Test, ERC721Holder {
 			termLengths
 		);
 	}
+	
 
 	function test_mint() external {
 		// Mint from the Senate contract
@@ -57,30 +57,37 @@ contract MockSenate is Test, ERC721Holder {
 
 	}
 
-		function test_burn() external {
+	function test_burn() external {
+		// Mint one token
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
 
-			// Mint one token
-			senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
+		// Get total supply
+		uint256 totalSupply = senatePositions.totalSupply();
+		
+		// Get tokenId of the token we just minted and verify it's correct
+		uint256 tokenId = senatePositions.ownedTokens(testWallets[0]);
+		assertEq(tokenId, 1);
 
-			// Get total supply
-			uint256 totalSupply = senatePositions.totalSupply();
+		// Burn token ID 1
+		senatePositions.burn(tokenId);
 
-			// Burn token ID 1
-			senatePositions.burn(1);
+		// Assert that updated total supply is 1 less than before
+		assertEq(senatePositions.totalSupply(), totalSupply - 1);
+	}
 
-			// Assert that updated total supply is 1 less than before
-			assertEq(senatePositions.totalSupply(), totalSupply - 1);
-
-		}
-
-		// function testFail_BurnedTokenLookup() external view {
-		// 	// Lookup of tokenID 1 should revert with ERC721 error
-		// 	senatePositions.ownerOf(1);
-		// }
+	/**
+	 * @dev Test Expected Minting Reverts
+	 */
+	function testFail_mint() external {
+		// Mint to zero address
+		senatePositions.mint(ISenatePositions.Position.Consul, address(0));
+		// Mint Position "None"
+		senatePositions.mint(ISenatePositions.Position.None, address(this));
+	}
 
 }
 	
-contract SenatePositionsTest is Test {
+contract SenateTest is Test {
 
 	SenatePositions private senatePositions;
 
@@ -97,6 +104,23 @@ contract SenatePositionsTest is Test {
 		metadatas,
 		termLengths
 		);
+	}
+	
+	// Test constructor args populate the initial state correctly
+	function test_constructor() public {
+		assertEq(address(senatePositions.senateContract()), address(senateContract));
+		assertEq(address(senatePositions.timelockContract()), timelockContract);
+		assertEq(senatePositions.consulMetadata(), "Consul");
+		assertEq(senatePositions.censorMetadata(), "Censor");
+		assertEq(senatePositions.tribuneMetadata(), "Tribune");
+		assertEq(senatePositions.senatorMetadata(), "Senator");
+		assertEq(senatePositions.dictatorMetadata(), "Dictator");
+		assertEq(senatePositions.consulTermLength(), 1);
+		assertEq(senatePositions.censorTermLength(), 1);
+		assertEq(senatePositions.tribuneTermLength(), 1);
+		assertEq(senatePositions.senatorTermLength(), 1);
+		assertEq(senatePositions.dictatorTermLength(), 1);
+		assertEq(senatePositions.nextTokenId(), 1);
 	}
 
 	// Minting from anything but the Senate contract should fail
