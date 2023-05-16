@@ -3622,8 +3622,8 @@
       }
     },
     "test/foundry/SenatePositions.t.sol": {
-      "lastModificationDate": 1684201103622,
-      "contentHash": "a19a39871acbb4213c29add0e7d94b5f",
+      "lastModificationDate": 1684245475490,
+      "contentHash": "439d7fc3d06b0bd49c8c1d22264108e9",
       "sourceName": "test/foundry/SenatePositions.t.sol",
       "solcConfig": {
         "settings": {

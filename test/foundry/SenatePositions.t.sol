@@ -30,7 +30,9 @@ contract MockSenate is Test {
 		);
 	}
 	
-
+	/**
+	 * @dev Test Minting
+	 */
 	function test_mint() external {
 		// Mint from the Senate contract
 		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
@@ -57,6 +59,9 @@ contract MockSenate is Test {
 
 	}
 
+	/**
+	 * @dev Test Burning
+	 */
 	function test_burn() external {
 		// Mint one token
 		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
@@ -78,13 +83,51 @@ contract MockSenate is Test {
 	/**
 	 * @dev Test Expected Minting Reverts
 	 */
-	function testFail_mint() external {
+	function test_mintReverts() external {
 		// Mint to zero address
+		vm.expectRevert("TIDUS: Cannot mint to the zero address.");
 		senatePositions.mint(ISenatePositions.Position.Consul, address(0));
 		// Mint Position "None"
+		vm.expectRevert("TIDUS: Cannot mint a None position.");
 		senatePositions.mint(ISenatePositions.Position.None, address(this));
 	}
+	
+	function test_mintTooManyConsuls() external {
+		// Mint 2 Consuls
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[1]);
 
+		// Expect next Consul mint to fail
+		vm.expectRevert("TIDUS: Cannot mint a Consul position when there are already two Consuls.");
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[2]);
+	}
+
+	function test_mintTooManyDictators() external {
+		// Mint a dictator
+		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[0]);
+
+		// Expect next Dictator mint to fail
+		vm.expectRevert("TIDUS: There is already a Dictator.");
+		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[1]);
+	}
+
+	/**
+	 * @dev Test Expected Burning Reverts
+	 */
+	function test_invalidTokenId() external {
+		// Burn a token that doesn't exist
+		vm.expectRevert("ERC721Metadata: URI query for nonexistent token");
+		senatePositions.burn(1);
+	}
+
+	function test_callerNotOwnerOfTokenOrSenateContract() external {
+		// Mint a token
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
+
+		// Expect burn to fail because caller is not owner of token or Senate contract
+		vm.expectRevert("TIDUS: Only the Senate contract can burn tokens.");
+		testWallets[1].delegatecall(abi.encodeWithSignature("burn(uint256)", 1));
+	}
 }
 	
 contract SenateTest is Test {
