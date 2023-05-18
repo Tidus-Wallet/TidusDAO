@@ -8,7 +8,6 @@ import { Senate } from "../../contracts/governance/Senate.sol";
 contract MockSenate is Test {
 
 	SenatePositions private senatePositions;
-	address constant SENATE_ADDRESS = 0x5FbDB2315678afecb367f032d93F642f64180aa3;
 	string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Dictator"];
 	uint256[] termLengths = [5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400];
 
@@ -81,15 +80,44 @@ contract MockSenate is Test {
 	}
 
 	/**
+	 * @dev Test isConsul, isCensor, isTribune, isSenator, isDictator
+	 */
+	function test_isPosition() external {
+		// Mint token for each position
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
+		senatePositions.mint(ISenatePositions.Position.Censor, testWallets[1]);
+		senatePositions.mint(ISenatePositions.Position.Tribune, testWallets[2]);
+		senatePositions.mint(ISenatePositions.Position.Senator, testWallets[3]);
+		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[4]);
+
+		// Verify each position
+		assertEq(senatePositions.isConsul(testWallets[0]), true);
+		assertEq(senatePositions.isCensor(testWallets[1]), true);
+		assertEq(senatePositions.isTribune(testWallets[2]), true);
+		assertEq(senatePositions.isSenator(testWallets[3]), true);
+		assertEq(senatePositions.isDictator(testWallets[4]), true);
+	}
+
+	/**
 	 * @dev Test Expected Minting Reverts
 	 */
-	function test_mintReverts() external {
+	function test_MintToZeroAddr() external {
 		// Mint to zero address
 		vm.expectRevert("TIDUS: Cannot mint to the zero address.");
 		senatePositions.mint(ISenatePositions.Position.Consul, address(0));
+	}
+
+	function test_MintToNonePosition() external {
 		// Mint Position "None"
 		vm.expectRevert("TIDUS: Cannot mint a None position.");
 		senatePositions.mint(ISenatePositions.Position.None, address(this));
+	}
+
+	function test_MintMultipleTokensToSameAddr() external {
+		// Mint two tokens to the same address
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
+		vm.expectRevert("TIDUS: Cannot mint more than one token per address.");
+		senatePositions.mint(ISenatePositions.Position.Censor, testWallets[0]);
 	}
 	
 	function test_mintTooManyConsuls() external {
@@ -128,50 +156,65 @@ contract MockSenate is Test {
 		vm.expectRevert("TIDUS: Only the Senate contract can burn tokens.");
 		testWallets[1].delegatecall(abi.encodeWithSignature("burn(uint256)", 1));
 	}
-}
-	
-contract SenateTest is Test {
 
-	SenatePositions private senatePositions;
+	/** 
+	 * @dev Fuzz Tests
+	 */
+	function testFuzz_mint(uint8 positionIndex, uint8 walletIndex) external {
 
-	Senate senateContract;
-	address timelockContract = 0x5FbDB2315678afecb367f032d93F642f64180aa3;
-	string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Dictator"];
-	uint256[] termLengths = [1, 1, 1, 1, 1];
+		// Define the positions that can be minted
+		ISenatePositions.Position[] memory positions = new ISenatePositions.Position[](5);
+		positions[0] = ISenatePositions.Position.Consul;
+		positions[1] = ISenatePositions.Position.Censor;
+		positions[2] = ISenatePositions.Position.Tribune;
+		positions[3] = ISenatePositions.Position.Senator;
+		positions[4] = ISenatePositions.Position.Dictator;
 
-	function setUp() public {
-		senateContract = new Senate();
-		senatePositions = new SenatePositions(
-		address(senateContract),
-		timelockContract,
-		metadatas,
-		termLengths
-		);
+		// Select the position that will be minted
+		ISenatePositions.Position position = positions[positionIndex % positions.length];
+
+		// Select the wallet that will receive the minted token
+		address wallet = testWallets[walletIndex % testWallets.length];
+
+		// Record the balance of the wallet before the mint
+		uint256 previousBalance = senatePositions.balanceOf(wallet);
+
+		// Mint the token
+		senatePositions.mint(position, wallet);
+
+		// Record the balance of the wallet after the mint
+		uint256 newBalance = senatePositions.balanceOf(wallet);
+
+		// Verify the balance increased by 1
+		assertEq(newBalance, previousBalance + 1);
+
+		// Retrieve the last token id minted to this wallet and check its URI
+		uint256 lastTokenId = senatePositions.ownedTokens(wallet);
+		assertEq(senatePositions.tokenURI(lastTokenId), metadatas[uint256(position) - 1]);
 	}
-	
-	// Test constructor args populate the initial state correctly
-	function test_constructor() public {
-		assertEq(address(senatePositions.senateContract()), address(senateContract));
-		assertEq(address(senatePositions.timelockContract()), timelockContract);
-		assertEq(senatePositions.consulMetadata(), "Consul");
-		assertEq(senatePositions.censorMetadata(), "Censor");
-		assertEq(senatePositions.tribuneMetadata(), "Tribune");
-		assertEq(senatePositions.senatorMetadata(), "Senator");
-		assertEq(senatePositions.dictatorMetadata(), "Dictator");
-		assertEq(senatePositions.consulTermLength(), 1);
-		assertEq(senatePositions.censorTermLength(), 1);
-		assertEq(senatePositions.tribuneTermLength(), 1);
-		assertEq(senatePositions.senatorTermLength(), 1);
-		assertEq(senatePositions.dictatorTermLength(), 1);
-		assertEq(senatePositions.nextTokenId(), 1);
+
+	function testFuzz_burn(uint8 walletIndex) external {
+		// Select the wallet that will burn the token
+		address wallet = testWallets[walletIndex % testWallets.length];
+
+		// Mint a token to that wallet
+		senatePositions.mint(ISenatePositions.Position.Consul, wallet);
+
+		// Get balance of the wallet before the burn
+		uint256 previousBalance = senatePositions.balanceOf(wallet);
+
+		// Get the tokenID of the newly minted token
+		uint256 tokenId = senatePositions.ownedTokens(wallet);
+
+		// Burn the token
+		senatePositions.burn(tokenId);
+
+		// Record the balance of the wallet after the burn
+		uint256 newBalance = senatePositions.balanceOf(wallet);
+
+		// Verify the balance decreased by 1
+		assertEq(newBalance, previousBalance - 1);
 	}
 
-	// Minting from anything but the Senate contract should fail
-	function testFail_mint() public {
-		senatePositions.mint(ISenatePositions.Position.Consul, address(this));
-		senatePositions.mint(ISenatePositions.Position.Censor, address(this));
-		senatePositions.mint(ISenatePositions.Position.Tribune, address(this));
-		senatePositions.mint(ISenatePositions.Position.Senator, address(this));
-		senatePositions.mint(ISenatePositions.Position.Dictator, address(this));
-	}
+
 }

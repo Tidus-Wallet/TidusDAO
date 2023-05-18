@@ -127,6 +127,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         require(msg.sender == address(senateContract), "TIDUS: Only the Senate Voting Contract can mint Senators.");
         require(_to != address(0), "TIDUS: Cannot mint to the zero address.");
         require(_position != Position.None, "TIDUS: Cannot mint a None position.");
+        require(balanceOf(_to) == 0, "TIDUS: Cannot mint more than one token per address.");
 
         if(_position == Position.Consul) {
             require(activeConsuls.length < 2, "TIDUS: Cannot mint a Consul position when there are already two Consuls.");

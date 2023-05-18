@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1684200342114,
-      "contentHash": "483fc34c99f40597f94d3a1c0abe4e2e",
+      "lastModificationDate": 1684420710704,
+      "contentHash": "08d79e03f1636756db285c944f9bf287",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -3622,8 +3622,8 @@
       }
     },
     "test/foundry/SenatePositions.t.sol": {
-      "lastModificationDate": 1684245475490,
-      "contentHash": "439d7fc3d06b0bd49c8c1d22264108e9",
+      "lastModificationDate": 1684422310595,
+      "contentHash": "4b31cde7822a7c24aa066e41675f6d27",
       "sourceName": "test/foundry/SenatePositions.t.sol",
       "solcConfig": {
         "settings": {
@@ -3734,9 +3734,6 @@
       "artifacts": {
         "MockSenate": {
           "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositions.t.sol/MockSenate.json"
-        },
-        "SenateTest": {
-          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositions.t.sol/SenateTest.json"
         }
       }
     }
