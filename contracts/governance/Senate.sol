@@ -65,13 +65,11 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
 
     /**
      * @notice Initializes the Senate contract.
-     * @param _token The voting token for the GovernorVotesUpgradeable.
      * @param _timelock The timelock controller for the GovernorTimelockControlUpgradeable.
      * @param _senatePositionsContract The address of the SenatePositions contract.
      */
     function initialize(
-        IVotesUpgradeable _token, 
-        TimelockControllerUpgradeable _timelock,
+        address _timelock,
         address _senatePositionsContract,
         uint16 _quorumValue
     ) initializer public
@@ -79,8 +77,8 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         __Governor_init("Senate");
         __GovernorSettings_init(1 /* 1 block */, 21600 /* 3 days */, 0);
         __GovernorCountingSimple_init();
-        __GovernorVotes_init(_token);
-        __GovernorTimelockControl_init(_timelock);
+        __GovernorVotes_init(IVotesUpgradeable(_senatePositionsContract));
+        __GovernorTimelockControl_init(TimelockControllerUpgradeable(payable(_timelock)));
         __Ownable_init();
         __UUPSUpgradeable_init();
         timelockContract = address(_timelock);

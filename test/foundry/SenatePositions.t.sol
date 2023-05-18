@@ -289,6 +289,4 @@ contract MockSenate is Test {
 		// Verify the balance decreased by 1
 		assertEq(newBalance, previousBalance - 1);
 	}
-
-
 }
