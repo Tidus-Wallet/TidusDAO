@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1684420710704,
-      "contentHash": "08d79e03f1636756db285c944f9bf287",
+      "lastModificationDate": 1684426868089,
+      "contentHash": "1c69753694a8224d22619183a8b2d7f6",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -3622,8 +3622,8 @@
       }
     },
     "test/foundry/SenatePositions.t.sol": {
-      "lastModificationDate": 1684422310595,
-      "contentHash": "4b31cde7822a7c24aa066e41675f6d27",
+      "lastModificationDate": 1684427736594,
+      "contentHash": "eee600d44aa082bdee05d2979f8de203",
       "sourceName": "test/foundry/SenatePositions.t.sol",
       "solcConfig": {
         "settings": {
@@ -3734,6 +3734,9 @@
       "artifacts": {
         "MockSenate": {
           "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositions.t.sol/MockSenate.json"
+        },
+        "MockWallet": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SenatePositions.t.sol/MockWallet.json"
         }
       }
     }

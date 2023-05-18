@@ -511,7 +511,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         address to,
         uint256 tokenId
     ) internal virtual override {
-        require(to == address(0) || to == address(senateContract), "TIDUS: Only the Senate Voting Contract can receive Senator tokens.");
+        require(to == address(senateContract), "TIDUS: Only the Senate Voting Contract can receive Senator tokens.");
         super._transfer(from, to, tokenId);
     }
 

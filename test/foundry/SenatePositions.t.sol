@@ -4,10 +4,25 @@ import "forge-std/Test.sol";
 import { SenatePositions } from "../../contracts/ERC721/SenatePositions.sol";
 import { ISenatePositions } from "../../contracts/ERC721/interfaces/ISenatePositions.sol";
 import { Senate } from "../../contracts/governance/Senate.sol";
+import { IERC721 } from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import { IERC721Receiver } from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
+///@dev - AFAIK I can't instantiate a wallet within Solidity
+///@dev - So making this mock wallet to test transfers.
+contract MockWallet is IERC721Receiver {
+	function transferToken(address _token, address _to, uint256 _tokenId) external {
+		IERC721(_token).transferFrom(address(this), _to, _tokenId);
+	}
+
+	function onERC721Received(address, address, uint256, bytes calldata) external pure override returns (bytes4) {
+		return this.onERC721Received.selector;
+	}
+}
 contract MockSenate is Test {
 
 	SenatePositions private senatePositions;
+	MockWallet private mockWallet;
+
 	string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Dictator"];
 	uint256[] termLengths = [5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400];
 
@@ -27,8 +42,25 @@ contract MockSenate is Test {
 			metadatas,
 			termLengths
 		);
+
+		mockWallet = new MockWallet();
 	}
-	
+
+	function test_constructor() public {
+	assertEq(address(senatePositions.senateContract()), address(this));
+	assertEq(senatePositions.consulMetadata(), "Consul");
+	assertEq(senatePositions.censorMetadata(), "Censor");
+	assertEq(senatePositions.tribuneMetadata(), "Tribune");
+	assertEq(senatePositions.senatorMetadata(), "Senator");
+	assertEq(senatePositions.dictatorMetadata(), "Dictator");
+	assertEq(senatePositions.consulTermLength(), 5 * 86400);
+	assertEq(senatePositions.censorTermLength(), 5 * 86400);
+	assertEq(senatePositions.tribuneTermLength(), 5 * 86400);
+	assertEq(senatePositions.senatorTermLength(), 5 * 86400);
+	assertEq(senatePositions.dictatorTermLength(), 5 * 86400);
+	assertEq(senatePositions.nextTokenId(), 1);
+	}
+
 	/**
 	 * @dev Test Minting
 	 */
@@ -80,6 +112,41 @@ contract MockSenate is Test {
 	}
 
 	/**
+	 * @dev Test Transfer of Tokens
+	 */
+
+	///@dev Test Successful transfer to Senate contract
+	function test_transferToSenateContract() external {
+		// Mint one token
+		senatePositions.mint(ISenatePositions.Position.Consul, address(mockWallet));
+
+		// Get tokenId of the token we just minted and verify it's correct
+		uint256 tokenId = senatePositions.ownedTokens(address(mockWallet));
+		assertEq(tokenId, 1);
+
+		// Transfer token to Senate contract
+		mockWallet.transferToken(address(senatePositions), address(this), tokenId);
+
+		// Verify balance of mockWallet is 0
+		assertEq(senatePositions.balanceOf(address(mockWallet)), 0);
+	}
+
+	///@dev - Test transfer to anything but the Senate contract
+	function test_transferToUnallowedAddressFail() external {
+		// Mint one token
+		senatePositions.mint(ISenatePositions.Position.Consul, address(mockWallet));
+
+		// Get tokenId of the token we just minted and verify it's correct
+		uint256 tokenId = senatePositions.ownedTokens(address(mockWallet));
+		assertEq(tokenId, 1);
+
+		// Transfer token to another wallet
+		vm.expectRevert("TIDUS: Only the Senate Voting Contract can receive Senator tokens.");
+		mockWallet.transferToken(address(senatePositions), testWallets[0], tokenId);
+	}
+
+
+	/**
 	 * @dev Test isConsul, isCensor, isTribune, isSenator, isDictator
 	 */
 	function test_isPosition() external {
@@ -101,18 +168,21 @@ contract MockSenate is Test {
 	/**
 	 * @dev Test Expected Minting Reverts
 	 */
+	///@dev - Test minting to zero addr should revert
 	function test_MintToZeroAddr() external {
 		// Mint to zero address
 		vm.expectRevert("TIDUS: Cannot mint to the zero address.");
 		senatePositions.mint(ISenatePositions.Position.Consul, address(0));
 	}
 
+	///@dev - Test minting to "None" position should revert
 	function test_MintToNonePosition() external {
 		// Mint Position "None"
 		vm.expectRevert("TIDUS: Cannot mint a None position.");
 		senatePositions.mint(ISenatePositions.Position.None, address(this));
 	}
 
+	///@dev - Test minting multiple tokens to single addr should revert
 	function test_MintMultipleTokensToSameAddr() external {
 		// Mint two tokens to the same address
 		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
@@ -120,6 +190,7 @@ contract MockSenate is Test {
 		senatePositions.mint(ISenatePositions.Position.Censor, testWallets[0]);
 	}
 	
+	///@dev - Test minting too many of Consuls should revert
 	function test_mintTooManyConsuls() external {
 		// Mint 2 Consuls
 		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
@@ -130,6 +201,7 @@ contract MockSenate is Test {
 		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[2]);
 	}
 
+	///@dev - Test minting too many Dictators should revert
 	function test_mintTooManyDictators() external {
 		// Mint a dictator
 		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[0]);
@@ -142,12 +214,14 @@ contract MockSenate is Test {
 	/**
 	 * @dev Test Expected Burning Reverts
 	 */
+	///@dev - Test invalid Token ID should revert (ERC721 Standard)
 	function test_invalidTokenId() external {
 		// Burn a token that doesn't exist
 		vm.expectRevert("ERC721Metadata: URI query for nonexistent token");
 		senatePositions.burn(1);
 	}
 
+	///@dev - Test burn from non-owner or not Senate contract should revert
 	function test_callerNotOwnerOfTokenOrSenateContract() external {
 		// Mint a token
 		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
