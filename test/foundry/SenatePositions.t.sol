@@ -166,6 +166,25 @@ contract MockSenate is Test {
 	}
 
 	/**
+	 * @dev Test getPosition
+	 */
+	function test_getPosition() external {
+		// Mint token for each position
+		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[0]);
+		senatePositions.mint(ISenatePositions.Position.Censor, testWallets[1]);
+		senatePositions.mint(ISenatePositions.Position.Tribune, testWallets[2]);
+		senatePositions.mint(ISenatePositions.Position.Senator, testWallets[3]);
+		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[4]);
+
+		// Verify each position
+		assertEq(uint256(senatePositions.getPosition(testWallets[0])), uint256(1));
+		assertEq(uint256(senatePositions.getPosition(testWallets[1])), uint256(2));
+		assertEq(uint256(senatePositions.getPosition(testWallets[2])), uint256(3));
+		assertEq(uint256(senatePositions.getPosition(testWallets[3])), uint256(4));
+		assertEq(uint256(senatePositions.getPosition(testWallets[4])), uint256(5));
+	}
+
+	/**
 	 * @dev Test Expected Minting Reverts
 	 */
 	///@dev - Test minting to zero addr should revert
@@ -228,7 +247,8 @@ contract MockSenate is Test {
 
 		// Expect burn to fail because caller is not owner of token or Senate contract
 		vm.expectRevert("TIDUS: Only the Senate contract can burn tokens.");
-		testWallets[1].delegatecall(abi.encodeWithSignature("burn(uint256)", 1));
+		(bool burnSuccess,) = testWallets[1].delegatecall(abi.encodeWithSignature("burn(uint256)", 1));
+		assertEq(burnSuccess, false);
 	}
 
 	/** 
@@ -289,4 +309,20 @@ contract MockSenate is Test {
 		// Verify the balance decreased by 1
 		assertEq(newBalance, previousBalance - 1);
 	}
+
+	function testFuzz_getPosition(ISenatePositions.Position _position, uint8 walletIndex) external {
+		// Select a position within the bounds of the enum
+		uint256 position = bound(uint256(_position), 1, 5);
+
+		// Select a wallet within the bounds of the testWallets array
+		address wallet = testWallets[walletIndex % testWallets.length];
+
+		// Mint a token to that wallet
+		senatePositions.mint(ISenatePositions.Position(position), wallet);
+
+		// Verify the position of the token
+		assertEq(uint256(senatePositions.getPosition(wallet)), uint256(position));
+	}
+
+
 }
