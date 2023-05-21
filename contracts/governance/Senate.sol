@@ -10,6 +10,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+import "../../lib/forge-std/src/console.sol";
 
 /// @notice Import Positional NFT Contract
 import { ISenatePositions } from "../ERC721/interfaces/ISenatePositions.sol";
@@ -57,11 +58,11 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
     event TribuneVeto(address indexed account, uint256 indexed proposalId);
     event ContractAddressUpdated(address indexed contractAddress, address indexed newAddress);
 
-    /// @dev Custom initializer modifier to disable standard initializers.
-    /// @custom:oz-upgrades-unsafe-allow constructor
-    constructor() {
-        _disableInitializers();
-    }
+    // /// @dev Custom initializer modifier to disable standard initializers.
+    // /// @custom:oz-upgrades-unsafe-allow constructor
+    // constructor() {
+    //     _disableInitializers();
+    // }
 
     /**
      * @notice Initializes the Senate contract.
@@ -75,7 +76,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
     ) initializer public
     {
         __Governor_init("Senate");
-        __GovernorSettings_init(1 /* 1 block */, 21600 /* 3 days */, 0);
+        __GovernorSettings_init(1 /* 1 block */, 21600 /* 3 days */, 0 /* Zero votes */);
         __GovernorCountingSimple_init();
         __GovernorVotes_init(IVotesUpgradeable(_senatePositionsContract));
         __GovernorTimelockControl_init(TimelockControllerUpgradeable(payable(_timelock)));
@@ -285,7 +286,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         returns (uint256)
     {
         if (validatePosition(msg.sender)) {
-            return 1;
+            return 0;
         } else {
             return type(uint256).max; // Non-valid positions cannot create proposals
         }     
@@ -379,18 +380,17 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
 
     }
 
-/**
- * @notice Returns the required quorum for proposals.
- * @param proposalId The ID of the proposal to check the quorum for.
- * @return The required quorum value.
- */
-function quorum(uint256 proposalId)
-    public
-    view
-    override(IGovernorUpgradeable)
-    returns (uint256)
-{
-    return quorum(proposalId);
-}
-
+    /**
+     * @notice Returns the required quorum for proposals.
+     * @param proposalId The ID of the proposal to check the quorum for.
+     * @return The required quorum value.
+     */
+    function quorum(uint256 proposalId)
+        public
+        view
+        override(IGovernorUpgradeable)
+        returns (uint256)
+    {
+        return quorum(proposalId);
+    }
 }
