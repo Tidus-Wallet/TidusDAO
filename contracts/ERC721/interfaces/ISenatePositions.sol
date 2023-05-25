@@ -11,7 +11,7 @@ interface ISenatePositions is IERC721 {
         Censor,
         Tribune,
         Senator,
-        Dictator
+        Caesar
     }
 
     function mint(Position _position, address _to) external;
@@ -30,7 +30,7 @@ interface ISenatePositions is IERC721 {
 
     function isTribune(address _address) external view returns (bool);
 
-    function isDictator(address _address) external view returns (bool);
+    function isCaesar(address _address) external view returns (bool);
 
     function updateMetadata(Position _position, string calldata _updatedMetadata) external;
 

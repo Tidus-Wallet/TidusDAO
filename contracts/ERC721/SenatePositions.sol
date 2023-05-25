@@ -39,8 +39,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         uint256 endTime;
     }
 
-    struct Dictator {
-        address dictator;
+    struct Caesar {
+        address caesar;
         uint256 startTime;
         uint256 endTime;
     }
@@ -50,7 +50,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     mapping (uint256 => Censor) public censors;
     mapping (uint256 => Tribune) public tribunes;
     mapping (uint256 => Senator) public senators;
-    mapping (uint256 => Dictator) public dictators;
+    mapping (uint256 => Caesar) public caesars;
     mapping (address => uint256) public ownedTokens;
 
     /// @notice The metadata URIs for the various positions.
@@ -58,7 +58,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     string public censorMetadata;
     string public tribuneMetadata;
     string public senatorMetadata;
-    string public dictatorMetadata;
+    string public caesarMetadata;
 
     /// @notice The address of the Senate Voting Contract.
     ISenate public senateContract;
@@ -68,14 +68,14 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     uint256 public censorTermLength;
     uint256 public tribuneTermLength;
     uint256 public senatorTermLength;
-    uint256 public dictatorTermLength;
+    uint256 public caesarTermLength;
 
     /// @notice Track the addresses that are actively holding a position
     address[] public activeConsuls;
     address[] public activeCensors;
     address[] public activeTribunes;
     address[] public activeSenators;
-    address[] public activeDictator;
+    address[] public activeCaesar;
 
     /// @notice Address of the Timelock Contract that Executes Proposals
     ITimelock public timelockContract;
@@ -107,14 +107,14 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         censorMetadata = _metadatas[1];
         tribuneMetadata = _metadatas[2];
         senatorMetadata = _metadatas[3];
-        dictatorMetadata = _metadatas[4];
+        caesarMetadata = _metadatas[4];
 
         // Instantiate term lengths
         consulTermLength = _termLengths[0];
         censorTermLength = _termLengths[1];
         tribuneTermLength = _termLengths[2];
         senatorTermLength = _termLengths[3];
-        dictatorTermLength = _termLengths[4];
+        caesarTermLength = _termLengths[4];
 
         
     }
@@ -182,17 +182,17 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             ownedTokens[_to] = nextTokenId;
         }
 
-        else if(_position == Position.Dictator) {
-            require(activeDictator.length < 1, "TIDUS: There is already a Dictator.");
+        else if(_position == Position.Caesar) {
+            require(activeCaesar.length < 1, "TIDUS: There is already a Caesar.");
 
-            // Add the Dictator to the current Dictators array
-            dictators[nextTokenId] = Dictator({
-                dictator: _to,
+            // Add the Caesar to the current Caesars array
+            caesars[nextTokenId] = Caesar({
+                caesar: _to,
                 startTime: block.timestamp,
-                endTime: block.timestamp + dictatorTermLength
+                endTime: block.timestamp + caesarTermLength
             });
 
-            activeDictator.push(_to);
+            activeCaesar.push(_to);
             ownedTokens[_to] = nextTokenId;
 
         }
@@ -208,8 +208,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
 
 
    /**
-     * @notice Burn a Dictator token with the given token ID.
-     * @param _tokenId The token ID of the Dictator token to burn.
+     * @notice Burn a Caesar token with the given token ID.
+     * @param _tokenId The token ID of the Caesar token to burn.
      */
     function burn(uint256 _tokenId) public {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");
@@ -274,12 +274,12 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             delete ownedTokens[tokenOwner];
         }
 
-        else if(position == Position.Dictator) {
-            // Remove the Dictator from the current Dictators array
-            for(uint i = 0; i < activeDictator.length; i++) {
-                if(activeDictator[i] == dictators[_tokenId].dictator) {
-                    activeDictator[i] = activeDictator[activeDictator.length - 1];
-                    activeDictator.pop();
+        else if(position == Position.Caesar) {
+            // Remove the Caesar from the current Caesars array
+            for(uint i = 0; i < activeCaesar.length; i++) {
+                if(activeCaesar[i] == caesars[_tokenId].caesar) {
+                    activeCaesar[i] = activeCaesar[activeCaesar.length - 1];
+                    activeCaesar.pop();
                     break;
                 }
             }
@@ -314,8 +314,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             uri = tribuneMetadata;
         } else if (position == Position.Senator) {
             uri = senatorMetadata;
-        } else if (position == Position.Dictator) {
-            uri = dictatorMetadata;
+        } else if (position == Position.Caesar) {
+            uri = caesarMetadata;
         } else {
             revert("TIDUS: Invalid position.");
         }     
@@ -335,8 +335,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             return Position.Tribune;
         } else if (isSenator(_address)) {
             return Position.Senator;
-        } else if (isDictator(_address)) {
-            return Position.Dictator;
+        } else if (isCaesar(_address)) {
+            return Position.Caesar;
         } else {
             return Position.None;
         }
@@ -437,11 +437,11 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     }
 
     /**
-     * @notice Determine if given address is a Dictator.
+     * @notice Determine if given address is a Caesar.
      * @param _address The address to check.
-     * @return True if address is a Dictator.
+     * @return True if address is a Caesar.
      */
-    function isDictator(address _address) public view returns (bool) {
+    function isCaesar(address _address) public view returns (bool) {
         // Get the token that the address owns
         uint256 ownedTokenId = ownedTokens[_address];
 
@@ -449,9 +449,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             return false;
         }
 
-        // Loop through active Dictators and check if address is a Dictator
-        for (uint i = 0; i < activeDictator.length; i++) {
-            if (activeDictator[i] == _address && block.timestamp < dictators[ownedTokenId].endTime) {
+        // Loop through active Caesars and check if address is a Caesar
+        for (uint i = 0; i < activeCaesar.length; i++) {
+            if (activeCaesar[i] == _address && block.timestamp < caesars[ownedTokenId].endTime) {
                 return true;
             }
         }
@@ -493,8 +493,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             tribuneTermLength = _newTermLength;
         } else if(_position == Position.Senator) {
             senatorTermLength = _newTermLength;
-        } else if(_position == Position.Dictator) {
-            dictatorTermLength = _newTermLength;
+        } else if(_position == Position.Caesar) {
+            caesarTermLength = _newTermLength;
         } else {
             revert("TIDUS: Invalid position.");
         }

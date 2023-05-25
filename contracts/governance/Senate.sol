@@ -27,7 +27,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         None,
         Censor,
         Consul,
-        Dictator,
+        Caesar,
         Senator,
         Tribune
     }
@@ -353,7 +353,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         if (
             senatePositionsContract.isConsul(_address) ||
             senatePositionsContract.isCensor(_address) ||
-            senatePositionsContract.isDictator(_address) ||
+            senatePositionsContract.isCaesar(_address) ||
             senatePositionsContract.isSenator(_address) ||
             senatePositionsContract.isTribune(_address)
         ) {

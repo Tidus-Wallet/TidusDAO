@@ -1,4 +1,4 @@
-pragma solidity 0.8.18;
+pragma solidity 0.8.20;
 
 import "forge-std/Test.sol";
 import { SenatePositions } from "../../contracts/ERC721/SenatePositions.sol";
@@ -23,7 +23,7 @@ contract MockSenate is Test {
 	SenatePositions private senatePositions;
 	MockWallet private mockWallet;
 
-	string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Dictator"];
+	string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Caesar"];
 	uint256[] termLengths = [5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400];
 
 	address[] testWallets = [
@@ -52,12 +52,12 @@ contract MockSenate is Test {
 	assertEq(senatePositions.censorMetadata(), "Censor");
 	assertEq(senatePositions.tribuneMetadata(), "Tribune");
 	assertEq(senatePositions.senatorMetadata(), "Senator");
-	assertEq(senatePositions.dictatorMetadata(), "Dictator");
+	assertEq(senatePositions.caesarMetadata(), "Caesar");
 	assertEq(senatePositions.consulTermLength(), 5 * 86400);
 	assertEq(senatePositions.censorTermLength(), 5 * 86400);
 	assertEq(senatePositions.tribuneTermLength(), 5 * 86400);
 	assertEq(senatePositions.senatorTermLength(), 5 * 86400);
-	assertEq(senatePositions.dictatorTermLength(), 5 * 86400);
+	assertEq(senatePositions.caesarTermLength(), 5 * 86400);
 	assertEq(senatePositions.nextTokenId(), 1);
 	}
 
@@ -70,7 +70,7 @@ contract MockSenate is Test {
 		senatePositions.mint(ISenatePositions.Position.Censor, testWallets[1]);
 		senatePositions.mint(ISenatePositions.Position.Tribune, testWallets[2]);
 		senatePositions.mint(ISenatePositions.Position.Senator, testWallets[3]);
-		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[4]);
+		senatePositions.mint(ISenatePositions.Position.Caesar, testWallets[4]);
 
 		// Verify total supply
 		assertEq(senatePositions.totalSupply(), 5);
@@ -86,7 +86,7 @@ contract MockSenate is Test {
 		assertEq(senatePositions.tokenURI(2), "Censor");
 		assertEq(senatePositions.tokenURI(3), "Tribune");
 		assertEq(senatePositions.tokenURI(4), "Senator");
-		assertEq(senatePositions.tokenURI(5), "Dictator");
+		assertEq(senatePositions.tokenURI(5), "Caesar");
 
 	}
 
@@ -147,7 +147,7 @@ contract MockSenate is Test {
 
 
 	/**
-	 * @dev Test isConsul, isCensor, isTribune, isSenator, isDictator
+	 * @dev Test isConsul, isCensor, isTribune, isSenator, isCaesar
 	 */
 	function test_isPosition() external {
 		// Mint token for each position
@@ -155,14 +155,14 @@ contract MockSenate is Test {
 		senatePositions.mint(ISenatePositions.Position.Censor, testWallets[1]);
 		senatePositions.mint(ISenatePositions.Position.Tribune, testWallets[2]);
 		senatePositions.mint(ISenatePositions.Position.Senator, testWallets[3]);
-		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[4]);
+		senatePositions.mint(ISenatePositions.Position.Caesar, testWallets[4]);
 
 		// Verify each position
 		assertEq(senatePositions.isConsul(testWallets[0]), true);
 		assertEq(senatePositions.isCensor(testWallets[1]), true);
 		assertEq(senatePositions.isTribune(testWallets[2]), true);
 		assertEq(senatePositions.isSenator(testWallets[3]), true);
-		assertEq(senatePositions.isDictator(testWallets[4]), true);
+		assertEq(senatePositions.isCaesar(testWallets[4]), true);
 	}
 
 	/**
@@ -174,7 +174,7 @@ contract MockSenate is Test {
 		senatePositions.mint(ISenatePositions.Position.Censor, testWallets[1]);
 		senatePositions.mint(ISenatePositions.Position.Tribune, testWallets[2]);
 		senatePositions.mint(ISenatePositions.Position.Senator, testWallets[3]);
-		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[4]);
+		senatePositions.mint(ISenatePositions.Position.Caesar, testWallets[4]);
 
 		// Verify each position
 		assertEq(uint256(senatePositions.getPosition(testWallets[0])), uint256(1));
@@ -220,14 +220,14 @@ contract MockSenate is Test {
 		senatePositions.mint(ISenatePositions.Position.Consul, testWallets[2]);
 	}
 
-	///@dev - Test minting too many Dictators should revert
-	function test_mintTooManyDictators() external {
-		// Mint a dictator
-		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[0]);
+	///@dev - Test minting too many Caesars should revert
+	function test_mintTooManyCaesars() external {
+		// Mint a caesar
+		senatePositions.mint(ISenatePositions.Position.Caesar, testWallets[0]);
 
-		// Expect next Dictator mint to fail
-		vm.expectRevert("TIDUS: There is already a Dictator.");
-		senatePositions.mint(ISenatePositions.Position.Dictator, testWallets[1]);
+		// Expect next Caesar mint to fail
+		vm.expectRevert("TIDUS: There is already a Caesar.");
+		senatePositions.mint(ISenatePositions.Position.Caesar, testWallets[1]);
 	}
 
 	/**
@@ -262,7 +262,7 @@ contract MockSenate is Test {
 		positions[1] = ISenatePositions.Position.Censor;
 		positions[2] = ISenatePositions.Position.Tribune;
 		positions[3] = ISenatePositions.Position.Senator;
-		positions[4] = ISenatePositions.Position.Dictator;
+		positions[4] = ISenatePositions.Position.Caesar;
 
 		// Select the position that will be minted
 		ISenatePositions.Position position = positions[positionIndex % positions.length];
@@ -310,19 +310,22 @@ contract MockSenate is Test {
 		assertEq(newBalance, previousBalance - 1);
 	}
 
-	function testFuzz_getPosition(ISenatePositions.Position _position, uint8 walletIndex) external {
-		// Select a position within the bounds of the enum
-		uint256 position = bound(uint256(_position), 1, 5);
+	function testFuzz_getPosition(uint256 _position, uint256 walletIndex) external {
+		
+		if(_position > 5) {
+			vm.expectRevert();
+		}
+
+		if(_position == 0) {
+			vm.expectRevert("TIDUS: Cannot mint a None position.");
+		}
 
 		// Select a wallet within the bounds of the testWallets array
 		address wallet = testWallets[walletIndex % testWallets.length];
 
 		// Mint a token to that wallet
-		senatePositions.mint(ISenatePositions.Position(position), wallet);
+		senatePositions.mint(ISenatePositions.Position(_position), wallet);
 
 		// Verify the position of the token
-		assertEq(uint256(senatePositions.getPosition(wallet)), uint256(position));
-	}
-
-
+		assertEq(uint256(senatePositions.getPosition(wallet)), uint256(_position)); }
 }

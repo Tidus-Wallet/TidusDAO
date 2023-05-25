@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1684717669200,
-      "contentHash": "1c69753694a8224d22619183a8b2d7f6",
+      "lastModificationDate": 1685043082278,
+      "contentHash": "6713bf1e2eee53972f179aa8b58b4e53",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -40,7 +40,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -80,13 +80,13 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "SenatePositions": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "SenatePositions.sol/SenatePositions.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenatePositions.sol/SenatePositions.json"
         }
       }
     },
     "contracts/ERC721/interfaces/ISenatePositions.sol": {
-      "lastModificationDate": 1684717669200,
-      "contentHash": "f1ae397b61bf0ca620d62966f8c2ecab",
+      "lastModificationDate": 1685043070105,
+      "contentHash": "34a698e0687b6effdbc1de4a5cc94769",
       "sourceName": "contracts/ERC721/interfaces/ISenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -112,7 +112,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -123,7 +123,7 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "ISenatePositions": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ISenatePositions.sol/ISenatePositions.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ISenatePositions.sol/ISenatePositions.json"
         }
       }
     },
@@ -155,7 +155,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -177,7 +177,7 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "TidusDAOConstitution": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "TidusDAOConstitution.sol/TidusDAOConstitution.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TidusDAOConstitution.sol/TidusDAOConstitution.json"
         }
       }
     },
@@ -209,7 +209,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -217,13 +217,13 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "House": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "House.sol/House.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "House.sol/House.json"
         }
       }
     },
     "contracts/governance/Senate.sol": {
-      "lastModificationDate": 1684717669200,
-      "contentHash": "2486880ed4dab077ae2401b26b54d8f3",
+      "lastModificationDate": 1685043164864,
+      "contentHash": "95f6524ae4d024aefe5ac4100b6164c1",
       "sourceName": "contracts/governance/Senate.sol",
       "solcConfig": {
         "settings": {
@@ -249,7 +249,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -297,7 +297,7 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "Senate": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Senate.sol/Senate.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Senate.sol/Senate.json"
         }
       }
     },
@@ -329,7 +329,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -350,7 +350,7 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "Timelock": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Timelock.sol/Timelock.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Timelock.sol/Timelock.json"
         }
       }
     },
@@ -382,7 +382,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -397,7 +397,7 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "ISenate": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ISenate.sol/ISenate.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ISenate.sol/ISenate.json"
         }
       }
     },
@@ -429,7 +429,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -437,13 +437,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ITimelock": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ITimelock.sol/ITimelock.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ITimelock.sol/ITimelock.json"
         }
       }
     },
     "contracts/mocks/MockTimelock.sol": {
-      "lastModificationDate": 1684717669200,
-      "contentHash": "272db423b5b63147ee816a91a6edf229",
+      "lastModificationDate": 1685043200511,
+      "contentHash": "01531d2033331215a0cc2ce0f60bdf55",
       "sourceName": "contracts/mocks/MockTimelock.sol",
       "solcConfig": {
         "settings": {
@@ -469,7 +469,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -488,7 +488,7 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "MockTimelock": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "MockTimelock.sol/MockTimelock.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "MockTimelock.sol/MockTimelock.json"
         }
       }
     },
@@ -520,7 +520,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -528,7 +528,7 @@
       "versionRequirement": ">=0.5.0",
       "artifacts": {
         "DSTest": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "test.sol/DSTest.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "test.sol/DSTest.json"
         }
       }
     },
@@ -560,7 +560,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -571,13 +571,13 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "CommonBase": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Base.sol/CommonBase.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Base.sol/CommonBase.json"
         },
         "ScriptBase": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Base.sol/ScriptBase.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Base.sol/ScriptBase.json"
         },
         "TestBase": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Base.sol/TestBase.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Base.sol/TestBase.json"
         }
       }
     },
@@ -609,7 +609,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -620,7 +620,7 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdAssertions": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdAssertions.sol/StdAssertions.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdAssertions.sol/StdAssertions.json"
         }
       }
     },
@@ -652,7 +652,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -662,7 +662,7 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdChains": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdChains.sol/StdChains.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdChains.sol/StdChains.json"
         }
       }
     },
@@ -694,7 +694,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -705,10 +705,10 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdCheats": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdCheats.sol/StdCheats.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdCheats.sol/StdCheats.json"
         },
         "StdCheatsSafe": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdCheats.sol/StdCheatsSafe.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdCheats.sol/StdCheatsSafe.json"
         }
       }
     },
@@ -740,7 +740,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -748,7 +748,7 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "stdError": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdError.sol/stdError.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdError.sol/stdError.json"
         }
       }
     },
@@ -780,7 +780,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -788,7 +788,7 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdInvariant": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdInvariant.sol/StdInvariant.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdInvariant.sol/StdInvariant.json"
         }
       }
     },
@@ -820,7 +820,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -830,7 +830,7 @@
       "versionRequirement": ">=0.6.0, <0.9.0",
       "artifacts": {
         "stdJson": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdJson.sol/stdJson.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdJson.sol/stdJson.json"
         }
       }
     },
@@ -862,7 +862,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -870,7 +870,7 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "stdMath": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdMath.sol/stdMath.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdMath.sol/stdMath.json"
         }
       }
     },
@@ -902,7 +902,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -912,10 +912,10 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "stdStorage": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdStorage.sol/stdStorage.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdStorage.sol/stdStorage.json"
         },
         "stdStorageSafe": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdStorage.sol/stdStorageSafe.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdStorage.sol/stdStorageSafe.json"
         }
       }
     },
@@ -947,7 +947,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -957,7 +957,7 @@
       "versionRequirement": ">=0.4.22, <0.9.0",
       "artifacts": {
         "StdStyle": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdStyle.sol/StdStyle.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdStyle.sol/StdStyle.json"
         }
       }
     },
@@ -989,7 +989,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1000,7 +1000,7 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdUtils": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StdUtils.sol/StdUtils.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdUtils.sol/StdUtils.json"
         }
       }
     },
@@ -1032,7 +1032,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1057,7 +1057,7 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "Test": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Test.sol/Test.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Test.sol/Test.json"
         }
       }
     },
@@ -1089,7 +1089,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1097,10 +1097,10 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "Vm": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Vm.sol/Vm.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Vm.sol/Vm.json"
         },
         "VmSafe": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Vm.sol/VmSafe.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Vm.sol/VmSafe.json"
         }
       }
     },
@@ -1132,7 +1132,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1140,7 +1140,7 @@
       "versionRequirement": ">=0.4.22, <0.9.0",
       "artifacts": {
         "console": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "console.sol/console.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "console.sol/console.json"
         }
       }
     },
@@ -1172,7 +1172,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1180,7 +1180,7 @@
       "versionRequirement": ">=0.4.22, <0.9.0",
       "artifacts": {
         "console2": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "console2.sol/console2.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "console2.sol/console2.json"
         }
       }
     },
@@ -1212,7 +1212,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1220,7 +1220,7 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "IMulticall3": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IMulticall3.sol/IMulticall3.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IMulticall3.sol/IMulticall3.json"
         }
       }
     },
@@ -1252,7 +1252,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1262,7 +1262,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Ownable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Ownable.sol/Ownable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Ownable.sol/Ownable.json"
         }
       }
     },
@@ -1294,7 +1294,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1302,7 +1302,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IVotes": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IVotes.sol/IVotes.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IVotes.sol/IVotes.json"
         }
       }
     },
@@ -1334,7 +1334,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1352,7 +1352,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Votes": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Votes.sol/Votes.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Votes.sol/Votes.json"
         }
       }
     },
@@ -1384,7 +1384,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1392,7 +1392,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1967": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC1967.sol/IERC1967.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC1967.sol/IERC1967.json"
         }
       }
     },
@@ -1424,7 +1424,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1432,7 +1432,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1822Proxiable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "draft-IERC1822.sol/IERC1822Proxiable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "draft-IERC1822.sol/IERC1822Proxiable.json"
         }
       }
     },
@@ -1464,7 +1464,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1480,7 +1480,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC1967Proxy": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ERC1967Proxy.sol/ERC1967Proxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC1967Proxy.sol/ERC1967Proxy.json"
         }
       }
     },
@@ -1512,7 +1512,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1526,7 +1526,7 @@
       "versionRequirement": "^0.8.2",
       "artifacts": {
         "ERC1967Upgrade": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ERC1967Upgrade.sol/ERC1967Upgrade.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC1967Upgrade.sol/ERC1967Upgrade.json"
         }
       }
     },
@@ -1558,7 +1558,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1566,7 +1566,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Proxy": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Proxy.sol/Proxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Proxy.sol/Proxy.json"
         }
       }
     },
@@ -1598,7 +1598,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1606,7 +1606,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IBeacon": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IBeacon.sol/IBeacon.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IBeacon.sol/IBeacon.json"
         }
       }
     },
@@ -1638,7 +1638,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1655,10 +1655,10 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ITransparentUpgradeableProxy": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "TransparentUpgradeableProxy.sol/ITransparentUpgradeableProxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TransparentUpgradeableProxy.sol/ITransparentUpgradeableProxy.json"
         },
         "TransparentUpgradeableProxy": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "TransparentUpgradeableProxy.sol/TransparentUpgradeableProxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TransparentUpgradeableProxy.sol/TransparentUpgradeableProxy.json"
         }
       }
     },
@@ -1690,7 +1690,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1708,7 +1708,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC721": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ERC721.sol/ERC721.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC721.sol/ERC721.json"
         }
       }
     },
@@ -1740,7 +1740,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1750,7 +1750,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC721.sol/IERC721.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721.sol/IERC721.json"
         }
       }
     },
@@ -1782,7 +1782,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1790,7 +1790,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721Receiver": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC721Receiver.sol/IERC721Receiver.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721Receiver.sol/IERC721Receiver.json"
         }
       }
     },
@@ -1822,7 +1822,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1842,7 +1842,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC721Enumerable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ERC721Enumerable.sol/ERC721Enumerable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC721Enumerable.sol/ERC721Enumerable.json"
         }
       }
     },
@@ -1874,7 +1874,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1900,7 +1900,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC721Votes": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ERC721Votes.sol/ERC721Votes.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC721Votes.sol/ERC721Votes.json"
         }
       }
     },
@@ -1932,7 +1932,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1943,7 +1943,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721Enumerable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC721Enumerable.sol/IERC721Enumerable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721Enumerable.sol/IERC721Enumerable.json"
         }
       }
     },
@@ -1975,7 +1975,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -1986,7 +1986,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721Metadata": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC721Metadata.sol/IERC721Metadata.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721Metadata.sol/IERC721Metadata.json"
         }
       }
     },
@@ -2018,7 +2018,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2026,7 +2026,7 @@
       "versionRequirement": "^0.8.1",
       "artifacts": {
         "Address": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Address.sol/Address.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Address.sol/Address.json"
         }
       }
     },
@@ -2058,7 +2058,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2066,7 +2066,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Base64": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Base64.sol/Base64.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Base64.sol/Base64.json"
         }
       }
     },
@@ -2098,7 +2098,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2109,7 +2109,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Checkpoints": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Checkpoints.sol/Checkpoints.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Checkpoints.sol/Checkpoints.json"
         }
       }
     },
@@ -2141,7 +2141,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2149,7 +2149,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Context": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Context.sol/Context.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Context.sol/Context.json"
         }
       }
     },
@@ -2181,7 +2181,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2189,7 +2189,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Counters": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Counters.sol/Counters.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Counters.sol/Counters.json"
         }
       }
     },
@@ -2221,7 +2221,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2229,7 +2229,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "StorageSlot": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StorageSlot.sol/StorageSlot.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StorageSlot.sol/StorageSlot.json"
         }
       }
     },
@@ -2261,7 +2261,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2271,7 +2271,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Strings": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Strings.sol/Strings.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Strings.sol/Strings.json"
         }
       }
     },
@@ -2303,7 +2303,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2314,7 +2314,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ECDSA": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ECDSA.sol/ECDSA.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ECDSA.sol/ECDSA.json"
         }
       }
     },
@@ -2346,7 +2346,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2358,7 +2358,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "EIP712": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "EIP712.sol/EIP712.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "EIP712.sol/EIP712.json"
         }
       }
     },
@@ -2390,7 +2390,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2400,7 +2400,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC165": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ERC165.sol/ERC165.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC165.sol/ERC165.json"
         }
       }
     },
@@ -2432,7 +2432,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2440,7 +2440,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC165": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC165.sol/IERC165.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC165.sol/IERC165.json"
         }
       }
     },
@@ -2472,7 +2472,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2480,7 +2480,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Math": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Math.sol/Math.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Math.sol/Math.json"
         }
       }
     },
@@ -2512,7 +2512,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2520,7 +2520,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "SafeCast": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "SafeCast.sol/SafeCast.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SafeCast.sol/SafeCast.json"
         }
       }
     },
@@ -2552,7 +2552,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2569,7 +2569,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "AccessControlUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "AccessControlUpgradeable.sol/AccessControlUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "AccessControlUpgradeable.sol/AccessControlUpgradeable.json"
         }
       }
     },
@@ -2601,7 +2601,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2609,7 +2609,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IAccessControlUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IAccessControlUpgradeable.sol/IAccessControlUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IAccessControlUpgradeable.sol/IAccessControlUpgradeable.json"
         }
       }
     },
@@ -2641,7 +2641,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2653,7 +2653,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "OwnableUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "OwnableUpgradeable.sol/OwnableUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "OwnableUpgradeable.sol/OwnableUpgradeable.json"
         }
       }
     },
@@ -2685,7 +2685,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2709,7 +2709,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "GovernorUpgradeable.sol/GovernorUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorUpgradeable.sol/GovernorUpgradeable.json"
         }
       }
     },
@@ -2741,7 +2741,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2754,7 +2754,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IGovernorUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IGovernorUpgradeable.sol/IGovernorUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IGovernorUpgradeable.sol/IGovernorUpgradeable.json"
         }
       }
     },
@@ -2786,7 +2786,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2806,7 +2806,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "TimelockControllerUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "TimelockControllerUpgradeable.sol/TimelockControllerUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TimelockControllerUpgradeable.sol/TimelockControllerUpgradeable.json"
         }
       }
     },
@@ -2838,7 +2838,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2863,7 +2863,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorCountingSimpleUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "GovernorCountingSimpleUpgradeable.sol/GovernorCountingSimpleUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorCountingSimpleUpgradeable.sol/GovernorCountingSimpleUpgradeable.json"
         }
       }
     },
@@ -2895,7 +2895,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2920,7 +2920,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorSettingsUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "GovernorSettingsUpgradeable.sol/GovernorSettingsUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorSettingsUpgradeable.sol/GovernorSettingsUpgradeable.json"
         }
       }
     },
@@ -2952,7 +2952,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -2981,7 +2981,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorTimelockControlUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "GovernorTimelockControlUpgradeable.sol/GovernorTimelockControlUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorTimelockControlUpgradeable.sol/GovernorTimelockControlUpgradeable.json"
         }
       }
     },
@@ -3013,7 +3013,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3039,7 +3039,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorVotesUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "GovernorVotesUpgradeable.sol/GovernorVotesUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorVotesUpgradeable.sol/GovernorVotesUpgradeable.json"
         }
       }
     },
@@ -3071,7 +3071,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3085,7 +3085,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IGovernorTimelockUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IGovernorTimelockUpgradeable.sol/IGovernorTimelockUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IGovernorTimelockUpgradeable.sol/IGovernorTimelockUpgradeable.json"
         }
       }
     },
@@ -3117,7 +3117,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3125,7 +3125,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IVotesUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IVotesUpgradeable.sol/IVotesUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IVotesUpgradeable.sol/IVotesUpgradeable.json"
         }
       }
     },
@@ -3157,7 +3157,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3165,7 +3165,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1967Upgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC1967Upgradeable.sol/IERC1967Upgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC1967Upgradeable.sol/IERC1967Upgradeable.json"
         }
       }
     },
@@ -3197,7 +3197,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3205,7 +3205,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1822ProxiableUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "draft-IERC1822Upgradeable.sol/IERC1822ProxiableUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "draft-IERC1822Upgradeable.sol/IERC1822ProxiableUpgradeable.json"
         }
       }
     },
@@ -3237,7 +3237,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3252,7 +3252,7 @@
       "versionRequirement": "^0.8.2",
       "artifacts": {
         "ERC1967UpgradeUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ERC1967UpgradeUpgradeable.sol/ERC1967UpgradeUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC1967UpgradeUpgradeable.sol/ERC1967UpgradeUpgradeable.json"
         }
       }
     },
@@ -3284,7 +3284,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3292,7 +3292,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IBeaconUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IBeaconUpgradeable.sol/IBeaconUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IBeaconUpgradeable.sol/IBeaconUpgradeable.json"
         }
       }
     },
@@ -3324,7 +3324,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3334,7 +3334,7 @@
       "versionRequirement": "^0.8.2",
       "artifacts": {
         "Initializable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Initializable.sol/Initializable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Initializable.sol/Initializable.json"
         }
       }
     },
@@ -3366,7 +3366,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3382,7 +3382,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "UUPSUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "UUPSUpgradeable.sol/UUPSUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "UUPSUpgradeable.sol/UUPSUpgradeable.json"
         }
       }
     },
@@ -3414,7 +3414,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3424,7 +3424,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1155ReceiverUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC1155ReceiverUpgradeable.sol/IERC1155ReceiverUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC1155ReceiverUpgradeable.sol/IERC1155ReceiverUpgradeable.json"
         }
       }
     },
@@ -3456,7 +3456,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3464,7 +3464,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721ReceiverUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC721ReceiverUpgradeable.sol/IERC721ReceiverUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721ReceiverUpgradeable.sol/IERC721ReceiverUpgradeable.json"
         }
       }
     },
@@ -3496,7 +3496,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3504,7 +3504,7 @@
       "versionRequirement": "^0.8.1",
       "artifacts": {
         "AddressUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "AddressUpgradeable.sol/AddressUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "AddressUpgradeable.sol/AddressUpgradeable.json"
         }
       }
     },
@@ -3536,7 +3536,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3547,7 +3547,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ContextUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ContextUpgradeable.sol/ContextUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ContextUpgradeable.sol/ContextUpgradeable.json"
         }
       }
     },
@@ -3579,7 +3579,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3587,7 +3587,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "StorageSlotUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StorageSlotUpgradeable.sol/StorageSlotUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StorageSlotUpgradeable.sol/StorageSlotUpgradeable.json"
         }
       }
     },
@@ -3619,7 +3619,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3629,7 +3629,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "StringsUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "StringsUpgradeable.sol/StringsUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StringsUpgradeable.sol/StringsUpgradeable.json"
         }
       }
     },
@@ -3661,7 +3661,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3669,7 +3669,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "TimersUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "TimersUpgradeable.sol/TimersUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TimersUpgradeable.sol/TimersUpgradeable.json"
         }
       }
     },
@@ -3701,7 +3701,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3712,7 +3712,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ECDSAUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ECDSAUpgradeable.sol/ECDSAUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ECDSAUpgradeable.sol/ECDSAUpgradeable.json"
         }
       }
     },
@@ -3744,7 +3744,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3758,7 +3758,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "EIP712Upgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "EIP712Upgradeable.sol/EIP712Upgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "EIP712Upgradeable.sol/EIP712Upgradeable.json"
         }
       }
     },
@@ -3790,7 +3790,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3802,7 +3802,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC165Upgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "ERC165Upgradeable.sol/ERC165Upgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC165Upgradeable.sol/ERC165Upgradeable.json"
         }
       }
     },
@@ -3834,7 +3834,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3842,7 +3842,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC165Upgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "IERC165Upgradeable.sol/IERC165Upgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC165Upgradeable.sol/IERC165Upgradeable.json"
         }
       }
     },
@@ -3874,7 +3874,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3882,7 +3882,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "MathUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "MathUpgradeable.sol/MathUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "MathUpgradeable.sol/MathUpgradeable.json"
         }
       }
     },
@@ -3914,7 +3914,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3922,7 +3922,7 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "SafeCastUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "SafeCastUpgradeable.sol/SafeCastUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SafeCastUpgradeable.sol/SafeCastUpgradeable.json"
         }
       }
     },
@@ -3954,7 +3954,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -3964,13 +3964,13 @@
       "versionRequirement": "^0.8.4",
       "artifacts": {
         "DoubleEndedQueueUpgradeable": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "DoubleEndedQueueUpgradeable.sol/DoubleEndedQueueUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "DoubleEndedQueueUpgradeable.sol/DoubleEndedQueueUpgradeable.json"
         }
       }
     },
     "test/foundry/Senate.t.sol": {
-      "lastModificationDate": 1684717669204,
-      "contentHash": "751fb594ef22999508614f48ea815c95",
+      "lastModificationDate": 1684957362540,
+      "contentHash": "e6aae7a2227f99bb94996b6f77f0fac8",
       "sourceName": "test/foundry/Senate.t.sol",
       "solcConfig": {
         "settings": {
@@ -3996,7 +3996,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -4086,25 +4086,25 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
-      "versionRequirement": "=0.8.18",
+      "versionRequirement": "=0.8.20",
       "artifacts": {
         "MockProxy": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Senate.t.sol/MockProxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Senate.t.sol/MockProxy.json"
         },
         "MockTimelock": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Senate.t.sol/MockTimelock.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Senate.t.sol/MockTimelock.json"
         },
         "MockWallet": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Senate.t.sol/MockWallet.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Senate.t.sol/MockWallet.json"
         },
         "TestSenate": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "Senate.t.sol/TestSenate.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Senate.t.sol/TestSenate.json"
         }
       }
     },
     "test/foundry/SenatePositions.t.sol": {
-      "lastModificationDate": 1684717669204,
-      "contentHash": "fb1cd6efabf846b7de4d648f29653539",
+      "lastModificationDate": 1685043120288,
+      "contentHash": "86d3abcd9b14b5c2207f584e7626f903",
       "sourceName": "test/foundry/SenatePositions.t.sol",
       "solcConfig": {
         "settings": {
@@ -4130,7 +4130,7 @@
               ]
             }
           },
-          "evmVersion": "paris",
+          "evmVersion": "shanghai",
           "libraries": {}
         }
       },
@@ -4211,13 +4211,13 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
-      "versionRequirement": "=0.8.18",
+      "versionRequirement": "=0.8.20",
       "artifacts": {
         "MockSenate": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "SenatePositions.t.sol/MockSenate.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenatePositions.t.sol/MockSenate.json"
         },
         "MockWallet": {
-          "0.8.18+commit.87f61d96.Linux.gcc": "SenatePositions.t.sol/MockWallet.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenatePositions.t.sol/MockWallet.json"
         }
       }
     }

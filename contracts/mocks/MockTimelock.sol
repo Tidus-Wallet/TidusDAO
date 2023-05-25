@@ -29,8 +29,8 @@ contract MockTimelock {
         senatePositions.mint(ISenatePositions.Position.Senator, _senator);
     }
 
-    function mintDictator(address _dictator) external {
-        senatePositions.mint(ISenatePositions.Position.Dictator, _dictator);
+    function mintCaesar(address _caesar) external {
+        senatePositions.mint(ISenatePositions.Position.Caesar, _caesar);
     }
 
     function burn(uint256 _tokenId) external {
