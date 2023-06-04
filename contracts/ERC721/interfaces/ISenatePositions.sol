@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import { IERC721 } from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
 // Interface for the SenatePositions contract
 interface ISenatePositions is IERC721 {
@@ -36,5 +36,17 @@ interface ISenatePositions is IERC721 {
 
     function updateSenateAddress(address _updatedSenateAddress) external;
 
-    function updateTermLength(Position _position, uint256 _newTermLength) external; 
+    function updateTermLength(Position _position, uint256 _newTermLength) external;
+
+    ///////////////////////
+    //      Errors       //
+    ///////////////////////
+    error TIDUS_ONLY_TIMELOCK();
+    error TIDUS_INVALID_ADDRESS(address _address);
+    error TIDUS_INVALID_POSITION(Position _position);
+    error TIDUS_SINGLE_MINT();
+    error TIDUS_POSITION_FULL(Position _position);
+    error TIDUS_INVALID_TOKENID(uint256 _tokenId);
+    error TIDUS_INVALID_TERM_LENGTH(uint256 _termLength);
+    error TIDUS_INVALID_TRANSFER(address _to);
 }

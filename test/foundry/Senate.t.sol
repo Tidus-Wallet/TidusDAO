@@ -1,21 +1,21 @@
 pragma solidity 0.8.20;
 
 import "forge-std/Test.sol";
-import { SenatePositions } from "../../contracts/ERC721/SenatePositions.sol";
-import { ISenatePositions } from "../../contracts/ERC721/interfaces/ISenatePositions.sol";
-import { Senate } from "../../contracts/governance/Senate.sol";
-import { IERC721 } from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import { IERC721Receiver } from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
-import { Timelock } from "../../contracts/governance/Timelock.sol";
-import { IVotesUpgradeable } from "@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol";
-import { TransparentUpgradeableProxy } from "@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
+import {SenatePositions} from "../../contracts/ERC721/SenatePositions.sol";
+import {ISenatePositions} from "../../contracts/ERC721/interfaces/ISenatePositions.sol";
+import {Senate} from "../../contracts/governance/Senate.sol";
+import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+import {Timelock} from "../../contracts/governance/Timelock.sol";
+import {IVotesUpgradeable} from "@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol";
+import {TransparentUpgradeableProxy} from "@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
 
 ///@dev - AFAIK I can't instantiate a wallet within Solidity
 ///@dev - So making this mock wallet to test transfers.
 contract MockWallet is IERC721Receiver {
-	function transferToken(address _token, address _to, uint256 _tokenId) external {
-		IERC721(_token).transferFrom(address(this), _to, _tokenId);
-	}
+    function transferToken(address _token, address _to, uint256 _tokenId) external {
+        IERC721(_token).transferFrom(address(this), _to, _tokenId);
+    }
 
     function validatePositionInSenate(address _senateAddress, address _walletAddress) public view returns (bool) {
         Senate senate = Senate(payable(_senateAddress));
@@ -23,28 +23,34 @@ contract MockWallet is IERC721Receiver {
         return isValid;
     }
 
-    function submitProposal(address _senateAddress, address[] memory _targets, uint256[] memory _values, bytes[] memory _calldatas, string memory description) external {
+    function submitProposal(
+        address _senateAddress,
+        address[] memory _targets,
+        uint256[] memory _values,
+        bytes[] memory _calldatas,
+        string memory description
+    ) external {
         Senate senate = Senate(payable(_senateAddress));
         senate.propose(_targets, _values, _calldatas, description);
     }
 
-	function onERC721Received(address, address, uint256, bytes calldata) external pure override returns (bytes4) {
-		return this.onERC721Received.selector;
-	}
-}
-
-contract MockTimelock is Timelock {
-
-}
-
-contract MockProxy is TransparentUpgradeableProxy {
-    constructor(address _logic, address _admin, bytes memory _data) TransparentUpgradeableProxy(_logic, _admin, _data) {
-
-        }
-        function implementation() external view returns (address) {
-            return _implementation();
+    function onERC721Received(address, address, uint256, bytes calldata) external pure override returns (bytes4) {
+        return this.onERC721Received.selector;
     }
 }
+
+contract MockTimelock is Timelock {}
+
+contract MockProxy is TransparentUpgradeableProxy {
+    constructor(address _logic, address _admin, bytes memory _data)
+        TransparentUpgradeableProxy(_logic, _admin, _data)
+    {}
+
+    function implementation() external view returns (address) {
+        return _implementation();
+    }
+}
+
 contract TestSenate is Test {
     // Senate deployment vars
     Senate public senateImpl;
@@ -54,8 +60,8 @@ contract TestSenate is Test {
 
     // SenatePositions deployment vars
     ISenatePositions public senatePositions;
-	string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Dictator"];
-	uint256[] termLengths = [5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400];
+    string[] metadatas = ["Consul", "Censor", "Tribune", "Senator", "Dictator"];
+    uint256[] termLengths = [5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400, 5 * 86400];
 
     // Set up Mock Wallet
     MockWallet public mockWallet;
@@ -63,15 +69,14 @@ contract TestSenate is Test {
     // Proxy Address
     address proxyAddress;
 
-
     // Test Addresses
-	address[] testWallets = [
-		0x84141fa1AC4084fbc8ec2cC6Dc3F055820657610,
-		0x58736943CeDd4112Ee7058D63E5824942c029d42,
-		0x7B08Bd13Ac6d47c1A3a7BA6F0696060e3A98b5B2,
-		0x0e81C065FE246BB8B8cFe04D933B22d1ce4073d1,
-		0x2A456bfbf334B6D52dFB2E1E80cf0333Cc201F40
-	];
+    address[] testWallets = [
+        0x84141fa1AC4084fbc8ec2cC6Dc3F055820657610,
+        0x58736943CeDd4112Ee7058D63E5824942c029d42,
+        0x7B08Bd13Ac6d47c1A3a7BA6F0696060e3A98b5B2,
+        0x0e81C065FE246BB8B8cFe04D933B22d1ce4073d1,
+        0x2A456bfbf334B6D52dFB2E1E80cf0333Cc201F40
+    ];
 
     function setUp() external {
         // Timelock deployment
@@ -84,19 +89,19 @@ contract TestSenate is Test {
             metadatas,
             termLengths
         );
-        
+
         // Senate Implementation Deployment
         senateImpl = new Senate();
 
         // Mock Wallet Deployment
         mockWallet = new MockWallet();
     }
-    
-    function onERC721Received(address, address, uint256, bytes calldata) external pure returns (bytes4) {
-		return this.onERC721Received.selector;
-	}
-    function test_proposalSubmits() external {
 
+    function onERC721Received(address, address, uint256, bytes calldata) external pure returns (bytes4) {
+        return this.onERC721Received.selector;
+    }
+
+    function test_proposalSubmits() external {
         // Set up Proxy
         senate = new MockProxy(
             address(senateImpl), address(mockWallet), abi.encodeWithSignature(
@@ -106,13 +111,11 @@ contract TestSenate is Test {
                 1 
             )
         );
-        
+
         ///@dev Verify that the proxy is pointing to the correct implementation
         assertEq(address(senateImpl), senate.implementation());
 
-        bytes32 impSlot = bytes32(
-            uint256(keccak256("eip1967.proxy.implementation")) - 1
-        );
+        bytes32 impSlot = bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1);
         bytes32 proxySlot = vm.load(address(senate), impSlot);
         address addr;
         assembly {
@@ -120,7 +123,6 @@ contract TestSenate is Test {
             addr := mload(0)
         }
         assertEq(address(senateImpl), addr);
-
 
         ///@dev Set up proposal vars
         ///@dev Targets
@@ -138,26 +140,31 @@ contract TestSenate is Test {
         assertEq(senatePositions.isConsul(address(this)), true);
 
         ///@dev Verify that the Senate `validationPosition` is true
-        (bool validationSuccess, bytes memory validationData) = address(senate).staticcall(abi.encodeWithSignature("validatePosition(address)", address(this)));
+        (bool validationSuccess, bytes memory validationData) =
+            address(senate).staticcall(abi.encodeWithSignature("validatePosition(address)", address(this)));
         assertEq(validationSuccess, true);
-        if(validationSuccess) {
+        if (validationSuccess) {
             assertEq(abi.decode(validationData, (bool)), true);
         }
-        
+
         ///@dev Verify that the Proposal Threshold is 0 votes
-        (bool thresholdSuccess, bytes memory thresholdData) = address(senate).staticcall(abi.encodeWithSignature("proposalThreshold()"));
+        (bool thresholdSuccess, bytes memory thresholdData) =
+            address(senate).staticcall(abi.encodeWithSignature("proposalThreshold()"));
         assertEq(thresholdSuccess, true);
-        if(thresholdSuccess) {
+        if (thresholdSuccess) {
             uint256 proposalThreshold = abi.decode(thresholdData, (uint256));
             assertEq(proposalThreshold, 0);
         }
 
         ///@dev Submit a proposal
-        (bool proposalSuccess, bytes memory proposalData) = address(senate).call(abi.encodeWithSignature("propose(address[],uint256[],bytes[],string)", targets, values, calldatas, "Test Proposal"));
+        (bool proposalSuccess, bytes memory proposalData) = address(senate).call(
+            abi.encodeWithSignature(
+                "propose(address[],uint256[],bytes[],string)", targets, values, calldatas, "Test Proposal"
+            )
+        );
         assertEq(proposalSuccess, true);
-        if(proposalSuccess) {
+        if (proposalSuccess) {
             console.log(abi.decode(proposalData, (uint256)));
         }
-        
     }
 }

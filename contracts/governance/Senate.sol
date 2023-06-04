@@ -13,15 +13,24 @@ import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "../../lib/forge-std/src/console.sol";
 
 /// @notice Import Positional NFT Contract
-import { ISenatePositions } from "../ERC721/interfaces/ISenatePositions.sol";
+import {ISenatePositions} from "../ERC721/interfaces/ISenatePositions.sol";
 /**
  * @title Senate Smart Contract
  * @notice The Senate contract is a governance contract for TidusDAO, a Roman Republic inspired project.
  * @dev This contract includes various positions, veto powers, and a governance whitelist.
  * @custom:security-contact sekaieth@proton.me
  */
-contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeable, GovernorCountingSimpleUpgradeable, GovernorVotesUpgradeable, GovernorTimelockControlUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
 
+contract Senate is
+    Initializable,
+    GovernorUpgradeable,
+    GovernorSettingsUpgradeable,
+    GovernorCountingSimpleUpgradeable,
+    GovernorVotesUpgradeable,
+    GovernorTimelockControlUpgradeable,
+    OwnableUpgradeable,
+    UUPSUpgradeable
+{
     /// @dev Position enum to store the position of each address.
     enum Position {
         None,
@@ -69,14 +78,9 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @param _timelock The timelock controller for the GovernorTimelockControlUpgradeable.
      * @param _senatePositionsContract The address of the SenatePositions contract.
      */
-    function initialize(
-        address _timelock,
-        address _senatePositionsContract,
-        uint16 _quorumValue
-    ) initializer public
-    {
+    function initialize(address _timelock, address _senatePositionsContract, uint16 _quorumValue) public initializer {
         __Governor_init("Senate");
-        __GovernorSettings_init(1 /* 1 block */, 21600 /* 3 days */, 0 /* Zero votes */);
+        __GovernorSettings_init(1, /* 1 block */ 21600, /* 3 days */ 0 /* Zero votes */ );
         __GovernorCountingSimple_init();
         __GovernorVotes_init(IVotesUpgradeable(_senatePositionsContract));
         __GovernorTimelockControl_init(TimelockControllerUpgradeable(payable(_timelock)));
@@ -87,15 +91,13 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         quorumPct = _quorumValue;
     }
 
-
-
     /**
      * @notice Returns the required quorum for proposals.
      * @return The required quorum value.
      */
     function updateQuorum(uint16 _quorumValue) public returns (uint256) {
         require(msg.sender == address(timelockContract), "Senate: only timelock contract can update quorum");
-        quorumPct = _quorumValue; 
+        quorumPct = _quorumValue;
         return quorumPct;
     }
 
@@ -104,11 +106,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @param newImplementation The address of the new contract implementation.
      * @dev This function can only be called by the contract owner.
      */
-    function _authorizeUpgrade(address newImplementation)
-        internal
-        onlyOwner
-        override
-    {}
+    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
     // The following functions are overrides required by Solidity.
     /**
@@ -117,7 +115,11 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @param proposalId The ID of the proposal to vote on.
      * @param support The type of support to give to the proposal (0 for "against", 1 for "for", 2 for "abstain").
      */
-    function castVote(uint256 proposalId, uint8 support) public override(GovernorUpgradeable, IGovernorUpgradeable) returns (uint256) {
+    function castVote(uint256 proposalId, uint8 support)
+        public
+        override(GovernorUpgradeable, IGovernorUpgradeable)
+        returns (uint256)
+    {
         // Check if the support value is valid (0 for "against", 1 for "for", or 2 for "abstain")
         require(support <= 2, "Senate: invalid support value");
 
@@ -145,8 +147,9 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         override(GovernorUpgradeable, IGovernorUpgradeable)
         returns (uint256)
     {
-        address voter = ECDSA.recover(_hashTypedDataV4(keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support))), v, r, s);
-        
+        address voter =
+            ECDSA.recover(_hashTypedDataV4(keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support))), v, r, s);
+
         // Check if the support value is valid (0 for "against", 1 for "for", or 2 for "abstain")
         require(support <= 2, "Senate: invalid support value");
 
@@ -160,35 +163,21 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
         return _castVote(proposalId, voter, support, "");
     }
 
-
     /**
      * @notice Returns the voting delay.
      * @return The voting delay value.
      */
-    function votingDelay()
-        public
-        view
-        override(IGovernorUpgradeable, GovernorSettingsUpgradeable)
-        returns (uint256)
-    {
+    function votingDelay() public view override(IGovernorUpgradeable, GovernorSettingsUpgradeable) returns (uint256) {
         return super.votingDelay();
     }
-
 
     /**
      * @notice Returns the voting period.
      * @return The voting period value.
      */
-    function votingPeriod()
-        public
-        view
-        override(IGovernorUpgradeable, GovernorSettingsUpgradeable)
-        returns (uint256)
-    {
+    function votingPeriod() public view override(IGovernorUpgradeable, GovernorSettingsUpgradeable) returns (uint256) {
         return super.votingPeriod();
     }
-
-
 
     /**
      * @notice Allows a Tribune to veto a proposal that is in the Succeeded state.
@@ -198,7 +187,10 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
     function tribuneVeto(uint256 proposalId) public {
         require(senatePositionsContract.isTribune(msg.sender), "Senate: Only Tribunes can use the tribune veto");
         ProposalState currentState = state(proposalId);
-        require(currentState == ProposalState.Succeeded, "Senate: Proposal must be in the Succeeded state for a tribune veto");
+        require(
+            currentState == ProposalState.Succeeded,
+            "Senate: Proposal must be in the Succeeded state for a tribune veto"
+        );
         require(vetoes[proposalId].tribuneVetoes == 0, "Senate: Tribune veto already used for this proposal");
 
         vetoes[proposalId].tribuneVetoes += 1;
@@ -213,9 +205,14 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
     function consulVeto(uint256 proposalId) public {
         require(senatePositionsContract.isConsul(msg.sender), "Senate: Only Consuls can use the consul veto");
         ProposalState currentState = state(proposalId);
-        require(vetoes[proposalId].consulVetoes[msg.sender] == false, "Senate: Consul veto already used for this proposal");
+        require(
+            vetoes[proposalId].consulVetoes[msg.sender] == false, "Senate: Consul veto already used for this proposal"
+        );
         require(vetoes[proposalId].consulVetoCount < 2, "Senate: Both Consuls have already Vetoed");
-        require(currentState == ProposalState.Succeeded || currentState == ProposalState.Defeated, "Senate: Proposal must be in the Succeeded or Defeated state for a consul veto");
+        require(
+            currentState == ProposalState.Succeeded || currentState == ProposalState.Defeated,
+            "Senate: Proposal must be in the Succeeded or Defeated state for a consul veto"
+        );
 
         vetoes[proposalId].consulVetoCount += 1;
         vetoes[proposalId].consulVetoes[msg.sender] = true;
@@ -265,11 +262,12 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @return The ID of the created proposal.
      * Reverts if the sender's position is not valid.
      */
-    function propose(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, string memory description)
-        public
-        override(GovernorUpgradeable, IGovernorUpgradeable)
-        returns (uint256)
-    {
+    function propose(
+        address[] memory targets,
+        uint256[] memory values,
+        bytes[] memory calldatas,
+        string memory description
+    ) public override(GovernorUpgradeable, IGovernorUpgradeable) returns (uint256) {
         require(validatePosition(msg.sender), "Senate: Only valid positions can create proposals");
         return super.propose(targets, values, calldatas, description);
     }
@@ -289,17 +287,20 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
             return 0;
         } else {
             return type(uint256).max; // Non-valid positions cannot create proposals
-        }     
+        }
     }
 
     /**
      * @dev Executes a proposal with the given ID, targets, values, calldatas and description hash.
      * Only the GovernorTimelockController can call this function.
      */
-    function _execute(uint256 proposalId, address[] memory targets, uint256[] memory values, bytes[] memory calldatas, bytes32 descriptionHash)
-        internal
-        override(GovernorUpgradeable, GovernorTimelockControlUpgradeable)
-    {
+    function _execute(
+        uint256 proposalId,
+        address[] memory targets,
+        uint256[] memory values,
+        bytes[] memory calldatas,
+        bytes32 descriptionHash
+    ) internal override(GovernorUpgradeable, GovernorTimelockControlUpgradeable) {
         super._execute(proposalId, targets, values, calldatas, descriptionHash);
     }
 
@@ -308,11 +309,12 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * Only the GovernorTimelockController can call this function.
      * @return The ID of the cancelled proposal.
      */
-    function _cancel(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, bytes32 descriptionHash)
-        internal
-        override(GovernorUpgradeable, GovernorTimelockControlUpgradeable)
-        returns (uint256)
-    {
+    function _cancel(
+        address[] memory targets,
+        uint256[] memory values,
+        bytes[] memory calldatas,
+        bytes32 descriptionHash
+    ) internal override(GovernorUpgradeable, GovernorTimelockControlUpgradeable) returns (uint256) {
         return super._cancel(targets, values, calldatas, descriptionHash);
     }
 
@@ -351,11 +353,9 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      */
     function validatePosition(address _address) public view returns (bool) {
         if (
-            senatePositionsContract.isConsul(_address) ||
-            senatePositionsContract.isCensor(_address) ||
-            senatePositionsContract.isCaesar(_address) ||
-            senatePositionsContract.isSenator(_address) ||
-            senatePositionsContract.isTribune(_address)
+            senatePositionsContract.isConsul(_address) || senatePositionsContract.isCensor(_address)
+                || senatePositionsContract.isCaesar(_address) || senatePositionsContract.isSenator(_address)
+                || senatePositionsContract.isTribune(_address)
         ) {
             return true;
         } else {
@@ -370,14 +370,19 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @notice Only a Senate proposal can update the address of a contract.
      */
     function updateSenatePositionsContract(address _contractAddress, address _newAddress) public {
-        require(msg.sender == timelockContract || msg.sender == owner(), "Senate: Only a Senate proposal can update the address of a contract");
+        require(
+            msg.sender == timelockContract || msg.sender == owner(),
+            "Senate: Only a Senate proposal can update the address of a contract"
+        );
         require(_newAddress != address(0), "Senate: Cannot update a contract to the zero address");
         require(_contractAddress != address(0), "Senate: Cannot update the zero address");
         require(_contractAddress != _newAddress, "Senate: Cannot update a contract to the same address");
-        require(_contractAddress == address(senatePositionsContract), "Senate: Cannot update a contract that is not the SenatePositions contract");
+        require(
+            _contractAddress == address(senatePositionsContract),
+            "Senate: Cannot update a contract that is not the SenatePositions contract"
+        );
 
         senatePositionsContract = ISenatePositions(_newAddress);
-
     }
 
     /**
@@ -385,12 +390,7 @@ contract Senate is Initializable, GovernorUpgradeable, GovernorSettingsUpgradeab
      * @param proposalId The ID of the proposal to check the quorum for.
      * @return The required quorum value.
      */
-    function quorum(uint256 proposalId)
-        public
-        view
-        override(IGovernorUpgradeable)
-        returns (uint256)
-    {
+    function quorum(uint256 proposalId) public view override(IGovernorUpgradeable) returns (uint256) {
         return quorum(proposalId);
     }
 }

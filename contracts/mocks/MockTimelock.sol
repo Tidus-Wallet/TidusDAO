@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import { ISenatePositions } from "../ERC721/interfaces/ISenatePositions.sol";
-import { ISenate } from "../governance/interfaces/ISenate.sol";
-contract MockTimelock {
+import {ISenatePositions} from "../ERC721/interfaces/ISenatePositions.sol";
+import {ISenate} from "../governance/interfaces/ISenate.sol";
 
+contract MockTimelock {
     ISenatePositions private senatePositions;
     ISenate private senate;
 
