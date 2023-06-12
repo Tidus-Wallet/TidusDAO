@@ -3969,143 +3969,9 @@
         }
       }
     },
-    "test/foundry/Senate/Senate.t.sol": {
-      "lastModificationDate": 1686588092459,
-      "contentHash": "5678f08ed5fd793d4eaa52ca10cd86c6",
-      "sourceName": "test/foundry/Senate/Senate.t.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs",
-            "appendCBOR": true
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ]
-            }
-          },
-          "evmVersion": "paris",
-          "libraries": {}
-        }
-      },
-      "imports": [
-        "contracts/ERC721/SenatePositions.sol",
-        "contracts/ERC721/interfaces/ISenatePositions.sol",
-        "contracts/governance/Senate.sol",
-        "contracts/governance/Timelock.sol",
-        "contracts/governance/interfaces/ISenate.sol",
-        "contracts/governance/interfaces/ITimelock.sol",
-        "lib/forge-std/lib/ds-test/src/test.sol",
-        "lib/forge-std/src/Base.sol",
-        "lib/forge-std/src/StdAssertions.sol",
-        "lib/forge-std/src/StdChains.sol",
-        "lib/forge-std/src/StdCheats.sol",
-        "lib/forge-std/src/StdError.sol",
-        "lib/forge-std/src/StdInvariant.sol",
-        "lib/forge-std/src/StdJson.sol",
-        "lib/forge-std/src/StdMath.sol",
-        "lib/forge-std/src/StdStorage.sol",
-        "lib/forge-std/src/StdStyle.sol",
-        "lib/forge-std/src/StdUtils.sol",
-        "lib/forge-std/src/Test.sol",
-        "lib/forge-std/src/Vm.sol",
-        "lib/forge-std/src/console.sol",
-        "lib/forge-std/src/console2.sol",
-        "lib/forge-std/src/interfaces/IMulticall3.sol",
-        "node_modules/@openzeppelin/contracts/access/Ownable.sol",
-        "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
-        "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
-        "node_modules/@openzeppelin/contracts/interfaces/IERC1967.sol",
-        "node_modules/@openzeppelin/contracts/interfaces/draft-IERC1822.sol",
-        "node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol",
-        "node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Upgrade.sol",
-        "node_modules/@openzeppelin/contracts/proxy/Proxy.sol",
-        "node_modules/@openzeppelin/contracts/proxy/beacon/IBeacon.sol",
-        "node_modules/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol",
-        "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
-        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
-        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
-        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol",
-        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
-        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
-        "node_modules/@openzeppelin/contracts/utils/Address.sol",
-        "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
-        "node_modules/@openzeppelin/contracts/utils/Context.sol",
-        "node_modules/@openzeppelin/contracts/utils/Counters.sol",
-        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
-        "node_modules/@openzeppelin/contracts/utils/Strings.sol",
-        "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
-        "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
-        "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
-        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/TimelockControllerUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorCountingSimpleUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorSettingsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorTimelockControlUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorVotesUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
-      ],
-      "versionRequirement": "=0.8.20",
-      "artifacts": {
-        "MockProxy": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Senate.t.sol/MockProxy.json"
-        },
-        "MockTimelock": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Senate.t.sol/MockTimelock.json"
-        },
-        "MockWallet": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Senate.t.sol/MockWallet.json"
-        },
-        "TestSenate": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Senate.t.sol/TestSenate.json"
-        }
-      }
-    },
     "test/foundry/Senate/SenateHappy.t.sol": {
-      "lastModificationDate": 1686601648357,
-      "contentHash": "5678f08ed5fd793d4eaa52ca10cd86c6",
+      "lastModificationDate": 1686604367547,
+      "contentHash": "2f706237194a12f904094cda797d1e6f",
       "sourceName": "test/foundry/Senate/SenateHappy.t.sol",
       "solcConfig": {
         "settings": {
@@ -4223,6 +4089,9 @@
       ],
       "versionRequirement": "=0.8.20",
       "artifacts": {
+        "Events": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/Events.json"
+        },
         "MockProxy": {
           "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/MockProxy.json"
         },

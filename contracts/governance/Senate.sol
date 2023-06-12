@@ -320,8 +320,7 @@ contract Senate is
         uint256[] memory values,
         bytes[] memory calldatas,
         string memory description
-    ) public override(GovernorUpgradeable, IGovernorUpgradeable, ISenate) returns (uint256) {
-        require(validatePosition(msg.sender), "Senate: Only valid positions can create proposals");
+    ) public override(GovernorUpgradeable, IGovernorUpgradeable, ISenate) onlyValidPosition returns (uint256) {
         return super.propose(targets, values, calldatas, description);
     }
 
