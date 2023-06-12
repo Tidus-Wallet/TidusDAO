@@ -83,38 +83,45 @@ contract Senate is
         if(msg.sender != address(timelockContract)) revert TIDUS_ONLY_TIMELOCK();
         _;
     }
-
     modifier onlyValidSupport(uint8 support) {
        if (support <= 2) revert TIDUS_INVALID_SUPPORT(support); 
        _;
     }
-
     modifier onlyActiveState(uint256 proposalId) {
         ProposalState state = state(proposalId); 
         if (state != ProposalState.Active) revert TIDUS_INVALID_STATE(proposalId);
         _;
     }
-
+    modifier onlySuccessfulProposal(uint256 proposalId) {
+        ProposalState state = state(proposalId);
+        ProposalState expectedState = ProposalState.Succeeded;
+        if (state != expectedState) revert TIDUS_INVALID_STATE(proposalId, state);
+        _;
+    }
+    modifier onlySuccessfulOrDefeatedProposal(uint256 proposalId) {
+        ProposalState state = state(proposalId);
+        ProposalState expectedState = ProposalState.Succeeded || ProposalState.Defeated;
+        if (state != expectedState) revert TIDUS_INVALID_STATE(proposalId, state, expectedState);
+        _;
+    }
     modifier onlyValidPosition() {
         if (!validatePosition(msg.sender)) revert TIDUS_INVALID_POSITION(msg.sender);
         _;
     }
 
-    modifier onlyTribue() {
-        if(!senatePositionsContract.isTribune(msg.sender)) revert TIDUS_NOT_TRIBUNE(msg.sender);
+    modifier onlyTribune() {
+        Position expectedPosition = Position.Tribune;
+        Position senderPosition = senatePositionsContract.getPosition(msg.sender);
+        if(!senatePositionsContract.isTribune(msg.sender)) revert TIDUS_INVALID_POSITION(msg.sender, senderPosition, expectedPosition);
         _;
     }
-
-    modifier onlySuccessfulProposal(uint256 proposalId) {
-        ProposalState state = state(proposalId);
-        if (state != ProposalState.Succeeded) revert TIDUS_NOT_SUCCESSFUL_PROPOSAL(proposalId);
-        _;
-    }
-
     modifier noPreviousTribuneVeto(uint256 proposalId) {
         uint8 tribuneVetoes = vetoes[proposalId].tribuneVetoes;
         if (tribuneVetoes >= 1) revert TIDUS_TRIBUNE_ALREADY_VETOED();
         _;
+    }
+    modifier onlyConsul() {
+        if(!senatePositionsContract.isConsul(msg.sender)) revert TIDUS_INVALID_POSITION(msg.sender)
     }
 
     // /// @dev Custom initializer modifier to disable standard initializers.
@@ -231,18 +238,17 @@ contract Senate is
      * @param proposalId The ID of the proposal to veto.
      * @dev This function requires that the caller is a Consul and the proposal has not already been vetoed twice by Consuls.
      */
-    function consulVeto(uint256 proposalId) public {
+    function consulVeto(uint256 proposalId) public 
+        onlyValidState
+        onlyConsul
+        consulHasNotVetoed
+        onlyTwoConsulVetoes
+    {
         require(senatePositionsContract.isConsul(msg.sender), "Senate: Only Consuls can use the consul veto");
-        ProposalState currentState = state(proposalId);
         require(
             vetoes[proposalId].consulVetoes[msg.sender] == false, "Senate: Consul veto already used for this proposal"
         );
         require(vetoes[proposalId].consulVetoCount < 2, "Senate: Both Consuls have already Vetoed");
-        require(
-            currentState == ProposalState.Succeeded || currentState == ProposalState.Defeated,
-            "Senate: Proposal must be in the Succeeded or Defeated state for a consul veto"
-        );
-
         vetoes[proposalId].consulVetoCount += 1;
         vetoes[proposalId].consulVetoes[msg.sender] = true;
         emit ConsulVeto(msg.sender, proposalId);

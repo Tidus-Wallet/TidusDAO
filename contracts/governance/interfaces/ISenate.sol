@@ -30,7 +30,6 @@ abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable 
     error TIDUS_INVALID_SUPPORT(uint8 support);
     error TIDUS_INVALID_STATE(uint256 proposalId);
     error TIDUS_INVALID_POSITION(address sender);
-    error TIDUS_NOT_TRIBUNE(address sender);
     error TIDUS_NOT_SUCCESSFUL_PROPOSAL(uint256 proposalId);
 
     ////////////////////////////////
