@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1685897254003,
-      "contentHash": "6a8471db8ece5e39da2feec9678d57c3",
+      "lastModificationDate": 1686425014088,
+      "contentHash": "5150eaaee2c7ab3dbb72e93dcf58a115",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -4103,7 +4103,7 @@
       }
     },
     "test/foundry/SenatePositions.t.sol": {
-      "lastModificationDate": 1685896871632,
+      "lastModificationDate": 1686424818287,
       "contentHash": "d725568972d145387478bb20a3bf2f19",
       "sourceName": "test/foundry/SenatePositions.t.sol",
       "solcConfig": {

@@ -21,15 +21,15 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     /**
      * @notice Positions available to the Senate members.  See ISenatePositions for the enum definitions.
      * @notice None - No position.  Should not be valid for any voting, minting, or burning operations
-     * @notice Censor - Censors are not actually implemented in the TidusDAO, but others may use them
      * @notice Consul - There should only ever be 2 consuls at any point in time.  Consuls are senators with veto power.
      * @notice Consul(cont'd) - Consuls can veto proposals that are Succeeded, they can veto each other, and they can veto tribunes
+     * @notice Censor - Censors are not actually implemented in the TidusDAO, but others may use them
+     * @notice Tribune - Tribunes represent the plebians and take House proposals and put them on the Senate floor with a proposal. 
+     * @notice Senator - Senators are the main voting body of the DAO.  They can vote on proposals and elect Consuls.
+     * @notice Senator - There is no limit to the number of Senators, but they must be elected by other Senators via proposals.
      * @notice Caesar - There should only ever be 1 Caesar at any point in time.  The Caesar should be a short time interval
      * @notice Caesar(cont'd) - They wield ultimate power within the DAO temporarily to resolve disputes.  If a Consul vetoes the other,
      * @notice Caesar(cont'd) - There should be an election for a Caesar to resolve the dispute.
-     * @notice Senator - Senators are the main voting body of the DAO.  They can vote on proposals and elect Consuls.
-     * @notice Senator - There is no limit to the number of Senators, but they must be elected by other Senators via proposals.
-     * @notice Tribune - Tribunes represent the plebians and take House proposals and put them on the Senate floor with a proposal. 
      */  
     struct Consul {
         address consul;
@@ -239,8 +239,10 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             // Remove the Consul from the current Consuls array
             for (uint256 i = 0; i < activeConsuls.length; i++) {
                 if (activeConsuls[i] == consuls[_tokenId].consul) {
-                    activeConsuls[i] = activeConsuls[activeConsuls.length - 1];
-                    activeConsuls.pop();
+                    address[] memory temp = activeConsuls;
+                    temp[i] = temp[temp.length - 1];
+                    delete temp[temp.length - 1];
+                    activeConsuls = temp;
                     break;
                 }
             }
@@ -250,9 +252,11 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         } else if (position == Position.Censor) {
             // Remove the Censor from the current Censors array
             for (uint256 i = 0; i < activeCensors.length; i++) {
-                if (activeCensors[i] == censors[_tokenId].censor) {
-                    activeCensors[i] = activeCensors[activeCensors.length - 1];
-                    activeCensors.pop();
+                if (activeCensors[i] == consuls[_tokenId].consul) {
+                    address[] memory temp = activeCensors;
+                    temp[i] = temp[temp.length - 1];
+                    delete temp[temp.length - 1];
+                    activeCensors = temp;
                     break;
                 }
             }
@@ -262,9 +266,11 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         } else if (position == Position.Tribune) {
             // Remove the Tribune from the current Tribunes array
             for (uint256 i = 0; i < activeTribunes.length; i++) {
-                if (activeTribunes[i] == tribunes[_tokenId].tribune) {
-                    activeTribunes[i] = activeTribunes[activeTribunes.length - 1];
-                    activeTribunes.pop();
+                if (activeTribunes[i] == consuls[_tokenId].consul) {
+                    address[] memory temp = activeTribunes;
+                    temp[i] = temp[temp.length - 1];
+                    delete temp[temp.length - 1];
+                    activeTribunes = temp;
                     break;
                 }
             }
@@ -274,9 +280,11 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         } else if (position == Position.Senator) {
             // Remove the Senator from the current Senators array
             for (uint256 i = 0; i < activeSenators.length; i++) {
-                if (activeSenators[i] == senators[_tokenId].senator) {
-                    activeSenators[i] = activeSenators[activeSenators.length - 1];
-                    activeSenators.pop();
+                if (activeSenators[i] == consuls[_tokenId].consul) {
+                    address[] memory temp = activeSenators;
+                    temp[i] = temp[temp.length - 1];
+                    delete temp[temp.length - 1];
+                    activeSenators = temp;
                     break;
                 }
             }
@@ -286,9 +294,11 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         } else if (position == Position.Caesar) {
             // Remove the Caesar from the current Caesars array
             for (uint256 i = 0; i < activeCaesar.length; i++) {
-                if (activeCaesar[i] == caesars[_tokenId].caesar) {
-                    activeCaesar[i] = activeCaesar[activeCaesar.length - 1];
-                    activeCaesar.pop();
+                if (activeCaesar[i] == consuls[_tokenId].consul) {
+                    address[] memory temp = activeCaesar;
+                    temp[i] = temp[temp.length - 1];
+                    delete temp[temp.length - 1];
+                    activeCaesar = temp;
                     break;
                 }
             }
@@ -533,7 +543,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         virtual
         override(ERC721, ERC721Enumerable)
     {
-        if(from != address(0) && to != address(senateContract)) revert TIDUS_INVALID_TRANSFER(to);
+        // if(from != address(0) && to != address(senateContract)) revert TIDUS_INVALID_TRANSFER(to);
         super._beforeTokenTransfer(from, to, tokenId, batchSize);
     }
 

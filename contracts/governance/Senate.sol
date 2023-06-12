@@ -11,13 +11,13 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "../../lib/forge-std/src/console.sol";
-
-/// @notice Import Positional NFT Contract
+import { ISenate } from "./interfaces";
 import {ISenatePositions} from "../ERC721/interfaces/ISenatePositions.sol";
+
 /**
  * @title Senate Smart Contract
  * @notice The Senate contract is a governance contract for TidusDAO, a Roman Republic inspired project.
- * @dev This contract includes various positions, veto powers, and a governance whitelist.
+ * @notice This contract includes various positions, veto powers, and a governance whitelist.
  * @custom:security-contact sekaieth@proton.me
  */
 
@@ -29,25 +29,37 @@ contract Senate is
     GovernorVotesUpgradeable,
     GovernorTimelockControlUpgradeable,
     OwnableUpgradeable,
-    UUPSUpgradeable
+    UUPSUpgradeable,
+    ISenate
 {
-    /// @dev Position enum to store the position of each address.
-    enum Position {
-        None,
-        Censor,
-        Consul,
-        Caesar,
-        Senator,
-        Tribune
-    }
+    /**
+     * @notice Positions available to the Senate members.  See ISenatePositions for the enum definitions.
+     * @notice None - No position.  Should not be valid for any voting, minting, or burning operations
+     * @notice Consul - There should only ever be 2 consuls at any point in time.  Consuls are senators with veto power.
+     * @notice Consul(cont'd) - Consuls can veto proposals that are Succeeded, they can veto each other, and they can veto tribunes
+     * @notice Censor - Censors are not actually implemented in the TidusDAO, but others may use them
+     * @notice Tribune - Tribunes represent the plebians and take House proposals and put them on the Senate floor with a proposal. 
+     * @notice Senator - Senators are the main voting body of the DAO.  They can vote on proposals and elect Consuls.
+     * @notice Senator - There is no limit to the number of Senators, but they must be elected by other Senators via proposals.
+     * @notice Caesar - There should only ever be 1 Caesar at any point in time.  The Caesar should be a short time interval
+     * @notice Caesar(cont'd) - They wield ultimate power within the DAO temporarily to resolve disputes.  If a Consul vetoes the other,
+     * @notice Caesar(cont'd) - There should be an election for a Caesar to resolve the dispute.
+     */  
 
+
+    ///////////////////////
+    // Type Declarations //
+    ///////////////////////
     /// @dev VetoInfo struct to store veto-related information.
     struct VetoInfo {
-        uint256 tribuneVetoes;
+        uint8 tribuneVetoes;
         uint256 consulVetoCount;
         mapping(address => bool) consulVetoes;
     }
 
+    ///////////////////////
+    //    Global State   //
+    ///////////////////////
     /// @dev Mapping to store the veto information for each proposal.
     mapping(uint256 => VetoInfo) public vetoes;
 
@@ -63,9 +75,47 @@ contract Senate is
     /// @dev Quorum value for the Senate.
     uint16 public quorumPct;
 
-    event ConsulVeto(address indexed account, uint256 indexed proposalId);
-    event TribuneVeto(address indexed account, uint256 indexed proposalId);
-    event ContractAddressUpdated(address indexed contractAddress, address indexed newAddress);
+
+    ///////////////////////
+    //    Modifiers      //
+    ///////////////////////
+    modifier onlyTimelock() {
+        if(msg.sender != address(timelockContract)) revert TIDUS_ONLY_TIMELOCK();
+        _;
+    }
+
+    modifier onlyValidSupport(uint8 support) {
+       if (support <= 2) revert TIDUS_INVALID_SUPPORT(support); 
+       _;
+    }
+
+    modifier onlyActiveState(uint256 proposalId) {
+        ProposalState state = state(proposalId); 
+        if (state != ProposalState.Active) revert TIDUS_INVALID_STATE(proposalId);
+        _;
+    }
+
+    modifier onlyValidPosition() {
+        if (!validatePosition(msg.sender)) revert TIDUS_INVALID_POSITION(msg.sender);
+        _;
+    }
+
+    modifier onlyTribue() {
+        if(!senatePositionsContract.isTribune(msg.sender)) revert TIDUS_NOT_TRIBUNE(msg.sender);
+        _;
+    }
+
+    modifier onlySuccessfulProposal(uint256 proposalId) {
+        ProposalState state = state(proposalId);
+        if (state != ProposalState.Succeeded) revert TIDUS_NOT_SUCCESSFUL_PROPOSAL(proposalId);
+        _;
+    }
+
+    modifier noPreviousTribuneVeto(uint256 proposalId) {
+        uint8 tribuneVetoes = vetoes[proposalId].tribuneVetoes;
+        if (tribuneVetoes >= 1) revert TIDUS_TRIBUNE_ALREADY_VETOED();
+        _;
+    }
 
     // /// @dev Custom initializer modifier to disable standard initializers.
     // /// @custom:oz-upgrades-unsafe-allow constructor
@@ -95,8 +145,7 @@ contract Senate is
      * @notice Returns the required quorum for proposals.
      * @return The required quorum value.
      */
-    function updateQuorum(uint16 _quorumValue) public returns (uint256) {
-        require(msg.sender == address(timelockContract), "Senate: only timelock contract can update quorum");
+    function updateQuorum(uint16 _quorumValue) public returns (uint256) onlyTimelock {
         quorumPct = _quorumValue;
         return quorumPct;
     }
@@ -118,17 +167,11 @@ contract Senate is
     function castVote(uint256 proposalId, uint8 support)
         public
         override(GovernorUpgradeable, IGovernorUpgradeable)
+        onlyValidPosition
+        onlyValidSupport(support)
+        onlyActiveState(proposalId)
         returns (uint256)
     {
-        // Check if the support value is valid (0 for "against", 1 for "for", or 2 for "abstain")
-        require(support <= 2, "Senate: invalid support value");
-
-        // Check if the proposal is currently in the Active state
-        require(state(proposalId) == ProposalState.Active, "Senate: vote not currently active");
-
-        // Check if the user has a valid Senate position
-        require(validatePosition(msg.sender), "Senate: Only senate positions can vote");
-
         // Cast the vote using the `_vote` function from the `GovernorUpgradeable` contract
         return _castVote(proposalId, msg.sender, support, "");
     }
@@ -145,19 +188,13 @@ contract Senate is
     function castVoteBySig(uint256 proposalId, uint8 support, uint8 v, bytes32 r, bytes32 s)
         public
         override(GovernorUpgradeable, IGovernorUpgradeable)
+        onlyValidSupport(support)
+        onlyActiveState
+        onlyValidPosition
         returns (uint256)
     {
         address voter =
             ECDSA.recover(_hashTypedDataV4(keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support))), v, r, s);
-
-        // Check if the support value is valid (0 for "against", 1 for "for", or 2 for "abstain")
-        require(support <= 2, "Senate: invalid support value");
-
-        // Check if the proposal is currently in the Active state
-        require(state(proposalId) == ProposalState.Active, "Senate: vote not currently active");
-
-        // Check if the user has a valid Senate position
-        require(validatePosition(voter), "Senate: Only senate positions can vote");
 
         // Cast the vote using the `_vote` function from the `GovernorUpgradeable` contract
         return _castVote(proposalId, voter, support, "");
@@ -184,15 +221,7 @@ contract Senate is
      * @param proposalId The ID of the proposal to veto.
      * @dev This function requires that the caller is a Tribune and the proposal has not already been vetoed by a Tribune.
      */
-    function tribuneVeto(uint256 proposalId) public {
-        require(senatePositionsContract.isTribune(msg.sender), "Senate: Only Tribunes can use the tribune veto");
-        ProposalState currentState = state(proposalId);
-        require(
-            currentState == ProposalState.Succeeded,
-            "Senate: Proposal must be in the Succeeded state for a tribune veto"
-        );
-        require(vetoes[proposalId].tribuneVetoes == 0, "Senate: Tribune veto already used for this proposal");
-
+    function tribuneVeto(uint256 proposalId) public onlySuccessfulProposal onlyTribune noPreviousTribuneVeto {
         vetoes[proposalId].tribuneVetoes += 1;
         emit TribuneVeto(msg.sender, proposalId);
     }
@@ -353,9 +382,11 @@ contract Senate is
      */
     function validatePosition(address _address) public view returns (bool) {
         if (
-            senatePositionsContract.isConsul(_address) || senatePositionsContract.isCensor(_address)
-                || senatePositionsContract.isCaesar(_address) || senatePositionsContract.isSenator(_address)
-                || senatePositionsContract.isTribune(_address)
+            senatePositionsContract.isConsul(_address) 
+            || senatePositionsContract.isCensor(_address)
+            || senatePositionsContract.isTribune(_address)
+            || senatePositionsContract.isSenator(_address)
+            || senatePositionsContract.isCaesar(_address) 
         ) {
             return true;
         } else {
