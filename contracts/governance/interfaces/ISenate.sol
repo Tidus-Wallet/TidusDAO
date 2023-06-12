@@ -5,6 +5,17 @@ import "@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol";
 
 abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable {
+    ///////////////////////
+    // Type Declarations //
+    ///////////////////////
+
+    /// @dev VetoInfo struct to store veto-related information.
+    struct VetoInfo {
+        uint8 tribuneVetoes;
+        uint8 consulVetoCount;
+        mapping(address => bool) consulVetoes;
+    }
+
     enum Position {
         None,
         Consul,
@@ -14,7 +25,6 @@ abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable 
         Dictator
     }
 
-
     ///////////////////////
     //       Events      //
     ///////////////////////
@@ -22,24 +32,21 @@ abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable 
     event TribuneVeto(address indexed account, uint256 indexed proposalId);
     event ContractAddressUpdated(address indexed contractAddress, address indexed newAddress);
 
-
     ///////////////////////
     //       Errors      //
     ///////////////////////
     error TIDUS_ONLY_TIMELOCK();
     error TIDUS_INVALID_SUPPORT(uint8 support);
-    error TIDUS_INVALID_STATE(uint256 proposalId);
-    error TIDUS_INVALID_POSITION(address sender);
-    error TIDUS_NOT_SUCCESSFUL_PROPOSAL(uint256 proposalId);
+    error TIDUS_INVALID_STATE(uint256 proposalId, ProposalState state);
+    error TIDUS_INVALID_POSITION(address sender, uint8 position);
+    error TIDUS_NOT_SUCCESSFUL_PROPOSAL(uint256 proposal);
+    error TIDUS_ALREADY_VETOED(Position _position, address _sender);
 
     ////////////////////////////////
     //  External View Functions  //
     ///////////////////////////////
-    function vetoes(uint256 proposalId) external virtual returns (uint256 tribuneVetoes, uint256 consulVetoCount);
-    function positions(address account) external virtual returns (Position);
     function governanceWhitelist(address account) external virtual returns (bool);
-    function quorum(uint256 blockNumber) public pure virtual override returns (uint256);
-
+    function quorum(uint256 blockNumber) public view virtual override returns (uint256);
 
     //////////////////////////
     //  State Modification  //

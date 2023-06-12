@@ -6,7 +6,6 @@ import {SenatePositions} from "../../../contracts/ERC721/SenatePositions.sol";
 import {ISenatePositions} from "../../../contracts/ERC721/interfaces/ISenatePositions.sol";
 import {MockWallet} from "../mocks/MockWallet.sol";
 
-
 contract SenatePositionsFuzzing is Test {
     SenatePositions private senatePositions;
     MockWallet private mockWallet;
@@ -97,7 +96,7 @@ contract SenatePositionsFuzzing is Test {
         }
 
         if (_position == 0) {
-            vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_POSITION.selector,(_position)));
+            vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_POSITION.selector, (_position)));
         }
 
         // Select a wallet within the bounds of the testWallets array

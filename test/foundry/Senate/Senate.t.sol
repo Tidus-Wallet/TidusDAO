@@ -2,12 +2,12 @@
 pragma solidity 0.8.20;
 
 import "forge-std/Test.sol";
-import {SenatePositions} from "../../contracts/ERC721/SenatePositions.sol";
-import {ISenatePositions} from "../../contracts/ERC721/interfaces/ISenatePositions.sol";
-import {Senate} from "../../contracts/governance/Senate.sol";
+import {SenatePositions} from "../../../contracts/ERC721/SenatePositions.sol";
+import {ISenatePositions} from "../../../contracts/ERC721/interfaces/ISenatePositions.sol";
+import {Senate} from "../../../contracts/governance/Senate.sol";
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
-import {Timelock} from "../../contracts/governance/Timelock.sol";
+import {Timelock} from "../../../contracts/governance/Timelock.sol";
 import {IVotesUpgradeable} from "@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol";
 import {TransparentUpgradeableProxy} from "@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
 

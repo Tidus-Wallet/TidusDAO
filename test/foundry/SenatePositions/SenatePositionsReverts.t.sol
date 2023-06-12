@@ -7,7 +7,6 @@ import {ISenatePositions} from "../../../contracts/ERC721/interfaces/ISenatePosi
 import {Senate} from "../../../contracts/governance/Senate.sol";
 import {MockWallet} from "../mocks/MockWallet.sol";
 
-
 contract SenatePositionsTestReverts is Test {
     SenatePositions private senatePositions;
     MockWallet private mockWallet;
@@ -33,7 +32,6 @@ contract SenatePositionsTestReverts is Test {
 
         mockWallet = new MockWallet();
     }
-    
 
     ///@dev - Test transfer to anything but the Senate contract
     function test_transferToUnallowedAddressFail() external {
@@ -45,7 +43,7 @@ contract SenatePositionsTestReverts is Test {
         assertEq(tokenId, 1);
 
         // Transfer token to another wallet
-        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_TRANSFER.selector,testWallets[0]));
+        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_TRANSFER.selector, testWallets[0]));
         mockWallet.transferToken(address(senatePositions), testWallets[0], tokenId);
     }
 
@@ -55,14 +53,14 @@ contract SenatePositionsTestReverts is Test {
     ///@dev - Test minting to zero addr should revert
     function test_MintToZeroAddr() external {
         // Mint to zero address
-        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_ADDRESS.selector,address(0)));
+        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_ADDRESS.selector, address(0)));
         senatePositions.mint(ISenatePositions.Position.Consul, address(0));
     }
 
     ///@dev - Test minting to "None" position should revert
     function test_MintToNonePosition() external {
         // Mint Position "None"
-        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_POSITION.selector,uint256(0)));
+        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_POSITION.selector, uint256(0)));
         senatePositions.mint(ISenatePositions.Position.None, address(this));
     }
 
@@ -81,7 +79,7 @@ contract SenatePositionsTestReverts is Test {
         senatePositions.mint(ISenatePositions.Position.Consul, testWallets[1]);
 
         // Expect next Consul mint to fail
-        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_POSITION_FULL.selector,uint256(1)));
+        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_POSITION_FULL.selector, uint256(1)));
         senatePositions.mint(ISenatePositions.Position.Consul, testWallets[2]);
     }
 
@@ -91,7 +89,7 @@ contract SenatePositionsTestReverts is Test {
         senatePositions.mint(ISenatePositions.Position.Caesar, testWallets[0]);
 
         // Expect next Caesar mint to fail
-        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_POSITION_FULL.selector,uint256(5)));
+        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_POSITION_FULL.selector, uint256(5)));
         senatePositions.mint(ISenatePositions.Position.Caesar, testWallets[1]);
     }
 
@@ -101,7 +99,7 @@ contract SenatePositionsTestReverts is Test {
     ///@dev - Test invalid Token ID should revert (ERC721 Standard)
     function test_invalidTokenId() external {
         // Burn a token that doesn't exist
-        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_TOKENID.selector,uint256(1)));
+        vm.expectRevert(abi.encodeWithSelector(ISenatePositions.TIDUS_INVALID_TOKENID.selector, uint256(1)));
         senatePositions.burn(1);
     }
 
@@ -115,5 +113,4 @@ contract SenatePositionsTestReverts is Test {
         (bool burnSuccess,) = testWallets[1].delegatecall(abi.encodeWithSignature("burn(uint256)", 1));
         assertEq(burnSuccess, false);
     }
-
 }

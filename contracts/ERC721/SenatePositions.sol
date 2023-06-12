@@ -14,7 +14,6 @@ import {console} from "../../lib/forge-std/src/console.sol";
 
 /// @custom:security-contact sekaieth@proton.me
 contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISenatePositions {
-
     ///////////////////////
     // Type Declarations //
     ///////////////////////
@@ -24,13 +23,13 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @notice Consul - There should only ever be 2 consuls at any point in time.  Consuls are senators with veto power.
      * @notice Consul(cont'd) - Consuls can veto proposals that are Succeeded, they can veto each other, and they can veto tribunes
      * @notice Censor - Censors are not actually implemented in the TidusDAO, but others may use them
-     * @notice Tribune - Tribunes represent the plebians and take House proposals and put them on the Senate floor with a proposal. 
+     * @notice Tribune - Tribunes represent the plebians and take House proposals and put them on the Senate floor with a proposal.
      * @notice Senator - Senators are the main voting body of the DAO.  They can vote on proposals and elect Consuls.
      * @notice Senator - There is no limit to the number of Senators, but they must be elected by other Senators via proposals.
      * @notice Caesar - There should only ever be 1 Caesar at any point in time.  The Caesar should be a short time interval
      * @notice Caesar(cont'd) - They wield ultimate power within the DAO temporarily to resolve disputes.  If a Consul vetoes the other,
      * @notice Caesar(cont'd) - There should be an election for a Caesar to resolve the dispute.
-     */  
+     */
     struct Consul {
         address consul;
         uint256 startTime;
@@ -106,32 +105,32 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
     //    Modifiers      //
     ///////////////////////
     modifier noZeroAddress(address _address) {
-        if(_address == address(0)) revert TIDUS_INVALID_ADDRESS(_address);
+        if (_address == address(0)) revert TIDUS_INVALID_ADDRESS(_address);
         _;
     }
 
     modifier validPosition(Position _position) {
-        if(_position == Position.None) revert TIDUS_INVALID_POSITION(_position);
+        if (_position == Position.None) revert TIDUS_INVALID_POSITION(_position);
         _;
     }
 
     modifier singleMint(address _to) {
-        if(balanceOf(_to) > 0) revert TIDUS_SINGLE_MINT();
+        if (balanceOf(_to) > 0) revert TIDUS_SINGLE_MINT();
         _;
     }
 
     modifier validToken(uint256 _tokenId) {
-        if(!_exists(_tokenId)) revert TIDUS_INVALID_TOKENID(_tokenId);
+        if (!_exists(_tokenId)) revert TIDUS_INVALID_TOKENID(_tokenId);
         _;
     }
 
     modifier onlyTimelock() {
-        if(msg.sender != address(timelockContract)) revert TIDUS_ONLY_TIMELOCK();
+        if (msg.sender != address(timelockContract)) revert TIDUS_ONLY_TIMELOCK();
         _;
     }
 
     modifier validTermLength(uint256 _termLength) {
-        if(_termLength == 0) revert TIDUS_INVALID_TERM_LENGTH(_termLength);
+        if (_termLength == 0) revert TIDUS_INVALID_TERM_LENGTH(_termLength);
         _;
     }
 
@@ -175,7 +174,13 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @notice Mint a new Senators token to the given address.
      * @param _to The address to mint the token to.
      */
-    function mint(Position _position, address _to) external onlyTimelock noZeroAddress(_to) validPosition(_position) {
+    function mint(Position _position, address _to)
+        external
+        onlyTimelock
+        noZeroAddress(_to)
+        validPosition(_position)
+        singleMint(_to)
+    {
         // Validate there are not two Consuls
         if (_position == Position.Consul) {
             if (activeConsuls.length >= 2) {
@@ -209,7 +214,7 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
             activeSenators.push(_to);
             ownedTokens[_to] = nextTokenId;
         } else if (_position == Position.Caesar) {
-            if(activeCaesar.length >= 1) {
+            if (activeCaesar.length >= 1) {
                 revert TIDUS_POSITION_FULL(_position);
             }
             // Add the Caesar to the current Caesars array
@@ -317,8 +322,11 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @param _position The position to update
      * @param _newTermLength The new term length
      */
-    function updateTermLength(Position _position, uint256 _newTermLength) onlyTimelock validTermLength(_newTermLength) public {
-
+    function updateTermLength(Position _position, uint256 _newTermLength)
+        public
+        onlyTimelock
+        validTermLength(_newTermLength)
+    {
         if (_position == Position.Consul) {
             consulTermLength = _newTermLength;
         } else if (_position == Position.Censor) {
@@ -359,7 +367,13 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @param _tokenId The token ID to get the URI for.
      * @return uri The token URI for the position.
      */
-    function tokenURI(uint256 _tokenId) public view override(ERC721, ISenatePositions) validToken(_tokenId) returns (string memory uri) {
+    function tokenURI(uint256 _tokenId)
+        public
+        view
+        override(ERC721, ISenatePositions)
+        validToken(_tokenId)
+        returns (string memory uri)
+    {
         Position position = getPosition(ownerOf(_tokenId));
 
         // Get the position of the token and return metadata
@@ -543,9 +557,9 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         virtual
         override(ERC721, ERC721Enumerable)
     {
-        // if(from != address(0) && to != address(senateContract)) revert TIDUS_INVALID_TRANSFER(to);
         super._beforeTokenTransfer(from, to, tokenId, batchSize);
+        if (from != address(0) && to != address(0)) {
+            if (from != address(senateContract) && to != address(senateContract)) revert TIDUS_INVALID_TRANSFER(to);
+        }
     }
-
-
 }

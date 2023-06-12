@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.20;
 
@@ -154,6 +153,4 @@ contract SenatePositionsHappy is Test {
         assertEq(uint256(senatePositions.getPosition(testWallets[3])), uint256(4));
         assertEq(uint256(senatePositions.getPosition(testWallets[4])), uint256(5));
     }
-
 }
-

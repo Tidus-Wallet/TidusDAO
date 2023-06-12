@@ -13,14 +13,14 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1686425014088,
-      "contentHash": "5150eaaee2c7ab3dbb72e93dcf58a115",
+      "lastModificationDate": 1686588092463,
+      "contentHash": "f600a2b581a24cd279ce7d0db984745f",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -40,7 +40,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -85,14 +85,14 @@
       }
     },
     "contracts/ERC721/interfaces/ISenatePositions.sol": {
-      "lastModificationDate": 1685895718404,
+      "lastModificationDate": 1686587052685,
       "contentHash": "e42043955965d5a6c09b6542fa32e37c",
       "sourceName": "contracts/ERC721/interfaces/ISenatePositions.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -112,7 +112,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -128,14 +128,14 @@
       }
     },
     "contracts/TidusDAOConstitution.sol": {
-      "lastModificationDate": 1685892694278,
+      "lastModificationDate": 1686587052685,
       "contentHash": "107d4705c865b4761bd0b8e70e9fa094",
       "sourceName": "contracts/TidusDAOConstitution.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -155,7 +155,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -182,14 +182,14 @@
       }
     },
     "contracts/governance/House.sol": {
-      "lastModificationDate": 1685892694277,
+      "lastModificationDate": 1686587052684,
       "contentHash": "87e8cc4130f074a120de10913520111d",
       "sourceName": "contracts/governance/House.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -209,7 +209,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -222,14 +222,14 @@
       }
     },
     "contracts/governance/Senate.sol": {
-      "lastModificationDate": 1685892694280,
-      "contentHash": "f6c5ad9e9929909794272716d9c79c4c",
+      "lastModificationDate": 1686587052687,
+      "contentHash": "9e0c639b461d5d3ff3ef13d9ea15e2cc",
       "sourceName": "contracts/governance/Senate.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -249,12 +249,13 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
       "imports": [
         "contracts/ERC721/interfaces/ISenatePositions.sol",
+        "contracts/governance/interfaces/ISenate.sol",
         "lib/forge-std/src/console.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
@@ -302,14 +303,14 @@
       }
     },
     "contracts/governance/Timelock.sol": {
-      "lastModificationDate": 1685892694278,
+      "lastModificationDate": 1686587052684,
       "contentHash": "9387163f7d5b28fd9d0509dce08a6378",
       "sourceName": "contracts/governance/Timelock.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -329,7 +330,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -355,14 +356,14 @@
       }
     },
     "contracts/governance/interfaces/ISenate.sol": {
-      "lastModificationDate": 1685892694278,
-      "contentHash": "33fddd486e2f6aed94bc8e321dbaa3af",
+      "lastModificationDate": 1686587052684,
+      "contentHash": "0cbab20fae0ebe4693c1444d0c358cad",
       "sourceName": "contracts/governance/interfaces/ISenate.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -382,7 +383,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -402,14 +403,14 @@
       }
     },
     "contracts/governance/interfaces/ITimelock.sol": {
-      "lastModificationDate": 1685892694278,
+      "lastModificationDate": 1686587052685,
       "contentHash": "c5d2f296d06a9e0cc403d2e2c713845d",
       "sourceName": "contracts/governance/interfaces/ITimelock.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -429,7 +430,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -442,14 +443,14 @@
       }
     },
     "contracts/mocks/MockTimelock.sol": {
-      "lastModificationDate": 1685892694278,
+      "lastModificationDate": 1686587052684,
       "contentHash": "1a10a09cf09a7e7987b573674170dea8",
       "sourceName": "contracts/mocks/MockTimelock.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -469,7 +470,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -500,7 +501,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -520,7 +521,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -540,7 +541,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -560,7 +561,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -589,7 +590,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -609,7 +610,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -632,7 +633,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -652,7 +653,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -674,7 +675,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -694,7 +695,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -720,7 +721,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -740,7 +741,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -760,7 +761,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -780,7 +781,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -800,7 +801,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -820,7 +821,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -842,7 +843,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -862,7 +863,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -882,7 +883,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -902,7 +903,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -927,7 +928,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -947,7 +948,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -969,7 +970,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -989,7 +990,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1012,7 +1013,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1032,7 +1033,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1069,7 +1070,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1089,7 +1090,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1112,7 +1113,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1132,7 +1133,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1152,7 +1153,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1172,7 +1173,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1192,7 +1193,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1212,7 +1213,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1232,7 +1233,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1252,7 +1253,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1274,7 +1275,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1294,7 +1295,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1314,7 +1315,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1334,7 +1335,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1364,7 +1365,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1384,7 +1385,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1404,7 +1405,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1424,7 +1425,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1444,7 +1445,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1464,7 +1465,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1492,7 +1493,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1512,7 +1513,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1538,7 +1539,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1558,7 +1559,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1578,7 +1579,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1598,7 +1599,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1618,7 +1619,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1638,7 +1639,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1670,7 +1671,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1690,7 +1691,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1720,7 +1721,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1740,7 +1741,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1762,7 +1763,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1782,7 +1783,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1802,7 +1803,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1822,7 +1823,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1854,7 +1855,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1874,7 +1875,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1912,7 +1913,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1932,7 +1933,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1955,7 +1956,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -1975,7 +1976,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -1998,7 +1999,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2018,7 +2019,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2038,7 +2039,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2058,7 +2059,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2078,7 +2079,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2098,7 +2099,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2121,7 +2122,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2141,7 +2142,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2161,7 +2162,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2181,7 +2182,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2201,7 +2202,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2221,7 +2222,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2241,7 +2242,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2261,7 +2262,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2283,7 +2284,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2303,7 +2304,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2326,7 +2327,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2346,7 +2347,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2370,7 +2371,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2390,7 +2391,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2412,7 +2413,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2432,7 +2433,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2452,7 +2453,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2472,7 +2473,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2492,7 +2493,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2512,7 +2513,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2532,7 +2533,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2552,7 +2553,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2581,7 +2582,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2601,7 +2602,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2621,7 +2622,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2641,7 +2642,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2665,7 +2666,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2685,7 +2686,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2721,7 +2722,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2741,7 +2742,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2766,7 +2767,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2786,7 +2787,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2818,7 +2819,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2838,7 +2839,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2875,7 +2876,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2895,7 +2896,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2932,7 +2933,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -2952,7 +2953,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -2993,7 +2994,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3013,7 +3014,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3051,7 +3052,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3071,7 +3072,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3097,7 +3098,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3117,7 +3118,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3137,7 +3138,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3157,7 +3158,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3177,7 +3178,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3197,7 +3198,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3217,7 +3218,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3237,7 +3238,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3264,7 +3265,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3284,7 +3285,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3304,7 +3305,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3324,7 +3325,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3346,7 +3347,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3366,7 +3367,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3394,7 +3395,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3414,7 +3415,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3436,7 +3437,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3456,7 +3457,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3476,7 +3477,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3496,7 +3497,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3516,7 +3517,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3536,7 +3537,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3559,7 +3560,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3579,7 +3580,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3599,7 +3600,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3619,7 +3620,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3641,7 +3642,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3661,7 +3662,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3681,7 +3682,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3701,7 +3702,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3724,7 +3725,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3744,7 +3745,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3770,7 +3771,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3790,7 +3791,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3814,7 +3815,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3834,7 +3835,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3854,7 +3855,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3874,7 +3875,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3894,7 +3895,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3914,7 +3915,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3934,7 +3935,7 @@
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3954,7 +3955,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -3968,15 +3969,15 @@
         }
       }
     },
-    "test/foundry/Senate.t.sol": {
-      "lastModificationDate": 1685892694279,
-      "contentHash": "17e8a540c1e5ab7fa4ee4a003b2bcc42",
-      "sourceName": "test/foundry/Senate.t.sol",
+    "test/foundry/Senate/Senate.t.sol": {
+      "lastModificationDate": 1686588092459,
+      "contentHash": "5678f08ed5fd793d4eaa52ca10cd86c6",
+      "sourceName": "test/foundry/Senate/Senate.t.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -3996,7 +3997,7 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -4102,15 +4103,15 @@
         }
       }
     },
-    "test/foundry/SenatePositions.t.sol": {
-      "lastModificationDate": 1686424818287,
-      "contentHash": "d725568972d145387478bb20a3bf2f19",
-      "sourceName": "test/foundry/SenatePositions.t.sol",
+    "test/foundry/SenatePositions/SenatePositionsFuzzing.t.sol": {
+      "lastModificationDate": 1686588092458,
+      "contentHash": "35543a9fb05eacca725e39b0ddc5e6b1",
+      "sourceName": "test/foundry/SenatePositions/SenatePositionsFuzzing.t.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
             "enabled": true,
-            "runs": 200
+            "runs": 1000
           },
           "metadata": {
             "bytecodeHash": "ipfs",
@@ -4130,7 +4131,187 @@
               ]
             }
           },
-          "evmVersion": "shanghai",
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/ERC721/SenatePositions.sol",
+        "contracts/ERC721/interfaces/ISenatePositions.sol",
+        "contracts/governance/interfaces/ISenate.sol",
+        "contracts/governance/interfaces/ITimelock.sol",
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "node_modules/@openzeppelin/contracts/access/Ownable.sol",
+        "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
+        "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "node_modules/@openzeppelin/contracts/utils/Address.sol",
+        "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
+        "node_modules/@openzeppelin/contracts/utils/Context.sol",
+        "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+        "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
+        "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+        "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
+        "test/foundry/mocks/MockWallet.sol"
+      ],
+      "versionRequirement": "=0.8.20",
+      "artifacts": {
+        "SenatePositionsFuzzing": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositionsFuzzing.t.sol/SenatePositionsFuzzing.json"
+        }
+      }
+    },
+    "test/foundry/SenatePositions/SenatePositionsHappy.t.sol": {
+      "lastModificationDate": 1686588092458,
+      "contentHash": "1caac9934a0113cb4aa04970795fa0d2",
+      "sourceName": "test/foundry/SenatePositions/SenatePositionsHappy.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/ERC721/SenatePositions.sol",
+        "contracts/ERC721/interfaces/ISenatePositions.sol",
+        "contracts/governance/interfaces/ISenate.sol",
+        "contracts/governance/interfaces/ITimelock.sol",
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "node_modules/@openzeppelin/contracts/access/Ownable.sol",
+        "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
+        "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "node_modules/@openzeppelin/contracts/utils/Address.sol",
+        "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
+        "node_modules/@openzeppelin/contracts/utils/Context.sol",
+        "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+        "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
+        "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+        "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
+        "test/foundry/mocks/MockWallet.sol"
+      ],
+      "versionRequirement": "=0.8.20",
+      "artifacts": {
+        "SenatePositionsHappy": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositionsHappy.t.sol/SenatePositionsHappy.json"
+        }
+      }
+    },
+    "test/foundry/SenatePositions/SenatePositionsReverts.t.sol": {
+      "lastModificationDate": 1686588092458,
+      "contentHash": "5f0d01440850216f71427468a1723c47",
+      "sourceName": "test/foundry/SenatePositions/SenatePositionsReverts.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
           "libraries": {}
         }
       },
@@ -4209,15 +4390,57 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol",
+        "test/foundry/mocks/MockWallet.sol"
       ],
       "versionRequirement": "=0.8.20",
       "artifacts": {
-        "MockSenate": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositions.t.sol/MockSenate.json"
-        },
+        "SenatePositionsTestReverts": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositionsReverts.t.sol/SenatePositionsTestReverts.json"
+        }
+      }
+    },
+    "test/foundry/mocks/MockWallet.sol": {
+      "lastModificationDate": 1686587052684,
+      "contentHash": "c8c3d98805debf3663c14000bf9f86a8",
+      "sourceName": "test/foundry/mocks/MockWallet.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": "^0.8.18",
+      "artifacts": {
         "MockWallet": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositions.t.sol/MockWallet.json"
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MockWallet.sol/MockWallet.json"
         }
       }
     }
