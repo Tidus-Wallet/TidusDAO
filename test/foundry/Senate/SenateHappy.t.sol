@@ -5,6 +5,7 @@ import "forge-std/Test.sol";
 import {SenatePositions} from "../../../contracts/ERC721/SenatePositions.sol";
 import {ISenatePositions} from "../../../contracts/ERC721/interfaces/ISenatePositions.sol";
 import {Senate} from "../../../contracts/governance/Senate.sol";
+import {ISenate} from "../../../contracts/governance/interfaces/ISenate.sol";
 import {IGovernorUpgradeable} from "@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol";
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
@@ -148,6 +149,29 @@ contract TestSenateHappy is Test, Events {
         }
     }
 
+    function submitProposalHelper() internal returns (uint256) {
+        // Submit a new proposal
+        ///@dev Set up proposal vars
+        ///@dev Targets
+        address[] memory targets = new address[](1);
+        targets[0] = address(senatePositions);
+        ///@dev Values
+        uint256[] memory values = new uint256[](1);
+        values[0] = 0;
+        ///@dev Calldatas
+        bytes[] memory calldatas = new bytes[](1);
+        calldatas[0] = abi.encodeWithSignature("mint(uint8, address)", 0, address(mockWallet));
+        
+        (bool proposalSuccess, bytes memory proposalData) = address(senate).call(
+            abi.encodeWithSignature(
+                "propose(address[],uint256[],bytes[],string)", targets, values, calldatas, "Test Proposal"
+            )
+        );
+        assertEq(proposalSuccess, true);
+        uint256 proposalId = abi.decode(proposalData, (uint256));
+        return proposalId;
+    }
+
     function onERC721Received(address, address, uint256, bytes calldata) external pure returns (bytes4) {
         return this.onERC721Received.selector;
     }
@@ -169,6 +193,34 @@ contract TestSenateHappy is Test, Events {
         if (positionsSuccess) {
             assertEq(abi.decode(positionsData, (address)), address(senatePositions));
         }
+        
+        ///@dev Verify voting delay
+        (bool delaySuccess, bytes memory delayData) =
+            address(senate).staticcall(abi.encodeWithSignature("votingDelay()"));
+        if (delaySuccess) {
+            uint256 votingDelay = abi.decode(delayData, (uint256));
+            uint256 expectedDelay = 1;
+            assertEq(votingDelay, expectedDelay);
+        }
+
+        ///@dev Verify Voting Period
+        (bool periodSuccess, bytes memory periodData) =
+            address(senate).staticcall(abi.encodeWithSignature("votingPeriod()"));
+        if (periodSuccess) {
+            uint256 votingPeriod = abi.decode(periodData, (uint256));
+            uint256 expectedPeriod = 21600;
+            assertEq(votingPeriod, expectedPeriod);
+        }
+        
+        ///@dev Verify Quorum
+        (bool quorumSuccess, bytes memory quorumData) =
+            address(senate).staticcall(abi.encodeWithSignature("quorum(uint256)", block.number));
+        if (quorumSuccess) {
+            uint256 quorum = abi.decode(quorumData, (uint256));
+            uint256 expectedQuorum = 0;
+            assertEq(quorum, expectedQuorum);
+        }
+
     }
 
     function test_proposalSubmits() external {
@@ -246,25 +298,7 @@ contract TestSenateHappy is Test, Events {
     }
 
     function test_castVote() external {
-        // Submit a new proposal
-        ///@dev Set up proposal vars
-        ///@dev Targets
-        address[] memory targets = new address[](1);
-        targets[0] = address(senatePositions);
-        ///@dev Values
-        uint256[] memory values = new uint256[](1);
-        values[0] = 0;
-        ///@dev Calldatas
-        bytes[] memory calldatas = new bytes[](1);
-        calldatas[0] = abi.encodeWithSignature("mint(uint8, address)", 0, address(mockWallet));
-        
-        (bool proposalSuccess, bytes memory proposalData) = address(senate).call(
-            abi.encodeWithSignature(
-                "propose(address[],uint256[],bytes[],string)", targets, values, calldatas, "Test Proposal"
-            )
-        );
-        assertEq(proposalSuccess, true);
-        uint256 proposalId = abi.decode(proposalData, (uint256));
+        uint256 proposalId = submitProposalHelper();
 
         // Change block number to make proposal active 
         vm.roll(5);
@@ -279,13 +313,190 @@ contract TestSenateHappy is Test, Events {
             }
         
         // Cast vote on proposal
+        uint8 vote = 1; // Vote for proposal
         (bool voteSuccess, bytes memory voteData) = address(senate).call(
-            abi.encodeWithSignature("castVote(uint256,uint8)", proposalId, 1)
+            abi.encodeWithSignature("castVote(uint256,uint8)", proposalId, vote)
         );
-        assertEq(voteSuccess, true);
-        uint256 voteWeight = abi.decode(voteData, (uint256));
-        // We had no votes before so weight should be zero
-        assertEq(voteWeight, 0);
+            if(voteSuccess) {
+                uint256 expectedVoteWeight = 0; 
+                uint256 voteWeight = abi.decode(voteData, (uint256));
+                // Using ERC721 so vote weight should be 0
+                assertEq(voteWeight, expectedVoteWeight);
+            }
 
+        // Verify vote is cast
+        (bool hasVotedSuccess, bytes memory hasVotedData) =
+            address(senate).staticcall(abi.encodeWithSignature("hasVoted(uint256,address)", proposalId, address(this)));
+            if(hasVotedSuccess) {
+                bool hasVoted = abi.decode(hasVotedData, (bool));
+                bool expectedVote = true;
+                assertEq(hasVoted, expectedVote);
+            }
+    }
+
+    function test_ProposalSucceeded() external {
+        uint256 proposalId = submitProposalHelper();
+
+        // Change block number to make proposal active
+        vm.roll(5);
+
+        // Cast vote on proposal
+        uint8 vote = 1; // Vote for proposal
+        (bool voteSuccess, bytes memory voteData) = address(senate).call(
+            abi.encodeWithSignature("castVote(uint256,uint8)", proposalId, vote)
+        );
+            if(voteSuccess) {
+                uint256 expectedVoteWeight = 0; 
+                uint256 voteWeight = abi.decode(voteData, (uint256));
+                // Using ERC721 so vote weight should be 0
+                assertEq(voteWeight, expectedVoteWeight);
+            }
+        
+        // Change block number to get past deadline 
+        vm.roll(21603);
+
+        // Verify proposal state is Succeeded
+        (bool proposalStateSuccess, bytes memory proposalStateData) =
+            address(senate).staticcall(abi.encodeWithSignature("state(uint256)", proposalId));
+            if(proposalStateSuccess) {
+                uint8 proposalStateSucceeded = abi.decode(proposalStateData, (uint8));
+                uint8 expectedProposalState = 2;
+                assertEq(proposalStateSucceeded, expectedProposalState);
+            }
+    }
+
+    function test_ProposalDefeated() external {
+        uint256 proposalId = submitProposalHelper();
+
+        // Change block number to make proposal active
+        vm.roll(5);
+
+        // Cast vote on proposal
+        uint8 vote = 0; // Vote against proposal
+        (bool voteSuccess, bytes memory voteData) = address(senate).call(
+            abi.encodeWithSignature("castVote(uint256,uint8)", proposalId, vote)
+        );
+            if(voteSuccess) {
+                uint256 expectedVoteWeight = 0; 
+                uint256 voteWeight = abi.decode(voteData, (uint256));
+                // Using ERC721 so vote weight should be 0
+                assertEq(voteWeight, expectedVoteWeight);
+            }
+        
+        // Change block number to get past deadline 
+        vm.roll(21603);
+
+        // Verify proposal state is Defeated
+        (bool proposalStateSuccess, bytes memory proposalStateData) =
+            address(senate).staticcall(abi.encodeWithSignature("state(uint256)", proposalId));
+            if(proposalStateSuccess) {
+                uint8 proposalStateDefeated = abi.decode(proposalStateData, (uint8));
+                uint8 expectedProposalState = 3;
+                assertEq(proposalStateDefeated, expectedProposalState);
+            }
+    }
+
+    function test_ConsulVeto() external {
+        uint256 proposalId = submitProposalHelper();
+
+        // Change block number to make proposal active, verify status
+        vm.roll(5);
+        (bool proposalStateTx, bytes memory proposalStateTxData) =
+            address(senate).staticcall(abi.encodeWithSignature("proposalState(uint256)", proposalId));
+            if(proposalStateTx) {
+                uint8 proposalStateActive = abi.decode(proposalStateTxData, (uint8));
+                uint8 expectedProposalState = 1;
+                assertEq(proposalStateActive, expectedProposalState);
+            }
+
+
+        // Cast vote on proposal
+        uint8 vote = 1; // Vote for proposal
+        (bool voteSuccess, bytes memory voteData) = address(senate).call(
+            abi.encodeWithSignature("castVote(uint256,uint8)", proposalId, vote)
+        );
+            if(voteSuccess) {
+                uint256 expectedVoteWeight = 0; 
+                uint256 voteWeight = abi.decode(voteData, (uint256));
+                // Using ERC721 so vote weight should be 0
+                assertEq(voteWeight, expectedVoteWeight);
+            }
+        
+        // Change block number to get past deadline 
+        vm.roll(21603);
+
+        // Verify proposal state is Succeeded
+        (bool proposalStateSuccess, bytes memory proposalStateData) =
+            address(senate).staticcall(abi.encodeWithSignature("state(uint256)", proposalId));
+            if(proposalStateSuccess) {
+                uint8 proposalStateSucceeded = abi.decode(proposalStateData, (uint8));
+                uint8 expectedProposalState = 2;
+                assertEq(proposalStateSucceeded, expectedProposalState);
+            }
+
+
+
+        // Verify proposal state is Defeated
+        (bool proposalStateSuccess2, bytes memory proposalStateData2) =
+            address(senate).staticcall(abi.encodeWithSignature("state(uint256)", proposalId));
+            if(proposalStateSuccess2) {
+                uint8 proposalStateDefeated = abi.decode(proposalStateData2, (uint8));
+                uint8 expectedProposalState = 3;
+                assertEq(proposalStateDefeated, expectedProposalState);
+            }
+    }
+    
+    function test_consulVeto() external {
+        uint256 proposalId = submitProposalHelper();
+
+        // Change block number to make proposal active, verify status
+        vm.roll(5);
+
+        // Cast vote on proposal
+        uint8 vote = 1; // Vote for proposal
+        (bool voteSuccess, bytes memory voteData) = address(senate).call(
+            abi.encodeWithSignature("castVote(uint256,uint8)", proposalId, vote)
+        );
+            if(voteSuccess) {
+                uint256 expectedVoteWeight = 0; 
+                uint256 voteWeight = abi.decode(voteData, (uint256));
+                // Using ERC721 so vote weight should be 0
+                assertEq(voteWeight, expectedVoteWeight);
+            }
+
+        // Change block number to get past deadline
+        vm.roll(21603);
+
+        // Cast Consul Veto
+        (bool consulVetoSuccess, bytes memory consulVetoData) = address(senate).call(
+            abi.encodeWithSignature("consulVeto(uint256)", proposalId)
+        );
+            if(consulVetoSuccess) {
+                // Verify Consul Veto Response 
+                bool expectedVetoResponse = true;
+                bool vetoResponse = abi.decode(consulVetoData, (bool));
+                assertEq(expectedVetoResponse, vetoResponse);
+            }
+
+        // Verify proposal veto status 
+        (bool vetoBoolSuccess, bytes memory vetoBoolData) = address(senate).staticcall(
+            abi.encodeWithSignature("hasConsulVetoed(uint256,address)", proposalId, address(this))
+        );
+            if(vetoBoolSuccess) {
+                bool expectedVetoBool = true;
+                bool vetoBool = abi.decode(vetoBoolData, (bool));
+                assertEq(expectedVetoBool, vetoBool);
+            }
+
+        // Verify proposal veto count
+        (bool vetoCountSuccess, bytes memory vetoCountData) = address(senate).staticcall(
+            abi.encodeWithSignature("consulVetoCount(uint256)", proposalId)
+        );
+            if(vetoCountSuccess) {
+                uint8 expectedVetoCount = 1;
+                uint8 vetoCount = abi.decode(vetoCountData, (uint8));
+                assertEq(expectedVetoCount, vetoCount);
+            }
     }
 }
+

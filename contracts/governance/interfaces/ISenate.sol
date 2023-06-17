@@ -41,6 +41,7 @@ abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable 
     error TIDUS_INVALID_POSITION(address sender, uint8 position);
     error TIDUS_NOT_SUCCESSFUL_PROPOSAL(uint256 proposal);
     error TIDUS_ALREADY_VETOED(Position _position, address _sender);
+    error TIDUS_INVALID_ADDRESS(address _address);
 
     ////////////////////////////////
     //  External View Functions  //
@@ -52,7 +53,7 @@ abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable 
     //  State Modification  //
     //////////////////////////
     function tribuneVeto(uint256 proposalId) external virtual;
-    function consulVeto(uint256 proposalId) external virtual;
+    function consulVeto(uint256 proposalId) external virtual returns (bool);
 
     function propose(
         address[] memory targets,

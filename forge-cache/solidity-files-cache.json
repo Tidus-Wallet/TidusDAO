@@ -13,7 +13,7 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1686588092463,
+      "lastModificationDate": 1686602557407,
       "contentHash": "f600a2b581a24cd279ce7d0db984745f",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
@@ -222,8 +222,8 @@
       }
     },
     "contracts/governance/Senate.sol": {
-      "lastModificationDate": 1687029550688,
-      "contentHash": "cb7b9ef8ed407dccf65bf2c223b9c030",
+      "lastModificationDate": 1687037938125,
+      "contentHash": "2db9654d4efff030976bcf7b9d99728b",
       "sourceName": "contracts/governance/Senate.sol",
       "solcConfig": {
         "settings": {
@@ -356,8 +356,8 @@
       }
     },
     "contracts/governance/interfaces/ISenate.sol": {
-      "lastModificationDate": 1686587052684,
-      "contentHash": "0cbab20fae0ebe4693c1444d0c358cad",
+      "lastModificationDate": 1687036911368,
+      "contentHash": "2450f0ed3e487eb56f497af1c1189e2b",
       "sourceName": "contracts/governance/interfaces/ISenate.sol",
       "solcConfig": {
         "settings": {
@@ -443,7 +443,7 @@
       }
     },
     "contracts/mocks/MockTimelock.sol": {
-      "lastModificationDate": 1686587052684,
+      "lastModificationDate": 1686602557403,
       "contentHash": "1a10a09cf09a7e7987b573674170dea8",
       "sourceName": "contracts/mocks/MockTimelock.sol",
       "solcConfig": {
@@ -3970,8 +3970,8 @@
       }
     },
     "test/foundry/Senate/SenateHappy.t.sol": {
-      "lastModificationDate": 1687029868235,
-      "contentHash": "238851f53e00da062eef046210ef9b33",
+      "lastModificationDate": 1687037085323,
+      "contentHash": "55061304eb2fda2a0fee72bc23d56701",
       "sourceName": "test/foundry/Senate/SenateHappy.t.sol",
       "solcConfig": {
         "settings": {
@@ -4107,7 +4107,7 @@
       }
     },
     "test/foundry/SenatePositions/SenatePositionsFuzzing.t.sol": {
-      "lastModificationDate": 1686588092458,
+      "lastModificationDate": 1686602557403,
       "contentHash": "35543a9fb05eacca725e39b0ddc5e6b1",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsFuzzing.t.sol",
       "solcConfig": {
@@ -4197,7 +4197,7 @@
       }
     },
     "test/foundry/SenatePositions/SenatePositionsHappy.t.sol": {
-      "lastModificationDate": 1686588092458,
+      "lastModificationDate": 1686602557403,
       "contentHash": "1caac9934a0113cb4aa04970795fa0d2",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsHappy.t.sol",
       "solcConfig": {

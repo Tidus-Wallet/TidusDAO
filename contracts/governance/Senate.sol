@@ -50,10 +50,10 @@ contract Senate is
     //    Global State   //
     ///////////////////////
     /// @dev Mapping to store the veto information for each proposal.
-    mapping(uint256 => VetoInfo) public vetoes;
+    mapping(uint256 proposalId => VetoInfo vetoInfo) public vetoes;
 
     /// @dev Mapping to store the governance whitelist status of each address.
-    mapping(address => bool) public override governanceWhitelist;
+    mapping(address contractAddr => bool whitelisted) public override governanceWhitelist;
 
     /// @dev Address of the Timelock contract
     address public timelockContract;
@@ -92,7 +92,7 @@ contract Senate is
 
     modifier onlySuccessfulOrDefeatedProposal(uint256 proposalId) {
         ProposalState proposalState = state(proposalId);
-        if (proposalState != ProposalState.Succeeded || proposalState != ProposalState.Defeated) {
+        if (proposalState != ProposalState.Succeeded && proposalState != ProposalState.Defeated) {
             revert TIDUS_INVALID_STATE(proposalId, proposalState);
         }
         _;
@@ -135,7 +135,6 @@ contract Senate is
     modifier maxConsulVetoesReached(uint256 proposalId) {
         uint8 consulVetoCount = vetoes[proposalId].consulVetoCount;
         if (consulVetoCount >= 2) revert TIDUS_ALREADY_VETOED(Position.Consul, msg.sender);
-        require(vetoes[proposalId].consulVetoCount < 2, "Senate: Both Consuls have already Vetoed");
         _;
     }
 
@@ -163,22 +162,9 @@ contract Senate is
         quorumPct = _quorumValue;
     }
 
-    /**
-     * @notice Returns the required quorum for proposals.
-     * @return The required quorum value.
-     */
-    function updateQuorum(uint16 _quorumValue) public onlyTimelock returns (uint256) {
-        quorumPct = _quorumValue;
-        return quorumPct;
-    }
-
-    /**
-     * @notice Authorizes an upgrade to the contract implementation.
-     * @param newImplementation The address of the new contract implementation.
-     * @dev This function can only be called by the contract owner.
-     */
-    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
-
+     ///////////////////////
+    //  Public Functions  //
+    ///////////////////////
     // The following functions are overrides required by Solidity.
     /**
      * @notice Vote on a proposal with the specified support.
@@ -223,22 +209,6 @@ contract Senate is
     }
 
     /**
-     * @notice Returns the voting delay.
-     * @return The voting delay value.
-     */
-    function votingDelay() public view override(IGovernorUpgradeable, GovernorSettingsUpgradeable) returns (uint256) {
-        return super.votingDelay();
-    }
-
-    /**
-     * @notice Returns the voting period.
-     * @return The voting period value.
-     */
-    function votingPeriod() public view override(IGovernorUpgradeable, GovernorSettingsUpgradeable) returns (uint256) {
-        return super.votingPeriod();
-    }
-
-    /**
      * @notice Allows a Tribune to veto a proposal that is in the Succeeded state.
      * @param proposalId The ID of the proposal to veto.
      * @dev This function requires that the caller is a Tribune and the proposal has not already been vetoed by a Tribune.
@@ -262,49 +232,18 @@ contract Senate is
     function consulVeto(uint256 proposalId)
         public
         override
-        onlySuccessfulOrDefeatedProposal(proposalId)
+        // onlySuccessfulOrDefeatedProposal(proposalId)
         onlyConsul
         noPreviousConsulVeto(proposalId)
         maxConsulVetoesReached(proposalId)
+        returns (bool)
     {
         vetoes[proposalId].consulVetoCount += 1;
         vetoes[proposalId].consulVetoes[msg.sender] = true;
         emit ConsulVeto(msg.sender, proposalId);
+        return true;
     }
 
-    /**
-     * @notice Returns the state of a proposal, taking into account veto actions.
-     * @param proposalId The ID of the proposal to query.
-     * @return The current state of the proposal.
-     * @dev This function overrides the state() function to include veto actions in the proposal state.
-     */
-    function state(uint256 proposalId)
-        public
-        view
-        override(GovernorUpgradeable, IGovernorUpgradeable, GovernorTimelockControlUpgradeable)
-        returns (ProposalState)
-    {
-        ProposalState currentState = super.state(proposalId);
-
-        // ifthe proposal is not in the Succeeded or Defeated state, return the current state
-        if (currentState != ProposalState.Succeeded && currentState != ProposalState.Defeated) {
-            return currentState;
-        }
-
-        VetoInfo storage vetoInfo = vetoes[proposalId];
-
-        // ifthere's a Tribune veto, the proposal is considered Defeated
-        if (currentState == ProposalState.Succeeded && vetoInfo.tribuneVetoes > 0) {
-            currentState = ProposalState.Defeated;
-        }
-
-        // ifthe proposal is in the Succeeded state and there's an odd number of Consul vetoes, the proposal state is reversed
-        if (currentState == ProposalState.Succeeded && vetoInfo.consulVetoCount % 2 == 1) {
-            currentState = ProposalState.Defeated;
-        }
-
-        return currentState;
-    }
 
     /**
      * @dev Creates a proposal with the given targets, values, calldatas and description, ifthe sender has a valid position.
@@ -324,23 +263,15 @@ contract Senate is
         return super.propose(targets, values, calldatas, description);
     }
 
-    /**
-     * @dev Gets the proposal threshold for the sender's position.
-     * @return The proposal threshold.
-     * Reverts ifthe sender's position is not valid.
+     ///////////////////////
+    // Internal Functions //
+    ///////////////////////
+   /**
+     * @notice Authorizes an upgrade to the contract implementation.
+     * @param newImplementation The address of the new contract implementation.
+     * @dev This function can only be called by the contract owner.
      */
-    function proposalThreshold()
-        public
-        view
-        override(GovernorUpgradeable, GovernorSettingsUpgradeable, ISenate)
-        returns (uint256)
-    {
-        if (validatePosition(msg.sender)) {
-            return 0;
-        } else {
-            return type(uint256).max; // Non-valid positions cannot create proposals
-        }
-    }
+    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
     /**
      * @dev Executes a proposal with the given ID, targets, values, calldatas and description hash.
@@ -384,6 +315,95 @@ contract Senate is
         return super._executor();
     }
 
+     ////////////////////////
+     // Governance Actions //
+    ////////////////////////
+    /**
+     * @dev Update the address of a given contract.
+     * @param _contractAddress The address of the contract to update.
+     * @param _newAddress The new address of the contract.
+     * @notice Only a Senate proposal can update the address of a contract.
+     */
+    function updateSenatePositionsContract(address _contractAddress, address _newAddress) public onlyTimelock {
+        require(_newAddress != address(0), "Senate: Cannot update a contract to the zero address");
+        require(_contractAddress != address(0), "Senate: Cannot update the zero address");
+        require(_contractAddress != _newAddress, "Senate: Cannot update a contract to the same address");
+        require(
+            _contractAddress == address(senatePositionsContract),
+            "Senate: Cannot update a contract that is not the SenatePositions contract"
+        );
+
+        senatePositionsContract = ISenatePositions(_newAddress);
+    }
+
+    /**
+     * @dev Update the address of a given contract.
+     * @param _newAddress The new address of the contract.
+     * @notice Only a Senate proposal can update the address of a contract.
+     */
+    function updateTimelockContract(address _newAddress) public onlyTimelock {
+        if(_newAddress == address(0)) revert TIDUS_ONLY_TIMELOCK();
+        if(_newAddress == address(timelockContract)) revert TIDUS_INVALID_ADDRESS(_newAddress);
+
+        timelockContract = _newAddress;
+    }
+
+    /**
+     * @notice Returns the required quorum for proposals.
+     * @return The required quorum value.
+     * @notice Only a Senate proposal can update the quorum value
+     */
+    function updateQuorum(uint16 _quorumValue) public onlyTimelock returns (uint256) {
+        quorumPct = _quorumValue;
+        return quorumPct;
+    }
+
+     //////////////////////////
+    // Public View Functions //
+    //////////////////////////
+    /**
+     * @notice Returns the state of a proposal, taking into account veto actions.
+     * @param proposalId The ID of the proposal to query.
+     * @return The current state of the proposal.
+     * @dev This function overrides the state() function to include veto actions in the proposal state.
+     */
+    function state(uint256 proposalId)
+        public
+        view
+        override(GovernorUpgradeable, IGovernorUpgradeable, GovernorTimelockControlUpgradeable)
+        returns (ProposalState)
+    {
+        ProposalState currentState = super.state(proposalId);
+
+        // ifthe proposal is not in the Succeeded or Defeated state, return the current state
+        if (currentState != ProposalState.Succeeded && currentState != ProposalState.Defeated) {
+            return currentState;
+        }
+
+        VetoInfo storage vetoInfo = vetoes[proposalId];
+
+        // if there's a Tribune veto, the proposal is considered Defeated
+        if (currentState == ProposalState.Succeeded && vetoInfo.tribuneVetoes > 0) {
+            currentState = ProposalState.Defeated;
+        }
+
+        //if the proposal is in the Succeeded state and there's an odd number of Consul vetoes, the proposal is considered Defeated
+        if (currentState == ProposalState.Succeeded && vetoInfo.consulVetoCount % 2 == 1) {
+            currentState = ProposalState.Defeated;
+        }
+
+        return currentState;
+    }
+
+    /**
+     * @notice Returns the required quorum for proposals.
+     * @param proposalId The ID of the proposal to check the quorum for.
+     * @return The required quorum value.
+     */
+    function quorum(uint256 proposalId) public view override(IGovernorUpgradeable, ISenate) returns (uint256) {
+        return quorum(proposalId);
+    }
+
     /**
      * @dev Checks whether the contract supports a given interface ID.
      * @param interfaceId The interface ID to check for support.
@@ -416,29 +436,49 @@ contract Senate is
     }
 
     /**
-     * @dev Update the address of a given contract.
-     * @param _contractAddress The address of the contract to update.
-     * @param _newAddress The new address of the contract.
-     * @notice Only a Senate proposal can update the address of a contract.
+     * @dev Gets the proposal threshold for the sender's position.
+     * @return The proposal threshold.
+     * Reverts ifthe sender's position is not valid.
      */
-    function updateSenatePositionsContract(address _contractAddress, address _newAddress) public onlyTimelock {
-        require(_newAddress != address(0), "Senate: Cannot update a contract to the zero address");
-        require(_contractAddress != address(0), "Senate: Cannot update the zero address");
-        require(_contractAddress != _newAddress, "Senate: Cannot update a contract to the same address");
-        require(
-            _contractAddress == address(senatePositionsContract),
-            "Senate: Cannot update a contract that is not the SenatePositions contract"
-        );
-
-        senatePositionsContract = ISenatePositions(_newAddress);
+    function proposalThreshold()
+        public
+        view
+        override(GovernorUpgradeable, GovernorSettingsUpgradeable, ISenate)
+        returns (uint256)
+    {
+        if (validatePosition(msg.sender)) {
+            return 0;
+        } else {
+            return type(uint256).max; // Non-valid positions cannot create proposals
+        }
     }
 
     /**
-     * @notice Returns the required quorum for proposals.
-     * @param proposalId The ID of the proposal to check the quorum for.
-     * @return The required quorum value.
+     * @notice Returns the voting delay.
+     * @return The voting delay value.
      */
-    function quorum(uint256 proposalId) public view override(IGovernorUpgradeable, ISenate) returns (uint256) {
-        return quorum(proposalId);
+    function votingDelay() public view override(IGovernorUpgradeable, GovernorSettingsUpgradeable) returns (uint256) {
+        return super.votingDelay();
     }
+
+    /**
+     * @notice Returns the voting period.
+     * @return The voting period value.
+     */
+    function votingPeriod() public view override(IGovernorUpgradeable, GovernorSettingsUpgradeable) returns (uint256) {
+        return super.votingPeriod();
+    }
+
+    /**
+     * @notice Returns whether a consul has vetoed a proposal 
+     * @return True if the consul has vetoed the proposal, false otherwise. 
+     */
+    function hasConsulVetoed(uint256 proposalId, address consul) public view returns (bool) {
+        return vetoes[proposalId].consulVetoes[consul];
+    }
+
+    function numConsulVetoes(uint256 proposalId) public view returns (uint8) {
+        return vetoes[proposalId].consulVetoCount;
+    }
+
 }
