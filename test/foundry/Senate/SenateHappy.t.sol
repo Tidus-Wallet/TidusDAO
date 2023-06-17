@@ -68,7 +68,7 @@ contract MockProxy is TransparentUpgradeableProxy {
     }
 }
 
-contract TestSenate is Test, Events {
+contract TestSenateHappy is Test, Events {
     // Senate deployment vars
     Senate public senateImpl;
     MockProxy public senate;
@@ -134,6 +134,18 @@ contract TestSenate is Test, Events {
             addr := mload(0)
         }
         assertEq(address(senateImpl), addr);
+
+        ///@dev Mint a token to mockWallet so it can submit a proposal
+        senatePositions.mint(ISenatePositions.Position.Consul, address(this));
+        assertEq(senatePositions.isConsul(address(this)), true);
+
+        ///@dev Verify that the Senate `validationPosition` is true
+        (bool validationSuccess, bytes memory validationData) =
+            address(senate).staticcall(abi.encodeWithSignature("validatePosition(address)", address(this)));
+        assertEq(validationSuccess, true);
+        if (validationSuccess) {
+            assertEq(abi.decode(validationData, (bool)), true);
+        }
     }
 
     function onERC721Received(address, address, uint256, bytes calldata) external pure returns (bytes4) {
@@ -148,7 +160,7 @@ contract TestSenate is Test, Events {
         assertEq(thresholdSuccess, true);
         if (thresholdSuccess) {
             uint256 proposalThreshold = abi.decode(thresholdData, (uint256));
-            assertEq(proposalThreshold, type(uint256).max);
+            assertEq(proposalThreshold, 0);
         }
 
         ///@dev Verify the correct SenatePositions contract is set
@@ -171,17 +183,7 @@ contract TestSenate is Test, Events {
         bytes[] memory calldatas = new bytes[](1);
         calldatas[0] = abi.encodeWithSignature("mint(uint8, address)", 0, address(mockWallet));
 
-        ///@dev Mint a token to mockWallet so it can submit a proposal
-        senatePositions.mint(ISenatePositions.Position.Consul, address(this));
-        assertEq(senatePositions.isConsul(address(this)), true);
 
-        ///@dev Verify that the Senate `validationPosition` is true
-        (bool validationSuccess, bytes memory validationData) =
-            address(senate).staticcall(abi.encodeWithSignature("validatePosition(address)", address(this)));
-        assertEq(validationSuccess, true);
-        if (validationSuccess) {
-            assertEq(abi.decode(validationData, (bool)), true);
-        }
 
         ///@dev Verify that the Proposal Threshold is 0 votes
         (bool thresholdSuccess, bytes memory thresholdData) =
@@ -192,26 +194,98 @@ contract TestSenate is Test, Events {
             assertEq(proposalThreshold, 0);
         }
 
-        ///@dev Submit a proposal
-        // vm.expectEmit();
-        // emit Events.ProposalCreated(
-        //     0,
-        //     address(mockWallet),
-        //     targets,
-        //     values,
-        //     new string[](0),
-        //     calldatas,
-        //     block.number,
-        //     block.number + 100,
-        //     "Test Proposal"
-        // );
         (bool proposalSuccess, bytes memory proposalData) = address(senate).call(
             abi.encodeWithSignature(
                 "propose(address[],uint256[],bytes[],string)", targets, values, calldatas, "Test Proposal"
             )
         );
         if (proposalSuccess) {
-            console.log(abi.decode(proposalData, (uint256)));
+            // Verify proposal ID
+            uint256 hashedProposal = uint256(keccak256(abi.encode(targets, values, calldatas, keccak256(bytes("Test Proposal")))));
+            assertEq(abi.decode(proposalData, (uint256)), hashedProposal);  
+
+            // Verify proposal is 'Pending' (uint8 0)
+            (bool proposalStateSuccess, bytes memory proposalStateData) =
+                address(senate).staticcall(abi.encodeWithSignature("proposalState(uint256)", hashedProposal));
+            if (proposalStateSuccess) {
+                uint8 proposalState = abi.decode(proposalStateData, (uint8));
+                uint8 expectedStatePending = 0;
+                assertEq(proposalState, expectedStatePending);
+            }
+
+            // Change block number to 2 as the contract was deployed at block 2
+            vm.roll(2);
+
+            // Verify proposal details
+            /// Proposal State == 'Active' (uint8 1)
+            (bool proposalStateSuccess2, bytes memory proposalStateData2) =
+                address(senate).staticcall(abi.encodeWithSignature("proposalState(uint256)", hashedProposal));
+            if (proposalStateSuccess2) {
+                uint8 expectedStateActive = 1;
+                uint8 proposalState = abi.decode(proposalStateData2, (uint8));
+                assertEq(proposalState, expectedStateActive);
+            }
+
+            /// Proposal Snapshot
+            uint256 expectedSnapshot = block.number;
+            (bool snapshotSuccess, bytes memory snapshotData) =
+                address(senate).staticcall(abi.encodeWithSignature("proposalSnapshot(uint256)", hashedProposal));
+                if(snapshotSuccess) {
+                    uint256 snapshot = abi.decode(snapshotData, (uint256));
+                    assertEq(snapshot, expectedSnapshot);
+                }
+            /// Proposal Deadline
+            uint256 expectedDeadline = block.number + 21600;
+            (bool deadlineSuccess, bytes memory deadlineData) =
+                address(senate).staticcall(abi.encodeWithSignature("proposalDeadline(uint256)", hashedProposal));
+                if(deadlineSuccess) {
+                    uint256 deadline = abi.decode(deadlineData, (uint256));
+                    assertEq(deadline, expectedDeadline);
+                }
         }
+    }
+
+    function test_castVote() external {
+        // Submit a new proposal
+        ///@dev Set up proposal vars
+        ///@dev Targets
+        address[] memory targets = new address[](1);
+        targets[0] = address(senatePositions);
+        ///@dev Values
+        uint256[] memory values = new uint256[](1);
+        values[0] = 0;
+        ///@dev Calldatas
+        bytes[] memory calldatas = new bytes[](1);
+        calldatas[0] = abi.encodeWithSignature("mint(uint8, address)", 0, address(mockWallet));
+        
+        (bool proposalSuccess, bytes memory proposalData) = address(senate).call(
+            abi.encodeWithSignature(
+                "propose(address[],uint256[],bytes[],string)", targets, values, calldatas, "Test Proposal"
+            )
+        );
+        assertEq(proposalSuccess, true);
+        uint256 proposalId = abi.decode(proposalData, (uint256));
+
+        // Change block number to make proposal active 
+        vm.roll(5);
+
+        // Verify proposal state is Active
+        (bool proposalStateSuccess, bytes memory proposalStateData) =
+            address(senate).staticcall(abi.encodeWithSignature("proposalState(uint256)", proposalId));
+            if(proposalStateSuccess) {
+                uint8 proposalStateActive = abi.decode(proposalStateData, (uint8));
+                uint8 expectedProposalState = 1;
+                assertEq(proposalStateActive, expectedProposalState);
+            }
+        
+        // Cast vote on proposal
+        (bool voteSuccess, bytes memory voteData) = address(senate).call(
+            abi.encodeWithSignature("castVote(uint256,uint8)", proposalId, 1)
+        );
+        assertEq(voteSuccess, true);
+        uint256 voteWeight = abi.decode(voteData, (uint256));
+        // We had no votes before so weight should be zero
+        assertEq(voteWeight, 0);
+
     }
 }

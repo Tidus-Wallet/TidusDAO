@@ -73,7 +73,7 @@ contract Senate is
     }
 
     modifier onlyValidSupport(uint8 support) {
-        if (support <= 2) revert TIDUS_INVALID_SUPPORT(support);
+        if (support >= 2) revert TIDUS_INVALID_SUPPORT(support);
         _;
     }
 

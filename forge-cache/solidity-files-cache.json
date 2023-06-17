@@ -222,8 +222,8 @@
       }
     },
     "contracts/governance/Senate.sol": {
-      "lastModificationDate": 1686587052687,
-      "contentHash": "9e0c639b461d5d3ff3ef13d9ea15e2cc",
+      "lastModificationDate": 1687029550688,
+      "contentHash": "cb7b9ef8ed407dccf65bf2c223b9c030",
       "sourceName": "contracts/governance/Senate.sol",
       "solcConfig": {
         "settings": {
@@ -3970,8 +3970,8 @@
       }
     },
     "test/foundry/Senate/SenateHappy.t.sol": {
-      "lastModificationDate": 1686604367547,
-      "contentHash": "2f706237194a12f904094cda797d1e6f",
+      "lastModificationDate": 1687029868235,
+      "contentHash": "238851f53e00da062eef046210ef9b33",
       "sourceName": "test/foundry/Senate/SenateHappy.t.sol",
       "solcConfig": {
         "settings": {
@@ -4101,8 +4101,8 @@
         "MockWallet": {
           "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/MockWallet.json"
         },
-        "TestSenate": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/TestSenate.json"
+        "TestSenateHappy": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/TestSenateHappy.json"
         }
       }
     },
@@ -4287,7 +4287,7 @@
       }
     },
     "test/foundry/SenatePositions/SenatePositionsReverts.t.sol": {
-      "lastModificationDate": 1686588092458,
+      "lastModificationDate": 1686602557403,
       "contentHash": "5f0d01440850216f71427468a1723c47",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsReverts.t.sol",
       "solcConfig": {
