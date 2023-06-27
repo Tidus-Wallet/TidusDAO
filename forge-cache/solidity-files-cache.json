@@ -13,7 +13,7 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1686602557407,
+      "lastModificationDate": 1686682987422,
       "contentHash": "f600a2b581a24cd279ce7d0db984745f",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
@@ -52,6 +52,9 @@
         "node_modules/@openzeppelin/contracts/access/Ownable.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
@@ -63,6 +66,8 @@
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
         "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
@@ -70,22 +75,24 @@
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
         "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol"
       ],
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "SenatePositions": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositions.sol/SenatePositions.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenatePositions.sol/SenatePositions.json"
         }
       }
     },
     "contracts/ERC721/interfaces/ISenatePositions.sol": {
-      "lastModificationDate": 1686602557403,
+      "lastModificationDate": 1686260556244,
       "contentHash": "e42043955965d5a6c09b6542fa32e37c",
       "sourceName": "contracts/ERC721/interfaces/ISenatePositions.sol",
       "solcConfig": {
@@ -123,12 +130,12 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "ISenatePositions": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ISenatePositions.sol/ISenatePositions.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ISenatePositions.sol/ISenatePositions.json"
         }
       }
     },
     "contracts/TidusDAOConstitution.sol": {
-      "lastModificationDate": 1686602557402,
+      "lastModificationDate": 1686260556244,
       "contentHash": "107d4705c865b4761bd0b8e70e9fa094",
       "sourceName": "contracts/TidusDAOConstitution.sol",
       "solcConfig": {
@@ -172,17 +179,18 @@
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/Math.sol"
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol"
       ],
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "TidusDAOConstitution": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "TidusDAOConstitution.sol/TidusDAOConstitution.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TidusDAOConstitution.sol/TidusDAOConstitution.json"
         }
       }
     },
     "contracts/governance/House.sol": {
-      "lastModificationDate": 1686602557402,
+      "lastModificationDate": 1686260556244,
       "contentHash": "87e8cc4130f074a120de10913520111d",
       "sourceName": "contracts/governance/House.sol",
       "solcConfig": {
@@ -217,12 +225,12 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "House": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "House.sol/House.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "House.sol/House.json"
         }
       }
     },
     "contracts/governance/Senate.sol": {
-      "lastModificationDate": 1687308799403,
+      "lastModificationDate": 1687276699367,
       "contentHash": "2db9654d4efff030976bcf7b9d99728b",
       "sourceName": "contracts/governance/Senate.sol",
       "solcConfig": {
@@ -262,6 +270,7 @@
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
@@ -274,7 +283,11 @@
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorVotesUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5805Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol",
@@ -286,24 +299,24 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "Senate": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Senate.sol/Senate.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Senate.sol/Senate.json"
         }
       }
     },
     "contracts/governance/Timelock.sol": {
-      "lastModificationDate": 1686602557403,
+      "lastModificationDate": 1686260556244,
       "contentHash": "9387163f7d5b28fd9d0509dce08a6378",
       "sourceName": "contracts/governance/Timelock.sol",
       "solcConfig": {
@@ -346,17 +359,18 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol"
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "Timelock": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Timelock.sol/Timelock.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Timelock.sol/Timelock.json"
         }
       }
     },
     "contracts/governance/interfaces/ISenate.sol": {
-      "lastModificationDate": 1687036911368,
+      "lastModificationDate": 1687267335719,
       "contentHash": "2450f0ed3e487eb56f497af1c1189e2b",
       "sourceName": "contracts/governance/interfaces/ISenate.sol",
       "solcConfig": {
@@ -390,20 +404,21 @@
       "imports": [
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol"
       ],
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "ISenate": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ISenate.sol/ISenate.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ISenate.sol/ISenate.json"
         }
       }
     },
     "contracts/governance/interfaces/ITimelock.sol": {
-      "lastModificationDate": 1686602557402,
+      "lastModificationDate": 1686260556244,
       "contentHash": "c5d2f296d06a9e0cc403d2e2c713845d",
       "sourceName": "contracts/governance/interfaces/ITimelock.sol",
       "solcConfig": {
@@ -438,12 +453,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ITimelock": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ITimelock.sol/ITimelock.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ITimelock.sol/ITimelock.json"
         }
       }
     },
     "contracts/mocks/MockTimelock.sol": {
-      "lastModificationDate": 1686602557403,
+      "lastModificationDate": 1686260556244,
       "contentHash": "1a10a09cf09a7e7987b573674170dea8",
       "sourceName": "contracts/mocks/MockTimelock.sol",
       "solcConfig": {
@@ -481,20 +496,21 @@
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol"
       ],
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "MockTimelock": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MockTimelock.sol/MockTimelock.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "MockTimelock.sol/MockTimelock.json"
         }
       }
     },
     "lib/forge-std/lib/ds-test/src/test.sol": {
-      "lastModificationDate": 1683940932472,
+      "lastModificationDate": 1686260556247,
       "contentHash": "9febff9d09f18af5306669dc276c4c43",
       "sourceName": "lib/forge-std/lib/ds-test/src/test.sol",
       "solcConfig": {
@@ -529,12 +545,12 @@
       "versionRequirement": ">=0.5.0",
       "artifacts": {
         "DSTest": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "test.sol/DSTest.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "test.sol/DSTest.json"
         }
       }
     },
     "lib/forge-std/src/Base.sol": {
-      "lastModificationDate": 1683940932475,
+      "lastModificationDate": 1686260556247,
       "contentHash": "8f04bbbb2c16f79e14fdc321695a8ec2",
       "sourceName": "lib/forge-std/src/Base.sol",
       "solcConfig": {
@@ -572,18 +588,18 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "CommonBase": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Base.sol/CommonBase.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Base.sol/CommonBase.json"
         },
         "ScriptBase": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Base.sol/ScriptBase.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Base.sol/ScriptBase.json"
         },
         "TestBase": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Base.sol/TestBase.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Base.sol/TestBase.json"
         }
       }
     },
     "lib/forge-std/src/Script.sol": {
-      "lastModificationDate": 1683940932477,
+      "lastModificationDate": 1686260556247,
       "contentHash": "83c39354c1e43190bce4dc43860dc786",
       "sourceName": "lib/forge-std/src/Script.sol",
       "solcConfig": {
@@ -630,12 +646,12 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "Script": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Script.sol/Script.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Script.sol/Script.json"
         }
       }
     },
     "lib/forge-std/src/StdAssertions.sol": {
-      "lastModificationDate": 1683940932476,
+      "lastModificationDate": 1686260556247,
       "contentHash": "6cc2858240bcd443debbbf075490e325",
       "sourceName": "lib/forge-std/src/StdAssertions.sol",
       "solcConfig": {
@@ -673,12 +689,12 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdAssertions": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdAssertions.sol/StdAssertions.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdAssertions.sol/StdAssertions.json"
         }
       }
     },
     "lib/forge-std/src/StdChains.sol": {
-      "lastModificationDate": 1683940932478,
+      "lastModificationDate": 1686260556247,
       "contentHash": "9c76820952c8f5e2fc02f872dc3afeb4",
       "sourceName": "lib/forge-std/src/StdChains.sol",
       "solcConfig": {
@@ -715,12 +731,12 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdChains": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdChains.sol/StdChains.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdChains.sol/StdChains.json"
         }
       }
     },
     "lib/forge-std/src/StdCheats.sol": {
-      "lastModificationDate": 1683940932475,
+      "lastModificationDate": 1686260556247,
       "contentHash": "1f7c1fe2f20a051b847336e1630e4bb5",
       "sourceName": "lib/forge-std/src/StdCheats.sol",
       "solcConfig": {
@@ -758,15 +774,15 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdCheats": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdCheats.sol/StdCheats.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdCheats.sol/StdCheats.json"
         },
         "StdCheatsSafe": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdCheats.sol/StdCheatsSafe.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdCheats.sol/StdCheatsSafe.json"
         }
       }
     },
     "lib/forge-std/src/StdError.sol": {
-      "lastModificationDate": 1683940932477,
+      "lastModificationDate": 1686260556247,
       "contentHash": "64c896e1276a291776e5ea5aecb3870a",
       "sourceName": "lib/forge-std/src/StdError.sol",
       "solcConfig": {
@@ -801,12 +817,12 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "stdError": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdError.sol/stdError.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdError.sol/stdError.json"
         }
       }
     },
     "lib/forge-std/src/StdInvariant.sol": {
-      "lastModificationDate": 1683940932474,
+      "lastModificationDate": 1686260556247,
       "contentHash": "12c06010ec43ce935ed209d5aca30828",
       "sourceName": "lib/forge-std/src/StdInvariant.sol",
       "solcConfig": {
@@ -841,12 +857,12 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdInvariant": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdInvariant.sol/StdInvariant.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdInvariant.sol/StdInvariant.json"
         }
       }
     },
     "lib/forge-std/src/StdJson.sol": {
-      "lastModificationDate": 1683940932473,
+      "lastModificationDate": 1686260556247,
       "contentHash": "2e1d13674e152408867795362d833c24",
       "sourceName": "lib/forge-std/src/StdJson.sol",
       "solcConfig": {
@@ -883,12 +899,12 @@
       "versionRequirement": ">=0.6.0, <0.9.0",
       "artifacts": {
         "stdJson": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdJson.sol/stdJson.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdJson.sol/stdJson.json"
         }
       }
     },
     "lib/forge-std/src/StdMath.sol": {
-      "lastModificationDate": 1683940932475,
+      "lastModificationDate": 1686260556247,
       "contentHash": "9da8f453eba6bb98f3d75bc6822bfb29",
       "sourceName": "lib/forge-std/src/StdMath.sol",
       "solcConfig": {
@@ -923,12 +939,12 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "stdMath": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdMath.sol/stdMath.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdMath.sol/stdMath.json"
         }
       }
     },
     "lib/forge-std/src/StdStorage.sol": {
-      "lastModificationDate": 1683940932474,
+      "lastModificationDate": 1686260556247,
       "contentHash": "3cb9868082df39a53927db09dbc21f23",
       "sourceName": "lib/forge-std/src/StdStorage.sol",
       "solcConfig": {
@@ -965,15 +981,15 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "stdStorage": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdStorage.sol/stdStorage.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdStorage.sol/stdStorage.json"
         },
         "stdStorageSafe": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdStorage.sol/stdStorageSafe.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdStorage.sol/stdStorageSafe.json"
         }
       }
     },
     "lib/forge-std/src/StdStyle.sol": {
-      "lastModificationDate": 1683940932476,
+      "lastModificationDate": 1686260556247,
       "contentHash": "820e6f6b7704f0c980fae604b1e34b18",
       "sourceName": "lib/forge-std/src/StdStyle.sol",
       "solcConfig": {
@@ -1010,12 +1026,12 @@
       "versionRequirement": ">=0.4.22, <0.9.0",
       "artifacts": {
         "StdStyle": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdStyle.sol/StdStyle.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdStyle.sol/StdStyle.json"
         }
       }
     },
     "lib/forge-std/src/StdUtils.sol": {
-      "lastModificationDate": 1683940932476,
+      "lastModificationDate": 1686260556247,
       "contentHash": "3c8a13d3abf093886cea4e028158b601",
       "sourceName": "lib/forge-std/src/StdUtils.sol",
       "solcConfig": {
@@ -1053,12 +1069,12 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "StdUtils": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StdUtils.sol/StdUtils.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StdUtils.sol/StdUtils.json"
         }
       }
     },
     "lib/forge-std/src/Test.sol": {
-      "lastModificationDate": 1683940932476,
+      "lastModificationDate": 1686260556247,
       "contentHash": "bc9d74a0c612e1c2b66cca2973bcc803",
       "sourceName": "lib/forge-std/src/Test.sol",
       "solcConfig": {
@@ -1110,12 +1126,12 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "Test": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Test.sol/Test.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Test.sol/Test.json"
         }
       }
     },
     "lib/forge-std/src/Vm.sol": {
-      "lastModificationDate": 1683940932474,
+      "lastModificationDate": 1686260556247,
       "contentHash": "2873383b1217375a8baccae57b02f0b0",
       "sourceName": "lib/forge-std/src/Vm.sol",
       "solcConfig": {
@@ -1150,15 +1166,15 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "Vm": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Vm.sol/Vm.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Vm.sol/Vm.json"
         },
         "VmSafe": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Vm.sol/VmSafe.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Vm.sol/VmSafe.json"
         }
       }
     },
     "lib/forge-std/src/console.sol": {
-      "lastModificationDate": 1683940932477,
+      "lastModificationDate": 1686260556247,
       "contentHash": "100b8a33b917da1147740d7ab8b0ded3",
       "sourceName": "lib/forge-std/src/console.sol",
       "solcConfig": {
@@ -1193,12 +1209,12 @@
       "versionRequirement": ">=0.4.22, <0.9.0",
       "artifacts": {
         "console": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "console.sol/console.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "console.sol/console.json"
         }
       }
     },
     "lib/forge-std/src/console2.sol": {
-      "lastModificationDate": 1683940932474,
+      "lastModificationDate": 1686260556247,
       "contentHash": "2096b4e5f252c5df9909cccbe3d2da2e",
       "sourceName": "lib/forge-std/src/console2.sol",
       "solcConfig": {
@@ -1233,12 +1249,12 @@
       "versionRequirement": ">=0.4.22, <0.9.0",
       "artifacts": {
         "console2": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "console2.sol/console2.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "console2.sol/console2.json"
         }
       }
     },
     "lib/forge-std/src/interfaces/IMulticall3.sol": {
-      "lastModificationDate": 1683940932478,
+      "lastModificationDate": 1686260556247,
       "contentHash": "7b131ca1ca32ef6378b7b9ad5488b901",
       "sourceName": "lib/forge-std/src/interfaces/IMulticall3.sol",
       "solcConfig": {
@@ -1273,13 +1289,13 @@
       "versionRequirement": ">=0.6.2, <0.9.0",
       "artifacts": {
         "IMulticall3": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IMulticall3.sol/IMulticall3.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IMulticall3.sol/IMulticall3.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-      "lastModificationDate": 1685892611762,
-      "contentHash": "e436cea06129be2c73cda4b1acc848b5",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "5a20b2cad87ddb61c7a3a6af21289e28",
       "sourceName": "node_modules/@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
         "settings": {
@@ -1315,13 +1331,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Ownable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Ownable.sol/Ownable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Ownable.sol/Ownable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol": {
-      "lastModificationDate": 1685892611772,
-      "contentHash": "a036d40989f21d08bb990e68d0088fa1",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "e2ea5c24dc3967534a8ac4df343668c2",
       "sourceName": "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
       "solcConfig": {
         "settings": {
@@ -1355,13 +1371,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IVotes": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IVotes.sol/IVotes.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IVotes.sol/IVotes.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol": {
-      "lastModificationDate": 1685892611772,
-      "contentHash": "d6c07022d5fe18c7a1b9b48c40c7df8d",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "4ef7a3f23c71033079fa69cb2453eab0",
       "sourceName": "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
       "solcConfig": {
         "settings": {
@@ -1393,25 +1409,31 @@
       },
       "imports": [
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
         "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol"
+        "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Votes": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Votes.sol/Votes.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Votes.sol/Votes.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/interfaces/IERC1967.sol": {
-      "lastModificationDate": 1685892611780,
-      "contentHash": "71e431b9bec8ee79c019265063e11431",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "d0d060231a45da7a1eecbb5cd286fa40",
       "sourceName": "node_modules/@openzeppelin/contracts/interfaces/IERC1967.sol",
       "solcConfig": {
         "settings": {
@@ -1445,12 +1467,135 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1967": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC1967.sol/IERC1967.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC1967.sol/IERC1967.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "b1756048024350a162c3be27c04aa652",
+      "sourceName": "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC5267": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC5267.sol/IERC5267.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "78962c5ba0fec9f6cad8f71cf96ae30b",
+      "sourceName": "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC5805": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC5805.sol/IERC5805.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "f9153597c0095dfaa672b15968161166",
+      "sourceName": "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC6372": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC6372.sol/IERC6372.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/interfaces/draft-IERC1822.sol": {
-      "lastModificationDate": 1685892611773,
+      "lastModificationDate": 1686683366917,
       "contentHash": "2858d98e74e67987ec81b39605230b74",
       "sourceName": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC1822.sol",
       "solcConfig": {
@@ -1485,12 +1630,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1822Proxiable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "draft-IERC1822.sol/IERC1822Proxiable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "draft-IERC1822.sol/IERC1822Proxiable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol": {
-      "lastModificationDate": 1685892611787,
+      "lastModificationDate": 1686683366917,
       "contentHash": "3fc3c7c0a2956f36e766691bb9473b06",
       "sourceName": "node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol",
       "solcConfig": {
@@ -1533,13 +1678,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC1967Proxy": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ERC1967Proxy.sol/ERC1967Proxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC1967Proxy.sol/ERC1967Proxy.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Upgrade.sol": {
-      "lastModificationDate": 1685892611788,
-      "contentHash": "02cd73b0fd6f712455af4c12ffd59ceb",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "a127706394bead18392601a20d44867a",
       "sourceName": "node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Upgrade.sol",
       "solcConfig": {
         "settings": {
@@ -1579,12 +1724,12 @@
       "versionRequirement": "^0.8.2",
       "artifacts": {
         "ERC1967Upgrade": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ERC1967Upgrade.sol/ERC1967Upgrade.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC1967Upgrade.sol/ERC1967Upgrade.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/proxy/Proxy.sol": {
-      "lastModificationDate": 1685892611788,
+      "lastModificationDate": 1686683366917,
       "contentHash": "40b3d81a836d50ff47e03893dcaaf204",
       "sourceName": "node_modules/@openzeppelin/contracts/proxy/Proxy.sol",
       "solcConfig": {
@@ -1619,12 +1764,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Proxy": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Proxy.sol/Proxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Proxy.sol/Proxy.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/proxy/beacon/IBeacon.sol": {
-      "lastModificationDate": 1685892611786,
+      "lastModificationDate": 1686683366917,
       "contentHash": "b6bd23bf19e90b771337037706470933",
       "sourceName": "node_modules/@openzeppelin/contracts/proxy/beacon/IBeacon.sol",
       "solcConfig": {
@@ -1659,13 +1804,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IBeacon": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IBeacon.sol/IBeacon.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IBeacon.sol/IBeacon.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol": {
-      "lastModificationDate": 1685892611789,
-      "contentHash": "2d9767fae10a097aa9022b9e7c03c9ad",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "1286aa8d056c7120d1a2da252e310d2f",
       "sourceName": "node_modules/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol",
       "solcConfig": {
         "settings": {
@@ -1708,16 +1853,16 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ITransparentUpgradeableProxy": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "TransparentUpgradeableProxy.sol/ITransparentUpgradeableProxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TransparentUpgradeableProxy.sol/ITransparentUpgradeableProxy.json"
         },
         "TransparentUpgradeableProxy": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "TransparentUpgradeableProxy.sol/TransparentUpgradeableProxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TransparentUpgradeableProxy.sol/TransparentUpgradeableProxy.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
-      "lastModificationDate": 1685892611806,
-      "contentHash": "f7f4f78c31f28534852e5c56000a25af",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "95602b04f0b53f1139f4668d123ddeb7",
       "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
         "settings": {
@@ -1756,18 +1901,19 @@
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/Math.sol"
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC721": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ERC721.sol/ERC721.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC721.sol/ERC721.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-      "lastModificationDate": 1685892611807,
-      "contentHash": "eb7e61db29f31d88b3c1cef1b063d338",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "48de4c9a3a4ae5ef66a2aa620843413f",
       "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
         "settings": {
@@ -1803,12 +1949,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC721.sol/IERC721.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721.sol/IERC721.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
-      "lastModificationDate": 1685892611807,
+      "lastModificationDate": 1686683366917,
       "contentHash": "c22d4395e33763de693fd440c6fd10e1",
       "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
@@ -1843,12 +1989,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721Receiver": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC721Receiver.sol/IERC721Receiver.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721Receiver.sol/IERC721Receiver.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol": {
-      "lastModificationDate": 1685892611804,
+      "lastModificationDate": 1686683366917,
       "contentHash": "212e86880d210b6cac8c3eb0cd6b1fad",
       "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
       "solcConfig": {
@@ -1890,18 +2036,19 @@
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/Math.sol"
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC721Enumerable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ERC721Enumerable.sol/ERC721Enumerable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC721Enumerable.sol/ERC721Enumerable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol": {
-      "lastModificationDate": 1685892611805,
-      "contentHash": "53fa78ff8e9bb0ebbfa1d1f52ea9f759",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "7147486312ec5a4af5ab13b195049dc3",
       "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol",
       "solcConfig": {
         "settings": {
@@ -1934,6 +2081,9 @@
       "imports": [
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
@@ -1942,23 +2092,26 @@
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
         "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol"
+        "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC721Votes": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ERC721Votes.sol/ERC721Votes.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC721Votes.sol/ERC721Votes.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol": {
-      "lastModificationDate": 1685892611805,
+      "lastModificationDate": 1686683366917,
       "contentHash": "f4dd06783f321aa26179bc2b6e361c29",
       "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
       "solcConfig": {
@@ -1996,12 +2149,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721Enumerable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC721Enumerable.sol/IERC721Enumerable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721Enumerable.sol/IERC721Enumerable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
-      "lastModificationDate": 1685892611805,
+      "lastModificationDate": 1686683366917,
       "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
       "sourceName": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -2039,13 +2192,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721Metadata": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC721Metadata.sol/IERC721Metadata.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721Metadata.sol/IERC721Metadata.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/Address.sol": {
-      "lastModificationDate": 1685892611812,
-      "contentHash": "f31ad6fc4bbf9c06203987220156a6ba",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "211ffd288c1588ba8c10eae668ca3c66",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
         "settings": {
@@ -2079,12 +2232,12 @@
       "versionRequirement": "^0.8.1",
       "artifacts": {
         "Address": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Address.sol/Address.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Address.sol/Address.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/Base64.sol": {
-      "lastModificationDate": 1685892611812,
+      "lastModificationDate": 1686683366917,
       "contentHash": "8f868da0a90e46a85baa348a896d1702",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/Base64.sol",
       "solcConfig": {
@@ -2119,13 +2272,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Base64": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Base64.sol/Base64.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Base64.sol/Base64.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol": {
-      "lastModificationDate": 1685892611813,
-      "contentHash": "6be139164eb45326092f58c45823abd0",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "92dd35130224b0240e03fdda054a6b77",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
       "solcConfig": {
         "settings": {
@@ -2162,12 +2315,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Checkpoints": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Checkpoints.sol/Checkpoints.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Checkpoints.sol/Checkpoints.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1685892611814,
+      "lastModificationDate": 1686683366917,
       "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -2202,12 +2355,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Context": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Context.sol/Context.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Context.sol/Context.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/Counters.sol": {
-      "lastModificationDate": 1685892611815,
+      "lastModificationDate": 1686683366917,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
@@ -2242,13 +2395,55 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Counters": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Counters.sol/Counters.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Counters.sol/Counters.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "8dde288da49722a70f34ee369be4bfba",
+      "sourceName": "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol"
+      ],
+      "versionRequirement": "^0.8.8",
+      "artifacts": {
+        "ShortStrings": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ShortStrings.sol/ShortStrings.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
-      "lastModificationDate": 1685892611820,
-      "contentHash": "f993f8f50186952a59ee5e3a30b68222",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "682f7dd1f2e1147c8390e7575deceb2d",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
       "solcConfig": {
         "settings": {
@@ -2282,13 +2477,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "StorageSlot": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StorageSlot.sol/StorageSlot.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StorageSlot.sol/StorageSlot.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/Strings.sol": {
-      "lastModificationDate": 1685892611820,
-      "contentHash": "396031251978f8febfd90cb62cb240ec",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "48686fc32a22a3754b8e63321857dd2a",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
         "settings": {
@@ -2319,18 +2514,19 @@
         }
       },
       "imports": [
-        "node_modules/@openzeppelin/contracts/utils/math/Math.sol"
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Strings": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Strings.sol/Strings.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Strings.sol/Strings.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
-      "lastModificationDate": 1685892611815,
-      "contentHash": "fe1190dbb6431c2464246925713f0f7f",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "d822a8a9468649cab463f29f5decf5cc",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
       "solcConfig": {
         "settings": {
@@ -2362,18 +2558,19 @@
       },
       "imports": [
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/Math.sol"
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ECDSA": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ECDSA.sol/ECDSA.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ECDSA.sol/ECDSA.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol": {
-      "lastModificationDate": 1685892611816,
-      "contentHash": "7c33eaa0f6dc029429ed8b986694c3a4",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "459aeb9cc3fc3c6d67d30ffefb724aba",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
       "solcConfig": {
         "settings": {
@@ -2404,19 +2601,23 @@
         }
       },
       "imports": [
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
-        "node_modules/@openzeppelin/contracts/utils/math/Math.sol"
+        "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol"
       ],
-      "versionRequirement": "^0.8.0",
+      "versionRequirement": "^0.8.8",
       "artifacts": {
         "EIP712": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "EIP712.sol/EIP712.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "EIP712.sol/EIP712.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
-      "lastModificationDate": 1685892611816,
+      "lastModificationDate": 1686683366917,
       "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -2453,12 +2654,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC165": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ERC165.sol/ERC165.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC165.sol/ERC165.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-      "lastModificationDate": 1685892611818,
+      "lastModificationDate": 1686683366917,
       "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -2493,13 +2694,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC165": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC165.sol/IERC165.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC165.sol/IERC165.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
-      "lastModificationDate": 1685892611818,
-      "contentHash": "b9c58920ce74d6dc819161786112e7ee",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "fe63409d8a06818b926cf89e0ea88b1b",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
         "settings": {
@@ -2533,12 +2734,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Math": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Math.sol/Math.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Math.sol/Math.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
-      "lastModificationDate": 1685892611819,
+      "lastModificationDate": 1686683366917,
       "contentHash": "67cf2dfe1d1c22b4ea7f242e8a17f431",
       "sourceName": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
       "solcConfig": {
@@ -2573,13 +2774,53 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "SafeCast": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SafeCast.sol/SafeCast.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SafeCast.sol/SafeCast.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "9488ebd4daacfee8ad04811600d7d061",
+      "sourceName": "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "SignedMath": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SignedMath.sol/SignedMath.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol": {
-      "lastModificationDate": 1685892611761,
-      "contentHash": "1e9b13e33c8524e33d22f3f1239efe5c",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "c88845618a815ef601f3f552c99d7ebb",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -2617,17 +2858,18 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol"
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "AccessControlUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "AccessControlUpgradeable.sol/AccessControlUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "AccessControlUpgradeable.sol/AccessControlUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol": {
-      "lastModificationDate": 1685892611762,
+      "lastModificationDate": 1686683366917,
       "contentHash": "21b43d1337ebc77c11da3cbe3fd65316",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol",
       "solcConfig": {
@@ -2662,13 +2904,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IAccessControlUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IAccessControlUpgradeable.sol/IAccessControlUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IAccessControlUpgradeable.sol/IAccessControlUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol": {
-      "lastModificationDate": 1685892611762,
-      "contentHash": "403ce8273abde646bff81558ddf512ad",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "db24b956904575cc79d02867ec03263c",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -2706,13 +2948,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "OwnableUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "OwnableUpgradeable.sol/OwnableUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "OwnableUpgradeable.sol/OwnableUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol": {
-      "lastModificationDate": 1685892611771,
-      "contentHash": "fdb286bb386b626bb36fb1cd99bca659",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "92bc3cf502175ea3b04924bd9c9c952d",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -2744,31 +2986,34 @@
       },
       "imports": [
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "GovernorUpgradeable.sol/GovernorUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorUpgradeable.sol/GovernorUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol": {
-      "lastModificationDate": 1685892611771,
-      "contentHash": "f225967b7ebbd1c576ee99d143c6c1f7",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "fafd4afd7a8faea89f45645ff8c87755",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -2799,21 +3044,22 @@
         }
       },
       "imports": [
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IGovernorUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IGovernorUpgradeable.sol/IGovernorUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IGovernorUpgradeable.sol/IGovernorUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/TimelockControllerUpgradeable.sol": {
-      "lastModificationDate": 1685892611772,
-      "contentHash": "fed2e3277f0cb930e9a8c1da7eed2f4d",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "a58e70d6b4aa349fbfd9b6e2f5aab4a3",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/TimelockControllerUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -2854,18 +3100,19 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol"
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "TimelockControllerUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "TimelockControllerUpgradeable.sol/TimelockControllerUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "TimelockControllerUpgradeable.sol/TimelockControllerUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorCountingSimpleUpgradeable.sol": {
-      "lastModificationDate": 1685892611769,
-      "contentHash": "b9ca2a6511001151006849488089ccb0",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "b3303e0be95bdc3633095c16cde1f82d",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorCountingSimpleUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -2898,31 +3145,34 @@
       "imports": [
         "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorCountingSimpleUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "GovernorCountingSimpleUpgradeable.sol/GovernorCountingSimpleUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorCountingSimpleUpgradeable.sol/GovernorCountingSimpleUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorSettingsUpgradeable.sol": {
-      "lastModificationDate": 1685892611769,
-      "contentHash": "61b1a9ccb8fbf470126d9fdab1dd7645",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "cfdb86e09a5e92d64826e861d6b73025",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorSettingsUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -2955,31 +3205,34 @@
       "imports": [
         "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorSettingsUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "GovernorSettingsUpgradeable.sol/GovernorSettingsUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorSettingsUpgradeable.sol/GovernorSettingsUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorTimelockControlUpgradeable.sol": {
-      "lastModificationDate": 1685892611770,
-      "contentHash": "2d06c42433255ad1539e7caabe8e47a0",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "99dde85208596e67eec5f06a7c973967",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorTimelockControlUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3016,31 +3269,34 @@
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/TimelockControllerUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorTimelockControlUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "GovernorTimelockControlUpgradeable.sol/GovernorTimelockControlUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorTimelockControlUpgradeable.sol/GovernorTimelockControlUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorVotesUpgradeable.sol": {
-      "lastModificationDate": 1685892611771,
-      "contentHash": "809326938ad7c3d72ba9d7c01c2200c9",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "e4dd9d2d6e5a74cd4b87ecfe5fe65a32",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorVotesUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3074,30 +3330,34 @@
         "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5805Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "GovernorVotesUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "GovernorVotesUpgradeable.sol/GovernorVotesUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "GovernorVotesUpgradeable.sol/GovernorVotesUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol": {
-      "lastModificationDate": 1685892611771,
+      "lastModificationDate": 1686683366917,
       "contentHash": "9d5973e663745df2304f02bb7c4b4078",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
       "solcConfig": {
@@ -3130,21 +3390,22 @@
       },
       "imports": [
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IGovernorTimelockUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IGovernorTimelockUpgradeable.sol/IGovernorTimelockUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IGovernorTimelockUpgradeable.sol/IGovernorTimelockUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol": {
-      "lastModificationDate": 1685892611772,
-      "contentHash": "432a27bbcb26badb3d40e9fb214d09f9",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "80bff8876cb4092b3586097e1d0c16ab",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3178,13 +3439,55 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IVotesUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IVotesUpgradeable.sol/IVotesUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IVotesUpgradeable.sol/IVotesUpgradeable.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "0ce0dc23b57eb688403ad5169cc18a7d",
+      "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC165Upgradeable": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "interfaces/IERC165Upgradeable.sol/IERC165Upgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol": {
-      "lastModificationDate": 1685892611781,
-      "contentHash": "1d98f0f04dba67b0b50e61141b23e6d3",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "a5421a5e611067b9202e83329fbf6fc7",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3218,12 +3521,135 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1967Upgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC1967Upgradeable.sol/IERC1967Upgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC1967Upgradeable.sol/IERC1967Upgradeable.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "2b3f03127c03dd67be61c925b1f86ff3",
+      "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC5267Upgradeable": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC5267Upgradeable.sol/IERC5267Upgradeable.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5805Upgradeable.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "c3a9d2a1ed12ceba679f14eb6d3a57e5",
+      "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5805Upgradeable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC5805Upgradeable": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC5805Upgradeable.sol/IERC5805Upgradeable.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "e2c2c53276d18d51c28f29f529e1eae8",
+      "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC6372Upgradeable": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC6372Upgradeable.sol/IERC6372Upgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol": {
-      "lastModificationDate": 1685892611777,
+      "lastModificationDate": 1686683366917,
       "contentHash": "a6883cfd85607b16c121a02728369eb3",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol",
       "solcConfig": {
@@ -3258,13 +3684,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1822ProxiableUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "draft-IERC1822Upgradeable.sol/IERC1822ProxiableUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "draft-IERC1822Upgradeable.sol/IERC1822ProxiableUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol": {
-      "lastModificationDate": 1685892611787,
-      "contentHash": "eba93b58d7bf7ffbdce09dbe9c5f3bb6",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "2587366284baa690cce0accaca1a20f9",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3305,12 +3731,12 @@
       "versionRequirement": "^0.8.2",
       "artifacts": {
         "ERC1967UpgradeUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ERC1967UpgradeUpgradeable.sol/ERC1967UpgradeUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC1967UpgradeUpgradeable.sol/ERC1967UpgradeUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol": {
-      "lastModificationDate": 1685892611787,
+      "lastModificationDate": 1686683366917,
       "contentHash": "21bffd733b4ca013e125a0ffe2e52254",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol",
       "solcConfig": {
@@ -3345,13 +3771,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IBeaconUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IBeaconUpgradeable.sol/IBeaconUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IBeaconUpgradeable.sol/IBeaconUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
-      "lastModificationDate": 1685892611788,
-      "contentHash": "fc5844e59776a976987884e4d9814c7d",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "b0970a564d121abf9adfff8d1a01eb16",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
       "solcConfig": {
         "settings": {
@@ -3387,13 +3813,13 @@
       "versionRequirement": "^0.8.2",
       "artifacts": {
         "Initializable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Initializable.sol/Initializable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "Initializable.sol/Initializable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol": {
-      "lastModificationDate": 1685892611788,
-      "contentHash": "e271d7f01f6ba5cb9dbe19c49180243d",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "52ef5d6c909d6f8ef3077445d3328eca",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3435,12 +3861,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "UUPSUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "UUPSUpgradeable.sol/UUPSUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "UUPSUpgradeable.sol/UUPSUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol": {
-      "lastModificationDate": 1685892611794,
+      "lastModificationDate": 1686683366917,
       "contentHash": "eb51ed084f6f7fd2c7098715c5690285",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
       "solcConfig": {
@@ -3477,12 +3903,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC1155ReceiverUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC1155ReceiverUpgradeable.sol/IERC1155ReceiverUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC1155ReceiverUpgradeable.sol/IERC1155ReceiverUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol": {
-      "lastModificationDate": 1685892611805,
+      "lastModificationDate": 1686683366917,
       "contentHash": "ba28cf60b52b00d2b3a190bcdf0952bd",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol",
       "solcConfig": {
@@ -3517,13 +3943,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC721ReceiverUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC721ReceiverUpgradeable.sol/IERC721ReceiverUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC721ReceiverUpgradeable.sol/IERC721ReceiverUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol": {
-      "lastModificationDate": 1685892611808,
-      "contentHash": "228f256dbb21393bc9ad02648e222f74",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "c30c805386fda8a42ff515da963d3a95",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3557,12 +3983,12 @@
       "versionRequirement": "^0.8.1",
       "artifacts": {
         "AddressUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "AddressUpgradeable.sol/AddressUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "AddressUpgradeable.sol/AddressUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
-      "lastModificationDate": 1685892611813,
+      "lastModificationDate": 1686683366917,
       "contentHash": "6200b84950eb05b4a92a39fd1d6e0f9b",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
       "solcConfig": {
@@ -3600,13 +4026,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ContextUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ContextUpgradeable.sol/ContextUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ContextUpgradeable.sol/ContextUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol": {
-      "lastModificationDate": 1685892611819,
-      "contentHash": "731fafe5fdaca6e0749253ab7ce7d3b9",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "02cf959b00ba5c650708472f195f8b29",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3640,13 +4066,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "StorageSlotUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StorageSlotUpgradeable.sol/StorageSlotUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StorageSlotUpgradeable.sol/StorageSlotUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol": {
-      "lastModificationDate": 1685892611819,
-      "contentHash": "3805d0267faeda96624b50a67ca89f08",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "c221361be1c4953f5b71f47475b90266",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3677,58 +4103,19 @@
         }
       },
       "imports": [
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol"
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "StringsUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "StringsUpgradeable.sol/StringsUpgradeable.json"
-        }
-      }
-    },
-    "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol": {
-      "lastModificationDate": 1685892611820,
-      "contentHash": "0e886b0051ad9fe6a184a14f9b6ee09b",
-      "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs",
-            "appendCBOR": true
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ]
-            }
-          },
-          "evmVersion": "paris",
-          "libraries": {}
-        }
-      },
-      "imports": [],
-      "versionRequirement": "^0.8.0",
-      "artifacts": {
-        "TimersUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "TimersUpgradeable.sol/TimersUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "StringsUpgradeable.sol/StringsUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol": {
-      "lastModificationDate": 1685892611815,
-      "contentHash": "b3e120a8002394aabbbc467369cd7390",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "e6a08d062a6f4f6b05822a0fa19a1606",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3760,18 +4147,19 @@
       },
       "imports": [
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol"
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ECDSAUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ECDSAUpgradeable.sol/ECDSAUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ECDSAUpgradeable.sol/ECDSAUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol": {
-      "lastModificationDate": 1685892611815,
-      "contentHash": "4022a2f2e92f5c281d1a2cdae10a9e6b",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "1574f8139cf0b307447c86cc89cd08f8",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3802,21 +4190,23 @@
         }
       },
       "imports": [
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol"
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol"
       ],
-      "versionRequirement": "^0.8.0",
+      "versionRequirement": "^0.8.8",
       "artifacts": {
         "EIP712Upgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "EIP712Upgradeable.sol/EIP712Upgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "EIP712Upgradeable.sol/EIP712Upgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol": {
-      "lastModificationDate": 1685892611816,
+      "lastModificationDate": 1686683366917,
       "contentHash": "5f2d8b81c0ff5bd2047b4846c20b998d",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
       "solcConfig": {
@@ -3855,12 +4245,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "ERC165Upgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ERC165Upgradeable.sol/ERC165Upgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "ERC165Upgradeable.sol/ERC165Upgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol": {
-      "lastModificationDate": 1685892611817,
+      "lastModificationDate": 1686683366917,
       "contentHash": "d6ecf203a5e72c845be9bbf2f304a289",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
       "solcConfig": {
@@ -3895,13 +4285,13 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IERC165Upgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC165Upgradeable.sol/IERC165Upgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "IERC165Upgradeable.sol/IERC165Upgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol": {
-      "lastModificationDate": 1685892611817,
-      "contentHash": "469f71655418cc5f328fcc9bfdf10e9a",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "5a2a749b45b6a8eb035f4bf75addcb27",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3935,12 +4325,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "MathUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MathUpgradeable.sol/MathUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "MathUpgradeable.sol/MathUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol": {
-      "lastModificationDate": 1685892611818,
+      "lastModificationDate": 1686683366917,
       "contentHash": "8565f9d83dfbed34d9ff896c02e23ae7",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
       "solcConfig": {
@@ -3975,13 +4365,53 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "SafeCastUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SafeCastUpgradeable.sol/SafeCastUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SafeCastUpgradeable.sol/SafeCastUpgradeable.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol": {
+      "lastModificationDate": 1686683366917,
+      "contentHash": "2a6b819b2e241091ada6d645df3e3929",
+      "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "SignedMathUpgradeable": {
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SignedMathUpgradeable.sol/SignedMathUpgradeable.json"
         }
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol": {
-      "lastModificationDate": 1685892611812,
-      "contentHash": "a22ef83e69eaff73736c74e7020b8bcf",
+      "lastModificationDate": 1686683366917,
+      "contentHash": "882696cfa7d5ef4c4b7af1f2a907b1b3",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -4017,12 +4447,12 @@
       "versionRequirement": "^0.8.4",
       "artifacts": {
         "DoubleEndedQueueUpgradeable": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "DoubleEndedQueueUpgradeable.sol/DoubleEndedQueueUpgradeable.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "DoubleEndedQueueUpgradeable.sol/DoubleEndedQueueUpgradeable.json"
         }
       }
     },
     "script/deploySenatePositions.s.sol": {
-      "lastModificationDate": 1687313863186,
+      "lastModificationDate": 1687898738333,
       "contentHash": "f6df194baa3b91409558cdb4d15e823a",
       "sourceName": "script/deploySenatePositions.s.sol",
       "solcConfig": {
@@ -4073,6 +4503,9 @@
         "node_modules/@openzeppelin/contracts/access/Ownable.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
@@ -4084,6 +4517,8 @@
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
         "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
@@ -4091,22 +4526,24 @@
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
         "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol"
       ],
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "DeploySenatePositions": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "deploySenatePositions.s.sol/DeploySenatePositions.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "deploySenatePositions.s.sol/DeploySenatePositions.json"
         }
       }
     },
     "test/foundry/Senate/SenateHappy.t.sol": {
-      "lastModificationDate": 1687308803399,
+      "lastModificationDate": 1687276170156,
       "contentHash": "d31978c91e0680b72ea0fd5a14575e98",
       "sourceName": "test/foundry/Senate/SenateHappy.t.sol",
       "solcConfig": {
@@ -4165,6 +4602,9 @@
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
         "node_modules/@openzeppelin/contracts/interfaces/IERC1967.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
         "node_modules/@openzeppelin/contracts/interfaces/draft-IERC1822.sol",
         "node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol",
         "node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Upgrade.sol",
@@ -4182,6 +4622,7 @@
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
         "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
         "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
@@ -4190,6 +4631,7 @@
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
         "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
@@ -4202,7 +4644,11 @@
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorVotesUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5805Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol",
@@ -4214,36 +4660,36 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol"
       ],
       "versionRequirement": "=0.8.20",
       "artifacts": {
         "Events": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/Events.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenateHappy.t.sol/Events.json"
         },
         "MockProxy": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/MockProxy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenateHappy.t.sol/MockProxy.json"
         },
         "MockTimelock": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/MockTimelock.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenateHappy.t.sol/MockTimelock.json"
         },
         "MockWallet": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/MockWallet.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenateHappy.t.sol/MockWallet.json"
         },
         "TestSenateHappy": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenateHappy.t.sol/TestSenateHappy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenateHappy.t.sol/TestSenateHappy.json"
         }
       }
     },
     "test/foundry/SenatePositions/SenatePositionsFuzzing.t.sol": {
-      "lastModificationDate": 1686602557403,
+      "lastModificationDate": 1686682987422,
       "contentHash": "35543a9fb05eacca725e39b0ddc5e6b1",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsFuzzing.t.sol",
       "solcConfig": {
@@ -4299,6 +4745,9 @@
         "node_modules/@openzeppelin/contracts/access/Ownable.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
@@ -4310,6 +4759,8 @@
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
         "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
@@ -4317,23 +4768,25 @@
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
         "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "test/foundry/mocks/MockWallet.sol"
       ],
       "versionRequirement": "=0.8.20",
       "artifacts": {
         "SenatePositionsFuzzing": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositionsFuzzing.t.sol/SenatePositionsFuzzing.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenatePositionsFuzzing.t.sol/SenatePositionsFuzzing.json"
         }
       }
     },
     "test/foundry/SenatePositions/SenatePositionsHappy.t.sol": {
-      "lastModificationDate": 1686602557403,
+      "lastModificationDate": 1686682987422,
       "contentHash": "1caac9934a0113cb4aa04970795fa0d2",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsHappy.t.sol",
       "solcConfig": {
@@ -4389,6 +4842,9 @@
         "node_modules/@openzeppelin/contracts/access/Ownable.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
@@ -4400,6 +4856,8 @@
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
         "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
@@ -4407,23 +4865,25 @@
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
         "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "test/foundry/mocks/MockWallet.sol"
       ],
       "versionRequirement": "=0.8.20",
       "artifacts": {
         "SenatePositionsHappy": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositionsHappy.t.sol/SenatePositionsHappy.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenatePositionsHappy.t.sol/SenatePositionsHappy.json"
         }
       }
     },
     "test/foundry/SenatePositions/SenatePositionsReverts.t.sol": {
-      "lastModificationDate": 1686602557403,
+      "lastModificationDate": 1686682987422,
       "contentHash": "5f0d01440850216f71427468a1723c47",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsReverts.t.sol",
       "solcConfig": {
@@ -4480,6 +4940,9 @@
         "node_modules/@openzeppelin/contracts/access/Ownable.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol",
+        "node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
@@ -4491,6 +4954,8 @@
         "node_modules/@openzeppelin/contracts/utils/Checkpoints.sol",
         "node_modules/@openzeppelin/contracts/utils/Context.sol",
         "node_modules/@openzeppelin/contracts/utils/Counters.sol",
+        "node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
@@ -4498,6 +4963,7 @@
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
         "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
@@ -4510,7 +4976,11 @@
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorVotesUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/IGovernorTimelockUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5805Upgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC6372Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol",
@@ -4522,25 +4992,25 @@
         "node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
-        "node_modules/@openzeppelin/contracts-upgradeable/utils/TimersUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol",
+        "node_modules/@openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/utils/structs/DoubleEndedQueueUpgradeable.sol",
         "test/foundry/mocks/MockWallet.sol"
       ],
       "versionRequirement": "=0.8.20",
       "artifacts": {
         "SenatePositionsTestReverts": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SenatePositionsReverts.t.sol/SenatePositionsTestReverts.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "SenatePositionsReverts.t.sol/SenatePositionsTestReverts.json"
         }
       }
     },
     "test/foundry/mocks/MockWallet.sol": {
-      "lastModificationDate": 1686602557402,
+      "lastModificationDate": 1686260556247,
       "contentHash": "c8c3d98805debf3663c14000bf9f86a8",
       "sourceName": "test/foundry/mocks/MockWallet.sol",
       "solcConfig": {
@@ -4579,7 +5049,7 @@
       "versionRequirement": "^0.8.18",
       "artifacts": {
         "MockWallet": {
-          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MockWallet.sol/MockWallet.json"
+          "0.8.20+commit.a1b79de6.Linux.gcc": "MockWallet.sol/MockWallet.json"
         }
       }
     }
