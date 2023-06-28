@@ -10,7 +10,6 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {ISenate} from "../governance/interfaces/ISenate.sol";
 import {ISenatePositions} from "./interfaces/ISenatePositions.sol";
 import {ITimelock} from "../governance/interfaces/ITimelock.sol";
-import {console} from "../../lib/forge-std/src/console.sol";
 
 /// @custom:security-contact sekaieth@proton.me
 contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISenatePositions {

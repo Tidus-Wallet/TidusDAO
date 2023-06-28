@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1687964281268,
-      "contentHash": "2b70af31ae260aa865843c37298ff20b",
+      "lastModificationDate": 1687965595229,
+      "contentHash": "0967898f17292611e8b3d664f451b2f9",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -48,7 +48,6 @@
         "contracts/ERC721/interfaces/ISenatePositions.sol",
         "contracts/governance/interfaces/ISenate.sol",
         "contracts/governance/interfaces/ITimelock.sol",
-        "lib/forge-std/src/console.sol",
         "node_modules/@openzeppelin/contracts/access/Ownable.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/governance/utils/Votes.sol",
@@ -230,8 +229,8 @@
       }
     },
     "contracts/governance/Senate.sol": {
-      "lastModificationDate": 1687964970850,
-      "contentHash": "0edbce19524320526e3753369290afaa",
+      "lastModificationDate": 1687965812700,
+      "contentHash": "248e8bc7273e42ddb8a90bb82f94eb85",
       "sourceName": "contracts/governance/Senate.sol",
       "solcConfig": {
         "settings": {
@@ -2953,8 +2952,8 @@
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol": {
-      "lastModificationDate": 1686683366917,
-      "contentHash": "92bc3cf502175ea3b04924bd9c9c952d",
+      "lastModificationDate": 1687965654906,
+      "contentHash": "4fdbe7e696c45ccf95443dfbb1b7a88c",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -2985,6 +2984,7 @@
         }
       },
       "imports": [
+        "lib/forge-std/src/console.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC5267Upgradeable.sol",
@@ -3111,8 +3111,8 @@
       }
     },
     "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorCountingSimpleUpgradeable.sol": {
-      "lastModificationDate": 1686683366917,
-      "contentHash": "b3303e0be95bdc3633095c16cde1f82d",
+      "lastModificationDate": 1687965752523,
+      "contentHash": "9f215331240834ea674e5a5f0b8ca225",
       "sourceName": "node_modules/@openzeppelin/contracts-upgradeable/governance/extensions/GovernorCountingSimpleUpgradeable.sol",
       "solcConfig": {
         "settings": {
@@ -3143,6 +3143,7 @@
         }
       },
       "imports": [
+        "lib/forge-std/src/console.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
@@ -3203,6 +3204,7 @@
         }
       },
       "imports": [
+        "lib/forge-std/src/console.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol",
@@ -3263,6 +3265,7 @@
         }
       },
       "imports": [
+        "lib/forge-std/src/console.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
@@ -3327,6 +3330,7 @@
         }
       },
       "imports": [
+        "lib/forge-std/src/console.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/GovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/utils/IVotesUpgradeable.sol",
@@ -4704,8 +4708,8 @@
       }
     },
     "test/foundry/Senate/SenateHappy.t.sol": {
-      "lastModificationDate": 1687965125567,
-      "contentHash": "c4aef1e298f0461c9679e36f7f0c7dcc",
+      "lastModificationDate": 1687968872532,
+      "contentHash": "b56818c3f2af60e2eaab5a812e67a560",
       "sourceName": "test/foundry/Senate/SenateHappy.t.sol",
       "solcConfig": {
         "settings": {

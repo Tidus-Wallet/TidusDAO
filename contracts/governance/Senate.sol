@@ -402,7 +402,7 @@ contract Senate is
      */
     function quorum(uint256 proposalSnapshot) public view override(IGovernorUpgradeable, ISenate) returns (uint256 quorumValue) {
         uint256 numSenators = (senatePositionsContract.totalPositions());
-        quorumValue = (numSenators * (quorumPct * 100)) / 100;
+        quorumValue = (numSenators * (quorumPct * 100)) / 10000;
     }
 
     /**
