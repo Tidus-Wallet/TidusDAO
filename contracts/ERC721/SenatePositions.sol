@@ -530,6 +530,17 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         return false;
     }
 
+    function totalPositions() public view returns (uint256 senateBody) {
+        senateBody = (
+            activeConsuls.length + 
+            activeCensors.length + 
+            activeTribunes.length + 
+            activeSenators.length +
+            activeCaesar.length
+        );
+        return senateBody;
+    }
+
     function supportsInterface(bytes4 interfaceId)
         public
         view

@@ -38,6 +38,8 @@ interface ISenatePositions is IERC721 {
 
     function updateTermLength(Position _position, uint256 _newTermLength) external;
 
+    function totalPositions() external view returns (uint256);
+
     ///////////////////////
     //      Errors       //
     ///////////////////////

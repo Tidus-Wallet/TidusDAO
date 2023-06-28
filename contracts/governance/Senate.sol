@@ -397,11 +397,12 @@ contract Senate is
 
     /**
      * @notice Returns the required quorum for proposals.
-     * @param proposalId The ID of the proposal to check the quorum for.
-     * @return The required quorum value.
+     * @param proposalSnapshot The block number of the proposal to check the quorum for.
+     * @return quorumValue The required quorum value.
      */
-    function quorum(uint256 proposalId) public view override(IGovernorUpgradeable, ISenate) returns (uint256) {
-        return quorum(proposalId);
+    function quorum(uint256 proposalSnapshot) public view override(IGovernorUpgradeable, ISenate) returns (uint256 quorumValue) {
+        uint256 numSenators = (senatePositionsContract.totalPositions());
+        quorumValue = (numSenators * (quorumPct * 100)) / 100;
     }
 
     /**

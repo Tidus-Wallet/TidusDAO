@@ -120,7 +120,7 @@ contract TestSenateHappy is Test, Events {
                 "initialize(address,address,uint16)",
                 address(timelock),
                 address(senatePositions),
-                0 
+                50 
             )
         );
 
@@ -212,12 +212,13 @@ contract TestSenateHappy is Test, Events {
             assertEq(votingPeriod, expectedPeriod);
         }
         
-        ///@dev Verify Quorum
+        ///@dev Verify Quorum Percentage (50% of all positions in SenatePositions);
         (bool quorumSuccess, bytes memory quorumData) =
-            address(senate).staticcall(abi.encodeWithSignature("quorum(uint256)", block.number));
+            address(senate).staticcall(abi.encodeWithSignature("quorumPct()"));
+            assertEq(quorumSuccess, true);
         if (quorumSuccess) {
             uint256 quorum = abi.decode(quorumData, (uint256));
-            uint256 expectedQuorum = 0;
+            uint256 expectedQuorum = 50;
             assertEq(quorum, expectedQuorum);
         }
 
@@ -403,6 +404,7 @@ contract TestSenateHappy is Test, Events {
         vm.roll(5);
         (bool proposalStateTx, bytes memory proposalStateTxData) =
             address(senate).staticcall(abi.encodeWithSignature("state(uint256)", proposalId));
+            assertEq(proposalStateTx, true);
             if(proposalStateTx) {
                 uint8 proposalStateActive = abi.decode(proposalStateTxData, (uint8));
                 uint8 expectedProposalState = 1;
@@ -416,6 +418,7 @@ contract TestSenateHappy is Test, Events {
         (bool voteSuccess, bytes memory voteData) = address(senate).call(
             abi.encodeWithSignature("castVote(uint256,uint8)", proposalId, vote)
         );
+        assertEq(voteSuccess, true);
             if(voteSuccess) {
                 uint256 expectedVoteWeight = 0; 
                 uint256 voteWeight = abi.decode(voteData, (uint256));
