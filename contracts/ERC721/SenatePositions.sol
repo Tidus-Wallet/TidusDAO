@@ -339,6 +339,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
         } else {
             revert TIDUS_INVALID_POSITION(_position);
         }
+
+        ///TODO: emit event
     }
 
     ///////////////////////
@@ -348,7 +350,23 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      * @notice Update the metadata URI for the Censor contract.
      * @param _updatedMetadata The updated metadata URI as a string.
      */
-    function updateMetadata(Position _position, string calldata _updatedMetadata) public onlyOwner {}
+    function updateMetadata(Position _position, string calldata _updatedMetadata) public onlyOwner {
+        if (_position == Position.Consul) {
+            consulMetadata = _updatedMetadata;
+        } else if (_position == Position.Censor) {
+            censorMetadata = _updatedMetadata;
+        } else if (_position == Position.Tribune) {
+            tribuneMetadata = _updatedMetadata;
+        } else if (_position == Position.Senator) {
+            senatorMetadata = _updatedMetadata;
+        } else if (_position == Position.Caesar) {
+            caesarMetadata = _updatedMetadata;
+        } else {
+            revert TIDUS_INVALID_POSITION(_position);
+        }
+
+        ///TODO: emit event
+    }
 
     /**
      * @notice Update the Senate Voting Contract address.
@@ -356,6 +374,8 @@ contract SenatePositions is ERC721, ERC721Votes, ERC721Enumerable, Ownable, ISen
      */
     function updateSenateAddress(address _updatedSenateAddress) public onlyOwner {
         senateContract = ISenate(_updatedSenateAddress);
+
+        ///TODO: emit event
     }
 
     /////////////////////////////
