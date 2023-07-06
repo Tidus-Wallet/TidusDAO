@@ -168,12 +168,12 @@ contract TestSenateHappy is Test, Events {
             )
         );
         assertEq(proposalSuccess, true);
-        if(proposalSuccess) {
+        if (proposalSuccess) {
             // propose() should return the proposalId
             uint256 proposalId = abi.decode(proposalData, (uint256));
             return proposalId;
         }
-        if(!proposalSuccess) {
+        if (!proposalSuccess) {
             revert("Proposal failed");
         }
     }
@@ -258,7 +258,7 @@ contract TestSenateHappy is Test, Events {
             assertEq(proposalState, expectedStatePending);
         }
 
-        // Change block number to 3 to make the proposal "Active" 
+        // Change block number to 3 to make the proposal "Active"
         vm.roll(3);
 
         // Verify proposal details
@@ -341,7 +341,7 @@ contract TestSenateHappy is Test, Events {
             assertEq(hasVoted, expectedVote);
         }
 
-       // Verify vote is counted
+        // Verify vote is counted
         (bool voteCountSuccess, bytes memory proposalVoteData) =
             address(senate).staticcall(abi.encodeWithSignature("proposalVotes(uint256)", proposalId));
         assertEq(voteCountSuccess, true);

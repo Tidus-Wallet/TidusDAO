@@ -16,7 +16,7 @@ import {ISenatePositions} from "../ERC721/interfaces/ISenatePositions.sol";
 
 /**
  * @title Senate Smart Contract
- * @notice The Senate contract is a governance contract for TidusDAO, a Roman Republic inspired project.
+ * @notice The Senate contract is a governance contract for the RomanDAO, a Roman Republic inspired project.
  * @notice This contract includes various positions, veto powers, and a governance whitelist.
  * @custom:security-contact sekaieth@proton.me
  */
@@ -42,7 +42,7 @@ contract Senate is
      * @notice Senator - Senators are the main voting body of the DAO.  They can vote on proposals and elect Consuls.
      * @notice Senator - There is no limit to the number of Senators, but they must be elected by other Senators via proposals.
      * @notice Caesar - There should only ever be 1 Caesar at any point in time.  The Caesar should be a short time interval
-     * @notice Caesar(cont'd) - They wield ultimate power within the DAO temporarily to resolve disputes.  ifa Consul vetoes the other,
+     * @notice Caesar(cont'd) - They wield ultimate power within the DAO temporarily to resolve disputes.  If a Consul vetoes the other,
      * @notice Caesar(cont'd) - There should be an election for a Caesar to resolve the dispute.
      */
 
@@ -319,18 +319,18 @@ contract Senate is
     ////////////////////////
     /**
      * @dev Update the address ofproposalStatesContract(address _contractAddress, address _newAddress) public onlyTimelock {
-        require(_newAddress != address(0), "Senate: Cannot update a contract to the zero address");
-        require(_contractAddress != address(0), "Senate: Cannot update the zero address");
-        require(_contractAddress != _newAddress, "Senate: Cannot update a contract to the same address");
-        require(
-            _contractAddress == address(senatePositionsContract),
-            "Senate: Cannot update a contract that is not the SenatePositions contract"
-        );
-
-        senatePositionsContract = ISenatePositions(_newAddress);
-    }
-
-    /**
+     *     require(_newAddress != address(0), "Senate: Cannot update a contract to the zero address");
+     *     require(_contractAddress != address(0), "Senate: Cannot update the zero address");
+     *     require(_contractAddress != _newAddress, "Senate: Cannot update a contract to the same address");
+     *     require(
+     *         _contractAddress == address(senatePositionsContract),
+     *         "Senate: Cannot update a contract that is not the SenatePositions contract"
+     *     );
+     * 
+     *     senatePositionsContract = ISenatePositions(_newAddress);
+     * }
+     * 
+     * /**
      * @dev Update the address of a given contract.
      * @param _newAddress The new address of the contract.
      * @notice Only a Senate proposal can update the address of a contract.
