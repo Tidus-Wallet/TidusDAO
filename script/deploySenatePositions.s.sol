@@ -16,7 +16,7 @@ contract DeploySenatePositions is Script {
         }
         uint256[] memory termLengths = new uint256[](5);
         {
-            for(uint256 i = 0; i < 5; i++) {
+            for (uint256 i = 0; i < 5; i++) {
                 termLengths[i] = 5 * 86400;
             }
         }

@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.18;
 
-import { Senate } from "../contracts/governance/Senate.sol";
-import { SenatePositions } from "../contracts/ERC721/SenatePositions.sol";
+import {Senate} from "../contracts/governance/Senate.sol";
+import {SenatePositions} from "../contracts/ERC721/SenatePositions.sol";
 import "forge-std/Script.sol";
 
 contract DeployDAO is Script {
-
     Senate senate;
     SenatePositions senatePositions;
 
@@ -21,7 +20,7 @@ contract DeployDAO is Script {
         }
         uint256[] memory termLengths = new uint256[](5);
         {
-            for(uint256 i = 0; i < 5; i++) {
+            for (uint256 i = 0; i < 5; i++) {
                 termLengths[i] = 5 * 86400;
             }
         }
@@ -44,9 +43,7 @@ contract DeployDAO is Script {
         console.log("Senate Deployed! Address: %s", address(senate));
     }
 
-
     function run() external {
         deploySenatePositions();
     }
-    
 }

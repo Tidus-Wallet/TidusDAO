@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/ERC721/SenatePositions.sol": {
-      "lastModificationDate": 1687965595229,
-      "contentHash": "0967898f17292611e8b3d664f451b2f9",
+      "lastModificationDate": 1688651303124,
+      "contentHash": "b23ea6c335fb540e7f2dee82d9cf5b71",
       "sourceName": "contracts/ERC721/SenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -91,8 +91,8 @@
       }
     },
     "contracts/ERC721/interfaces/ISenatePositions.sol": {
-      "lastModificationDate": 1687964358088,
-      "contentHash": "a03ffbae5bf8160d720af6c838abe091",
+      "lastModificationDate": 1688651303117,
+      "contentHash": "4c277aff7ff057de03901de4a4537f98",
       "sourceName": "contracts/ERC721/interfaces/ISenatePositions.sol",
       "solcConfig": {
         "settings": {
@@ -123,6 +123,7 @@
         }
       },
       "imports": [
+        "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol"
       ],
@@ -229,8 +230,8 @@
       }
     },
     "contracts/governance/Senate.sol": {
-      "lastModificationDate": 1687965812700,
-      "contentHash": "248e8bc7273e42ddb8a90bb82f94eb85",
+      "lastModificationDate": 1688651303121,
+      "contentHash": "66b186cecb120fcf97a1978056b3890d",
       "sourceName": "contracts/governance/Senate.sol",
       "solcConfig": {
         "settings": {
@@ -264,6 +265,7 @@
         "contracts/ERC721/interfaces/ISenatePositions.sol",
         "contracts/governance/interfaces/ISenate.sol",
         "lib/forge-std/src/console.sol",
+        "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
@@ -457,7 +459,7 @@
       }
     },
     "contracts/mocks/MockTimelock.sol": {
-      "lastModificationDate": 1686260556244,
+      "lastModificationDate": 1688651303117,
       "contentHash": "1a10a09cf09a7e7987b573674170dea8",
       "sourceName": "contracts/mocks/MockTimelock.sol",
       "solcConfig": {
@@ -491,6 +493,7 @@
       "imports": [
         "contracts/ERC721/interfaces/ISenatePositions.sol",
         "contracts/governance/interfaces/ISenate.sol",
+        "node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol",
         "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
         "node_modules/@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
@@ -4456,8 +4459,8 @@
       }
     },
     "script/deploy.s.sol": {
-      "lastModificationDate": 1687900249656,
-      "contentHash": "ee0afe439d442babcefa1b3beb755e74",
+      "lastModificationDate": 1688651303117,
+      "contentHash": "1c3ed8d71f3dcae44bfc99010875a7f6",
       "sourceName": "script/deploy.s.sol",
       "solcConfig": {
         "settings": {
@@ -4577,8 +4580,8 @@
       }
     },
     "script/deploySenate.s.sol": {
-      "lastModificationDate": 1687899259831,
-      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "lastModificationDate": 1688651303117,
+      "contentHash": "68b329da9893e34099c7d8ad5cb9c940",
       "sourceName": "script/deploySenate.s.sol",
       "solcConfig": {
         "settings": {
@@ -4617,8 +4620,8 @@
       }
     },
     "script/deploySenatePositions.s.sol": {
-      "lastModificationDate": 1687898738333,
-      "contentHash": "f6df194baa3b91409558cdb4d15e823a",
+      "lastModificationDate": 1688651303117,
+      "contentHash": "11613267cb6cd1b8d3682c3a40784c93",
       "sourceName": "script/deploySenatePositions.s.sol",
       "solcConfig": {
         "settings": {
@@ -4708,8 +4711,8 @@
       }
     },
     "test/foundry/Senate/SenateHappy.t.sol": {
-      "lastModificationDate": 1687968872532,
-      "contentHash": "b56818c3f2af60e2eaab5a812e67a560",
+      "lastModificationDate": 1688653106388,
+      "contentHash": "9a59f11b21258a45467455a190795a97",
       "sourceName": "test/foundry/Senate/SenateHappy.t.sol",
       "solcConfig": {
         "settings": {
@@ -4854,7 +4857,7 @@
       }
     },
     "test/foundry/SenatePositions/SenatePositionsFuzzing.t.sol": {
-      "lastModificationDate": 1686682987422,
+      "lastModificationDate": 1688651303117,
       "contentHash": "35543a9fb05eacca725e39b0ddc5e6b1",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsFuzzing.t.sol",
       "solcConfig": {
@@ -4951,7 +4954,7 @@
       }
     },
     "test/foundry/SenatePositions/SenatePositionsHappy.t.sol": {
-      "lastModificationDate": 1686682987422,
+      "lastModificationDate": 1688651303121,
       "contentHash": "1caac9934a0113cb4aa04970795fa0d2",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsHappy.t.sol",
       "solcConfig": {
@@ -5048,7 +5051,7 @@
       }
     },
     "test/foundry/SenatePositions/SenatePositionsReverts.t.sol": {
-      "lastModificationDate": 1686682987422,
+      "lastModificationDate": 1688651303117,
       "contentHash": "5f0d01440850216f71427468a1723c47",
       "sourceName": "test/foundry/SenatePositions/SenatePositionsReverts.t.sol",
       "solcConfig": {

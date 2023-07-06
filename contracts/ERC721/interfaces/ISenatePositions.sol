@@ -2,9 +2,10 @@
 pragma solidity ^0.8.18;
 
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import {IVotes} from "@openzeppelin/contracts/governance/utils/IVotes.sol";
 
 // Interface for the SenatePositions contract
-interface ISenatePositions is IERC721 {
+interface ISenatePositions is IERC721, IVotes {
     enum Position {
         None,
         Consul,

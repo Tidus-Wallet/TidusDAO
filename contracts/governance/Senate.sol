@@ -162,7 +162,7 @@ contract Senate is
         quorumPct = _quorumValue;
     }
 
-     ///////////////////////
+    ///////////////////////
     //  Public Functions  //
     ///////////////////////
     // The following functions are overrides required by Solidity.
@@ -244,7 +244,6 @@ contract Senate is
         return true;
     }
 
-
     /**
      * @dev Creates a proposal with the given targets, values, calldatas and description, ifthe sender has a valid position.
      * @param targets The contract addresses to call.
@@ -263,10 +262,10 @@ contract Senate is
         return super.propose(targets, values, calldatas, description);
     }
 
-     ///////////////////////
+    ///////////////////////
     // Internal Functions //
     ///////////////////////
-   /**
+    /**
      * @notice Authorizes an upgrade to the contract implementation.
      * @param newImplementation The address of the new contract implementation.
      * @dev This function can only be called by the contract owner.
@@ -315,16 +314,11 @@ contract Senate is
         return super._executor();
     }
 
-     ////////////////////////
-     // Governance Actions //
+    ////////////////////////
+    // Governance Actions //
     ////////////////////////
     /**
-     * @dev Update the address of a given contract.
-     * @param _contractAddress The address of the contract to update.
-     * @param _newAddress The new address of the contract.
-     * @notice Only a Senate proposal can update the address of a contract.
-     */
-    function updateSenatePositionsContract(address _contractAddress, address _newAddress) public onlyTimelock {
+     * @dev Update the address ofproposalStatesContract(address _contractAddress, address _newAddress) public onlyTimelock {
         require(_newAddress != address(0), "Senate: Cannot update a contract to the zero address");
         require(_contractAddress != address(0), "Senate: Cannot update the zero address");
         require(_contractAddress != _newAddress, "Senate: Cannot update a contract to the same address");
@@ -342,8 +336,8 @@ contract Senate is
      * @notice Only a Senate proposal can update the address of a contract.
      */
     function updateTimelockContract(address _newAddress) public onlyTimelock {
-        if(_newAddress == address(0)) revert TIDUS_ONLY_TIMELOCK();
-        if(_newAddress == address(timelockContract)) revert TIDUS_INVALID_ADDRESS(_newAddress);
+        if (_newAddress == address(0)) revert TIDUS_ONLY_TIMELOCK();
+        if (_newAddress == address(timelockContract)) revert TIDUS_INVALID_ADDRESS(_newAddress);
 
         timelockContract = _newAddress;
     }
@@ -358,7 +352,7 @@ contract Senate is
         return quorumPct;
     }
 
-     //////////////////////////
+    //////////////////////////
     // Public View Functions //
     //////////////////////////
     /**
@@ -400,7 +394,12 @@ contract Senate is
      * @param proposalSnapshot The block number of the proposal to check the quorum for.
      * @return quorumValue The required quorum value.
      */
-    function quorum(uint256 proposalSnapshot) public view override(IGovernorUpgradeable, ISenate) returns (uint256 quorumValue) {
+    function quorum(uint256 proposalSnapshot)
+        public
+        view
+        override(IGovernorUpgradeable, ISenate)
+        returns (uint256 quorumValue)
+    {
         uint256 numSenators = (senatePositionsContract.totalPositions());
         quorumValue = (numSenators * (quorumPct * 100)) / 10000;
     }
@@ -471,8 +470,8 @@ contract Senate is
     }
 
     /**
-     * @notice Returns whether a consul has vetoed a proposal 
-     * @return True if the consul has vetoed the proposal, false otherwise. 
+     * @notice Returns whether a consul has vetoed a proposal
+     * @return True if the consul has vetoed the proposal, false otherwise.
      */
     function hasConsulVetoed(uint256 proposalId, address consul) public view returns (bool) {
         return vetoes[proposalId].consulVetoes[consul];
@@ -482,4 +481,7 @@ contract Senate is
         return vetoes[proposalId].consulVetoCount;
     }
 
+    ////////////////
+    // Internal Functions //
+    ////////////////////////
 }
