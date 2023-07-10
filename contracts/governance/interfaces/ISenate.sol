@@ -11,9 +11,11 @@ abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable 
 
     /// @dev VetoInfo struct to store veto-related information.
     struct VetoInfo {
-        uint8 tribuneVetoes;
         uint8 consulVetoCount;
+        uint8 tribuneVetoCount;
+        address[] proposedCaesars;
         mapping(address => bool) consulVetoes;
+        mapping(address => bool) tribuneVetoes;
     }
 
     enum Position {
@@ -22,7 +24,7 @@ abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable 
         Censor,
         Tribune,
         Senator,
-        Dictator
+        Caesar
     }
 
     ///////////////////////
@@ -42,18 +44,26 @@ abstract contract ISenate is IGovernorUpgradeable, IGovernorTimelockUpgradeable 
     error TIDUS_NOT_SUCCESSFUL_PROPOSAL(uint256 proposal);
     error TIDUS_ALREADY_VETOED(Position _position, address _sender);
     error TIDUS_INVALID_ADDRESS(address _address);
+    error TIDUS_NO_SELF_CAESAR(address _address);
 
     ////////////////////////////////
     //  External View Functions  //
     ///////////////////////////////
     function governanceWhitelist(address account) external virtual returns (bool);
     function quorum(uint256 blockNumber) public view virtual override returns (uint256);
+    function proposalVetoes(uint256 proposalId)
+        external
+        view
+        virtual
+        returns (uint8 tribuneVetoes, uint8 consulVetoes);
+    function hasTribuneVetoed(uint256 proposalId, address account) external view virtual returns (bool);
+    function hasConsulVetoed(uint256 proposalId, address account) external view virtual returns (bool);
 
     //////////////////////////
     //  State Modification  //
     //////////////////////////
     function tribuneVeto(uint256 proposalId) external virtual;
-    function consulVeto(uint256 proposalId) external virtual returns (bool);
+    function consulVeto(uint256 proposalId, address proposedCaesar) external virtual returns (bool);
 
     function propose(
         address[] memory targets,

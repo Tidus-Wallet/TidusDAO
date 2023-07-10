@@ -114,7 +114,7 @@ contract Senate is
     }
 
     modifier noPreviousTribuneVeto(uint256 proposalId) {
-        uint8 tribuneVetoes = vetoes[proposalId].tribuneVetoes;
+        uint8 tribuneVetoes = vetoes[proposalId].tribuneVetoCount;
         if (tribuneVetoes >= 1) revert TIDUS_ALREADY_VETOED(Position.Tribune, msg.sender);
         _;
     }
@@ -135,6 +135,11 @@ contract Senate is
     modifier maxConsulVetoesReached(uint256 proposalId) {
         uint8 consulVetoCount = vetoes[proposalId].consulVetoCount;
         if (consulVetoCount >= 2) revert TIDUS_ALREADY_VETOED(Position.Consul, msg.sender);
+        _;
+    }
+
+    modifier noSelfCaesar(address proposedCaesar) {
+        if (proposedCaesar == msg.sender) revert TIDUS_NO_SELF_CAESAR(proposedCaesar);
         _;
     }
 
@@ -220,7 +225,8 @@ contract Senate is
         onlyTribune
         noPreviousTribuneVeto(proposalId)
     {
-        vetoes[proposalId].tribuneVetoes += 1;
+        vetoes[proposalId].tribuneVetoCount += 1;
+        vetoes[proposalId].tribuneVetoes[msg.sender] = true;
         emit TribuneVeto(msg.sender, proposalId);
     }
 
@@ -229,18 +235,39 @@ contract Senate is
      * @param proposalId The ID of the proposal to veto.
      * @dev This function requires that the caller is a Consul and the proposal has not already been vetoed twice by Consuls.
      */
-    function consulVeto(uint256 proposalId)
+    function consulVeto(uint256 proposalId, address proposedCaesar)
         public
         override
         // onlySuccessfulOrDefeatedProposal(proposalId)
         onlyConsul
         noPreviousConsulVeto(proposalId)
         maxConsulVetoesReached(proposalId)
+        noSelfCaesar(proposedCaesar)
         returns (bool)
     {
         vetoes[proposalId].consulVetoCount += 1;
         vetoes[proposalId].consulVetoes[msg.sender] = true;
+        vetoes[proposalId].proposedCaesars.push(proposedCaesar);
         emit ConsulVeto(msg.sender, proposalId);
+
+        // If both Consuls veto, kick off a proposal to elect a new Caesar
+        if (vetoes[proposalId].consulVetoCount == 2) {
+            // Set up new proposal variables
+            address[] memory targets = new address[](1);
+            targets[0] = address(senatePositionsContract);
+            uint256[] memory values = new uint256[](1);
+            values[0] = 0;
+            bytes[] memory calldatas = new bytes[](1);
+
+            // Loop through proposedCaesars and create proposals for a runoff election
+            address[] memory proposedCaesars = vetoes[proposalId].proposedCaesars;
+            for(uint256 i = 0; i < proposedCaesars.length; i++) {
+                calldatas[0] =
+                    abi.encodeWithSignature("mint(uint8,address)", uint8(ISenatePositions.Position.Caesar), proposedCaesars[i]);
+                propose(targets, values, calldatas, "Elect a new Caesar");
+            }
+        }
+
         return true;
     }
 
@@ -326,10 +353,10 @@ contract Senate is
      *         _contractAddress == address(senatePositionsContract),
      *         "Senate: Cannot update a contract that is not the SenatePositions contract"
      *     );
-     * 
+     *
      *     senatePositionsContract = ISenatePositions(_newAddress);
      * }
-     * 
+     *
      * /**
      * @dev Update the address of a given contract.
      * @param _newAddress The new address of the contract.
@@ -377,7 +404,7 @@ contract Senate is
         VetoInfo storage vetoInfo = vetoes[proposalId];
 
         // if there's a Tribune veto, the proposal is considered Defeated
-        if (currentState == ProposalState.Succeeded && vetoInfo.tribuneVetoes > 0) {
+        if (currentState == ProposalState.Succeeded && vetoInfo.tribuneVetoCount > 0) {
             currentState = ProposalState.Defeated;
         }
 
@@ -473,15 +500,58 @@ contract Senate is
      * @notice Returns whether a consul has vetoed a proposal
      * @return True if the consul has vetoed the proposal, false otherwise.
      */
-    function hasConsulVetoed(uint256 proposalId, address consul) public view returns (bool) {
+    function hasConsulVetoed(uint256 proposalId, address consul) public view override returns (bool) {
         return vetoes[proposalId].consulVetoes[consul];
     }
 
-    function numConsulVetoes(uint256 proposalId) public view returns (uint8) {
-        return vetoes[proposalId].consulVetoCount;
+    /**
+     * @notice Returns whether a tribune has vetoed a proposal
+     * @return True if the tribune has vetoed the proposal, false otherwise.
+     */
+    function hasTribuneVetoed(uint256 proposalId, address tribune) public view override returns (bool) {
+        return vetoes[proposalId].tribuneVetoes[tribune];
     }
 
-    ////////////////
+    /**
+     * @notice Returns the number of Consul vetoes for a given proposal
+     * @return consulVetoes The number of Consul vetoes.
+     * @return tribuneVetoes The number of Tribune vetoes.
+     */
+    function proposalVetoes(uint256 proposalId)
+        public
+        view
+        override
+        returns (uint8 consulVetoes, uint8 tribuneVetoes)
+    {
+        consulVetoes = vetoes[proposalId].consulVetoCount;
+        tribuneVetoes = vetoes[proposalId].tribuneVetoCount;
+    }
+
+    ////////////////////////
     // Internal Functions //
     ////////////////////////
+
+    /**
+     * @dev Internal vote casting mechanism: Check that the vote is pending, that it has not been cast yet, retrieve
+     * voting weight using {IGovernor-getVotes} and call the {_countVote} internal function.
+     *
+     * Emits a {IGovernor-VoteCast} event.
+     */
+    function _castVote(uint256 proposalId, address account, uint8 support, string memory reason, bytes memory params)
+        internal
+        virtual
+        override
+        returns (uint256)
+    {
+        uint256 weight = 1;
+        _countVote(proposalId, account, support, weight, params);
+
+        if (params.length == 0) {
+            emit VoteCast(account, proposalId, support, weight, reason);
+        } else {
+            emit VoteCastWithParams(account, proposalId, support, weight, reason, params);
+        }
+
+        return weight;
+    }
 }
