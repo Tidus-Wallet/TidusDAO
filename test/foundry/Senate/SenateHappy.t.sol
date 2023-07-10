@@ -561,8 +561,9 @@ contract TestSenateHappy is Test, Events {
 
         // Cast Consul Veto
         {
-            (bool consulVetoSuccess, bytes memory consulVetoData) =
-                address(senate).call(abi.encodeWithSignature("consulVeto(uint256,address)", proposalId, address(mockWallet)));
+            (bool consulVetoSuccess, bytes memory consulVetoData) = address(senate).call(
+                abi.encodeWithSignature("consulVeto(uint256,address)", proposalId, address(mockWallet))
+            );
             assertEq(consulVetoSuccess, true);
             if (consulVetoSuccess) {
                 // Verify Consul Veto Response

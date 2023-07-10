@@ -261,9 +261,10 @@ contract Senate is
 
             // Loop through proposedCaesars and create proposals for a runoff election
             address[] memory proposedCaesars = vetoes[proposalId].proposedCaesars;
-            for(uint256 i = 0; i < proposedCaesars.length; i++) {
-                calldatas[0] =
-                    abi.encodeWithSignature("mint(uint8,address)", uint8(ISenatePositions.Position.Caesar), proposedCaesars[i]);
+            for (uint256 i = 0; i < proposedCaesars.length; i++) {
+                calldatas[0] = abi.encodeWithSignature(
+                    "mint(uint8,address)", uint8(ISenatePositions.Position.Caesar), proposedCaesars[i]
+                );
                 propose(targets, values, calldatas, "Elect a new Caesar");
             }
         }
