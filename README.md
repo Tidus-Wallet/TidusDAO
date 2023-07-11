@@ -48,7 +48,3 @@ The contracts have been designed with a high emphasis on security. Many of the k
 ## Conclusion
 
 The Roman Senate governance model is a robust and flexible system for implementing a structured, democratic decision-making process on the Ethereum blockchain. It's highly customizable and can be adapted to fit a wide variety of applications.
-
----
-
-Please note that the provided Solidity code and this guide assume a basic understanding of the Ethereum network and smart contracts. Always review and test any code thoroughly before deployment.
